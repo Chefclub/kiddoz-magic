@@ -1,0 +1,32 @@
+{
+  "name": "kiddoz-magic",
+  "version": "1.0.0",
+  "description": "ChefClub Kiddoz Recipe Converter",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run copy-assets && elm make src/Main.elm --optimize --output=build/app.js",
+    "copy-assets": "rimraf build && mkdir build && cp -r public/* build",
+    "debug": "elm-live --port=3000 --dir=public/ -- src/Main.elm  --output=public/app.js --debug",
+    "deploy": "npm run build && npm run build && gh-pages --dist build/",
+    "start": "elm-live --port=3000 --dir=public/ -- src/Main.elm --output=public/app.js",
+    "test": "elm-test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChefClub/kiddoz-magic.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ChefClub/kiddoz-magic/issues"
+  },
+  "homepage": "https://github.com/ChefClub/kiddoz-magic#readme",
+  "author": "ChefClub",
+  "license": "ISC",
+  "devDependencies": {
+    "elm": "0.19.0-no-deps",
+    "elm-format": "^0.8.2",
+    "elm-live": "^3.0.6",
+    "elm-test": "^0.19.0-rev6",
+    "gh-pages": "^2.1.1",
+    "rimraf": "^2.7.1"
+  }
+}
