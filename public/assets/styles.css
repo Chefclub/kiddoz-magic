@@ -1,0 +1,19 @@
+html, body {
+	background-color: rgba(161, 225, 234, 0.5);
+	font-family: Roboto, sans-serif;
+}
+
+div#content {
+	width: 800px;
+	margin: auto;
+}
+
+h2 {
+	text-align: center;
+	font-weight: 900;
+}
+
+img.logo {
+	display: block;
+	margin: 20px auto;
+}

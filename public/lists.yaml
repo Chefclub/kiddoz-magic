@@ -1,0 +1,2188 @@
+ingredients: 
+  - name: "AGNEAU EUROPÉEN"
+    units: 
+      - gramme
+  - name: AIL
+    units: 
+      - gousse
+      - gramme
+  - name: "AIL SEMOULE"
+    units: 
+      - gramme
+      - PM
+  - name: "ALLUMETTES DE JAMBON"
+    units: 
+      - gramme
+  - name: "ALLUMETTES DE LARDONS"
+    units: 
+      - gramme
+  - name: AMANDE
+    units: 
+      - pièce
+      - gramme
+  - name: "AMANDES EFFILÉES"
+    units: 
+      - gramme
+      - pièce
+      - PM
+  - name: ANANAS
+    units: 
+      - pièce
+      - gramme
+  - name: ANETH
+    units: 
+      - PM
+  - name: APÉRICUBES
+    units: 
+      - pièce
+      - gramme
+  - name: APÉROL
+    units: 
+      - cL
+  - name: ARTICHAUT
+    units: 
+      - pièce
+      - gramme
+  - name: "ASPERGE BLANCHE"
+    units: 
+      - pièce
+      - gramme
+  - name: "ASPERGE VERTE"
+    units: 
+      - pièce
+      - gramme
+  - name: AUBERGINE
+    units: 
+      - pièce
+      - gramme
+  - name: "AUBERGINE CHINOISE"
+    units: 
+      - pièce
+      - gramme
+  - name: AURICCHIETTO
+    units: 
+      - gramme
+  - name: AVOCAT
+    units: 
+      - pièce
+  - name: BABYBEL
+    units: 
+      - pièce
+      - gramme
+  - name: BACON
+    units: 
+      - tranche
+  - name: BADIANE
+    units: 
+      - étoile
+      - gramme
+  - name: "BAGUETTE DE PAIN"
+    units: 
+      - pièce
+  - name: BAILEYS
+    units: 
+      - cL
+  - name: BANANE
+    units: 
+      - pièce
+  - name: "BARBE À PAPA"
+    units: 
+      - pièce
+      - gramme
+      - PM
+  - name: BASILIC
+    units: 
+      - PM
+  - name: "BÂTONNET DE POISSON PANÉ"
+    units: 
+      - pièce
+  - name: BÉCHAMEL
+    units: 
+      - cL
+  - name: BEIGNET
+    units: 
+      - pièce
+  - name: BETTERAVE
+    units: 
+      - pièce
+      - gramme
+  - name: BEURRE
+    units: 
+      - gramme
+      - PM
+  - name: "BEURRE DE CACAHUÈTE"
+    units: 
+      - gramme
+  - name: "BEURRE DEMI-SEL"
+    units: 
+      - gramme
+  - name: "BICARBONNATE DE SOUDE"
+    units: 
+      - gramme
+      - pincée
+  - name: BIÈRE
+    units: 
+      - cL
+  - name: "BILLE DE MOZZARELLA"
+    units: 
+      - pièce
+  - name: "BILLES EN SUCRE"
+    units: 
+      - gramme
+      - PM
+  - name: BISCOTTE
+    units: 
+      - pièce
+      - gramme
+  - name: "BLANC D'ŒUF"
+    units: 
+      - pièce
+  - name: "BLANC DE POULET"
+    units: 
+      - pièce
+      - gramme
+  - name: BLINIS
+    units: 
+      - pièce
+  - name: "BŒUF HACHÉ"
+    units: 
+      - gramme
+  - name: BONBON
+    units: 
+      - pièce
+      - gramme
+  - name: "BONBON À LA MENTHE"
+    units: 
+      - pièce
+      - gramme
+  - name: "BONBON BANANE"
+    units: 
+      - pièce
+      - gramme
+  - name: "BONBON COCA"
+    units: 
+      - pièce
+      - gramme
+  - name: "BONBON CROCODILE"
+    units: 
+      - pièce
+      - gramme
+  - name: "BONBON FRITES"
+    units: 
+      - pièce
+      - gramme
+  - name: "BONBON LACET"
+    units: 
+      - pièce
+      - gramme
+  - name: "BONBON LONGFIZZ"
+    units: 
+      - pièce
+      - gramme
+  - name: "BONBON NERDS"
+    units: 
+      - pièce
+      - gramme
+  - name: "BONBON NOUNOURS"
+    units: 
+      - pièce
+      - gramme
+  - name: "BONBON OURSON"
+    units: 
+      - pièce
+      - gramme
+  - name: "BONBON ROTELLA RÉGLISSE"
+    units: 
+      - pièce
+  - name: "BONBON SCHTROUMPFS"
+    units: 
+      - pièce
+      - gramme
+  - name: "BONBON SMILEYS"
+    units: 
+      - pièce
+      - gramme
+  - name: "BONBON VER DE TERRE"
+    units: 
+      - pièce
+      - gramme
+  - name: BOUDOIR
+    units: 
+      - pièce
+      - gramme
+  - name: BOUILLON
+    units: 
+      - cube
+  - name: "BOUILLON DE BŒUF"
+    units: 
+      - cL
+  - name: "BOUILLON DE LÉGUMES"
+    units: 
+      - cube
+  - name: "BOUILLON DE POULET"
+    units: 
+      - cL
+  - name: "BOUILLON DE VOLAILLE"
+    units: 
+      - cL
+      - cube
+  - name: "BOUILLON KUB"
+    units: 
+      - cL
+  - name: BOUNTY
+    units: 
+      - pièce
+  - name: "BOUQUET GARNI"
+    units: 
+      - PM
+  - name: BOURSIN
+    units: 
+      - gramme
+  - name: BRESAOLA
+    units: 
+      - gramme
+  - name: BRETZEL
+    units: 
+      - gramme
+  - name: BRIE
+    units: 
+      - gramme
+  - name: BRIOCHE
+    units: 
+      - gramme
+  - name: BROCOLI
+    units: 
+      - pièce
+      - gramme
+  - name: CABILLAUD
+    units: 
+      - gramme
+  - name: CACAHUÈTES
+    units: 
+      - gramme
+  - name: "CACAO EN POUDRE"
+    units: 
+      - gramme
+  - name: CACHAÇA
+    units: 
+      - cL
+  - name: CACIOCAVALLO
+    units: 
+      - gramme
+  - name: "CADBURY CREME EGG"
+    units: 
+      - pièce
+  - name: "CADBURY MINI EGG"
+    units: 
+      - pièce
+  - name: CAFÉ
+    units: 
+      - gramme
+      - cL
+  - name: CAMEMBERT
+    units: 
+      - pièce
+      - gramme
+  - name: CANCOILLOTTE
+    units: 
+      - gramme
+  - name: CANNELLE
+    units: 
+      - gramme
+      - PM
+  - name: CANNELLONI
+    units: 
+      - pièce
+      - gramme
+  - name: CANTAL
+    units: 
+      - gramme
+  - name: CÂPRE
+    units: 
+      - pièce
+      - gramme
+      - PM
+  - name: "CAPRICE DES DIEUX"
+    units: 
+      - pièce
+  - name: CARAMEL
+    units: 
+      - gramme
+  - name: "CARAMEL AU BEURRE SALÉ"
+    units: 
+      - gramme
+  - name: "CARAMEL MOU"
+    units: 
+      - pièce
+      - gramme
+  - name: CAROTTE
+    units: 
+      - pièce
+      - gramme
+  - name: "CAROTTE JAUNE"
+    units: 
+      - pièce
+      - gramme
+  - name: "CAROTTE VIOLETTE"
+    units: 
+      - pièce
+      - gramme
+  - name: "CAROTTES RÂPÉES"
+    units: 
+      - gramme
+  - name: "CARPACCION DE BŒUF"
+    units: 
+      - tranche
+      - gramme
+  - name: "CARRÉ FRAIS"
+    units: 
+      - pièce
+  - name: CASARECCE
+    units: 
+      - gramme
+  - name: "CÉLERI BOULE"
+    units: 
+      - pièce
+      - gramme
+  - name: "CÉLERI BRANCHE"
+    units: 
+      - pièce
+  - name: CÉRÉALES
+    units: 
+      - gramme
+  - name: CERISE
+    units: 
+      - pièce
+      - gramme
+  - name: "CERISE CONFITE"
+    units: 
+      - pièce
+      - gramme
+  - name: "CHAIR À SAUCISSE"
+    units: 
+      - gramme
+  - name: CHAMALLOW
+    units: 
+      - pièce
+      - gramme
+  - name: CHAMPAGNE
+    units: 
+      - cL
+  - name: CHAMPIGNON
+    units: 
+      - pièce
+      - gramme
+  - name: CHANTILLY
+    units: 
+      - PM
+      - bombe
+  - name: CHAPELURE
+    units: 
+      - gramme
+  - name: CHAVROUX
+    units: 
+      - pièce
+  - name: CHEDDAR
+    units: 
+      - gramme
+      - tranche
+  - name: "CHEDDAR RÂPÉ"
+    units: 
+      - gramme
+  - name: "CHEVEUX D'ANGE"
+    units: 
+      - gramme
+  - name: CHIPOLATA
+    units: 
+      - gramme
+      - pièce
+  - name: CHIPS
+    units: 
+      - gramme
+  - name: "CHOCOLAT AU LAIT"
+    units: 
+      - gramme
+  - name: "CHOCOLAT BLANC"
+    units: 
+      - gramme
+  - name: "CHOCOLAT NOIR"
+    units: 
+      - gramme
+  - name: CHORIZO
+    units: 
+      - gramme
+      - tranche
+  - name: "CHOU DE SAVOIE"
+    units: 
+      - pièce
+      - gramme
+  - name: "CHOU ROUGE"
+    units: 
+      - pièce
+      - gramme
+  - name: "CHOU VERT"
+    units: 
+      - pièce
+      - gramme
+  - name: CHOU-FLEUR
+    units: 
+      - pièce
+      - gramme
+  - name: CHOUQUETTE
+    units: 
+      - pièce
+  - name: CIBOULETTE
+    units: 
+      - PM
+  - name: "CIGARETTE RUSSE"
+    units: 
+      - pièce
+  - name: CITRON
+    units: 
+      - pièce
+  - name: "CITRON VERT"
+    units: 
+      - pièce
+  - name: CLÉMENTINE
+    units: 
+      - pièce
+  - name: COCA-COLA
+    units: 
+      - cL
+  - name: "COCO POPS"
+    units: 
+      - gramme
+  - name: "CŒUR D'ARTICHAUT"
+    units: 
+      - pièce
+  - name: "CŒUR DE COURGETTE"
+    units: 
+      - pièce
+  - name: COGNAC
+    units: 
+      - cL
+  - name: COINTREAU
+    units: 
+      - cL
+  - name: COLORANT
+    units: 
+      - cL
+  - name: "COLORANT BLEU"
+    units: 
+      - cL
+  - name: "COLORANT JAUNE"
+    units: 
+      - cL
+  - name: "COLORANT ROSE"
+    units: 
+      - cL
+  - name: "COLORANT ROUGE"
+    units: 
+      - cL
+  - name: "COLORANT VERT"
+    units: 
+      - cL
+  - name: "COLORANT VIOLET"
+    units: 
+      - cL
+  - name: "COMPOTE DE POMMES"
+    units: 
+      - gramme
+  - name: COMTÉ
+    units: 
+      - gramme
+  - name: "COMTÉ RÂPÉ"
+    units: 
+      - gramme
+  - name: "CONCENTRÉ DE TOMATES"
+    units: 
+      - gramme
+  - name: CONCHIGLIETTE
+    units: 
+      - gramme
+  - name: CONCHIGLIONI
+    units: 
+      - gramme
+  - name: CONCOMBRE
+    units: 
+      - pièce
+      - gramme
+  - name: "CONFIT D'OIGNONS"
+    units: 
+      - gramme
+  - name: "CONFITURE D'ABRICOTS"
+    units: 
+      - gramme
+  - name: "CONFITURE DE CERISES"
+    units: 
+      - gramme
+  - name: "CONFITURE DE CITRONS"
+    units: 
+      - gramme
+  - name: "CONFITURE DE FRAISES"
+    units: 
+      - gramme
+  - name: "CONFITURE DE FRAMBOISES"
+    units: 
+      - gramme
+  - name: "CONFITURE DE LAIT"
+    units: 
+      - gramme
+  - name: "COPEAUX DE CHOCOLAT"
+    units: 
+      - gramme
+      - PM
+  - name: COPPA
+    units: 
+      - tranche
+      - gramme
+  - name: COQUILLETTES
+    units: 
+      - gramme
+  - name: CORIANDRE
+    units: 
+      - PM
+  - name: "CORN FLAKES"
+    units: 
+      - gramme
+  - name: "CORNET DE GLACE"
+    units: 
+      - pièce
+  - name: CORNICHONS
+    units: 
+      - pièce
+      - PM
+  - name: CORONA
+    units: 
+      - cL
+  - name: "COULIS DE CARAMEL"
+    units: 
+      - PM
+  - name: "COULIS DE CHOCOLAT"
+    units: 
+      - cL
+      - PM
+  - name: "COULIS DE FRAISES"
+    units: 
+      - cL
+      - PM
+  - name: "COULIS DE FRAMBOISES"
+    units: 
+      - cL
+      - PM
+  - name: "COULIS DE FRUITS DE LA PASSION"
+    units: 
+      - cL
+      - PM
+  - name: COULOMMIERS
+    units: 
+      - pièce
+  - name: "COURGE BUTTERNUT"
+    units: 
+      - pièce
+      - gramme
+  - name: COURGETTE
+    units: 
+      - pièce
+      - gramme
+  - name: "COURGETTE JAUNE"
+    units: 
+      - pièce
+      - gramme
+  - name: "COURGETTE RONDE"
+    units: 
+      - pièce
+      - gramme
+  - name: COUSCOUS
+    units: 
+      - gramme
+  - name: "CREAM CHEESE"
+    units: 
+      - gramme
+  - name: "CRÈME ALLÉGÉE"
+    units: 
+      - cL
+  - name: "CRÈME ANGLAISE"
+    units: 
+      - cL
+  - name: "CRÈME ANGLAISE ALLÉGÉE"
+    units: 
+      - cL
+  - name: "CRÈME DE COCO"
+    units: 
+      - gramme
+  - name: "CRÈME DE PARMESAN"
+    units: 
+      - cL
+  - name: "CRÈME DE VINAIGRE BALSAMIQUE"
+    units: 
+      - cL
+  - name: "CRÈME DESSERT À LA VANILLE"
+    units: 
+      - gramme
+  - name: "CRÈME DESSERT AU CAFÉ"
+    units: 
+      - gramme
+  - name: "CRÈME DESSERT AU CARAMEL"
+    units: 
+      - gramme
+  - name: "CRÈME FLEURETTE"
+    units: 
+      - cL
+  - name: "CRÈME FRAÎCHE"
+    units: 
+      - cL
+  - name: "CRÈME LIQUIDE"
+    units: 
+      - cL
+  - name: "CRÊPE DENTELLE"
+    units: 
+      - pièce
+      - gramme
+  - name: CREVETTE
+    units: 
+      - pièce
+      - gramme
+  - name: CROÛTONS
+    units: 
+      - PM
+  - name: "CUISSE DE POULET"
+    units: 
+      - pièce
+  - name: CURAÇAO
+    units: 
+      - cL
+  - name: CURCUMA
+    units: 
+      - PM
+  - name: CURRY
+    units: 
+      - PM
+  - name: DAIM
+    units: 
+      - pièce
+      - gramme
+  - name: DANETTE
+    units: 
+      - pot
+  - name: "DÉS DE COMTÉ"
+    units: 
+      - gramme
+  - name: "DÉS DE JAMBON"
+    units: 
+      - gramme
+  - name: "DÉS DE TOMATE"
+    units: 
+      - gramme
+  - name: DORITOS
+    units: 
+      - gramme
+  - name: "DOUBLE CONCENTRÉ DE TOMATES"
+    units: 
+      - gramme
+  - name: DRAGIBUS
+    units: 
+      - gramme
+  - name: EAU
+    units: 
+      - cL
+  - name: "EAU PÉTILLANTE"
+    units: 
+      - cL
+  - name: ÉCHALOTE
+    units: 
+      - pièce
+      - gramme
+  - name: ÉDAM
+    units: 
+      - gramme
+      - tranche
+  - name: "ÉDAM EXTRA LIGHT"
+    units: 
+      - gramme
+      - tranche
+  - name: EMMENTAL
+    units: 
+      - gramme
+      - tranche
+  - name: "EMMENTAL ALLÉGÉ"
+    units: 
+      - gramme
+      - tranche
+  - name: "EMMENTAL RÂPÉ"
+    units: 
+      - gramme
+  - name: "EMMENTAL RÂPÉ LIGHT"
+    units: 
+      - gramme
+  - name: ENTRECÔTE
+    units: 
+      - gramme
+      - pièce
+  - name: ÉPINARD
+    units: 
+      - gramme
+  - name: "ESCALOPE DE DINDE"
+    units: 
+      - pièce
+  - name: "EXTRAIT DE VANILLE"
+    units: 
+      - cL
+  - name: FAJITA
+    units: 
+      - pièce
+  - name: FARINE
+    units: 
+      - gramme
+  - name: "FARINE COMPLÈTE"
+    units: 
+      - gramme
+  - name: "FARINE DE MANIOC"
+    units: 
+      - gramme
+  - name: "FARINE FERMENTANTE"
+    units: 
+      - gramme
+  - name: "FÉCULE DE POMME DE TERRE"
+    units: 
+      - gramme
+  - name: "FERRERO ROCHER"
+    units: 
+      - pièce
+  - name: FETA
+    units: 
+      - gramme
+  - name: "FEUILLE D'ALGUES NORI"
+    units: 
+      - pièce
+  - name: "FEUILLE DE BRICK"
+    units: 
+      - pièce
+  - name: "FEUILLE DE GÉLATINE"
+    units: 
+      - pièce
+  - name: "FEUILLE DE MENTHE"
+    units: 
+      - PM
+  - name: "FEUILLE DE RIZ"
+    units: 
+      - pièce
+  - name: "FEUILLE DE SÉSAME"
+    units: 
+      - pièce
+  - name: "FEUILLES DE LAURIER"
+    units: 
+      - pièce
+  - name: "FEUILLES DE SALADE"
+    units: 
+      - pièce
+  - name: FICELLO
+    units: 
+      - pièce
+      - gramme
+  - name: "FILET DE DINDE"
+    units: 
+      - pièce
+      - gramme
+  - name: "FILET MIGNON"
+    units: 
+      - gramme
+  - name: FLANBY
+    units: 
+      - pièce
+  - name: "FLEUR DE SEL"
+    units: 
+      - PM
+  - name: "FOND D'ARTICHAUT"
+    units: 
+      - pièce
+      - gramme
+  - name: FRAISE
+    units: 
+      - pièce
+      - gramme
+  - name: "FRAISE TAGADA"
+    units: 
+      - pièce
+      - gramme
+  - name: FRAMBOISE
+    units: 
+      - pièce
+      - gramme
+  - name: FRITES
+    units: 
+      - gramme
+  - name: "FRITES SURGELÉES"
+    units: 
+      - gramme
+  - name: "FROMAGE BLANC"
+    units: 
+      - gramme
+  - name: "FROMAGE BLANC 0 %"
+    units: 
+      - gramme
+  - name: "FROMAGE BLEU"
+    units: 
+      - gramme
+  - name: "FROMAGE DE CHÈVRE"
+    units: 
+      - gramme
+  - name: "FROMAGE FRAIS"
+    units: 
+      - gramme
+  - name: "FROMAGE FRAIS 0 %"
+    units: 
+      - gramme
+  - name: "FROMAGE FRAIS AUX HERBES"
+    units: 
+      - gramme
+  - name: "FROMAGE FRAIS DE CHÈVRE"
+    units: 
+      - gramme
+      - bûche
+  - name: FUSILLI
+    units: 
+      - gramme
+  - name: "GALETTE DE RIZ"
+    units: 
+      - pièce
+  - name: "GALETTE DE SARRASIN"
+    units: 
+      - pièce
+  - name: "GARAM MASALA"
+    units: 
+      - gramme
+      - PM
+  - name: "GÂTEAUX APÉRITIF"
+    units: 
+      - gramme
+      - PM
+  - name: GAUFRETTE
+    units: 
+      - pièce
+      - gramme
+  - name: "GELÉE D'ORANGES"
+    units: 
+      - gramme
+  - name: "GELÉE DE FRAISES"
+    units: 
+      - gramme
+  - name: "GET 27"
+    units: 
+      - cL
+  - name: GIN
+    units: 
+      - cL
+  - name: GINGEMBRE
+    units: 
+      - gramme
+  - name: "GINGEMBRE MOULU"
+    units: 
+      - gramme
+      - PM
+  - name: "GLACE À LA NOIX DE COCO"
+    units: 
+      - gramme
+      - boule
+  - name: "GLACE À LA VANILLE"
+    units: 
+      - gramme
+      - boule
+  - name: "GLACE AU CARAMEL"
+    units: 
+      - gramme
+      - boule
+  - name: "GLACE AU CHOCOLAT"
+    units: 
+      - gramme
+      - boule
+  - name: "GLACE AU CITRON"
+    units: 
+      - gramme
+      - boule
+  - name: "GLACE AU CITRON VERT"
+    units: 
+      - gramme
+      - boule
+  - name: "GLACE AU THÉ VERT"
+    units: 
+      - gramme
+  - name: "GLACE PILÉE"
+    units: 
+      - gramme
+  - name: GLAÇONS
+    units: 
+      - gramme
+  - name: GORGONZOLA
+    units: 
+      - gramme
+  - name: GOUDA
+    units: 
+      - tranche
+      - gramme
+  - name: "GRAINES DE COURGES"
+    units: 
+      - gramme
+  - name: "GRAINES DE CUMIN"
+    units: 
+      - gramme
+  - name: "GRAINES DE PAVOT"
+    units: 
+      - gramme
+  - name: "GRAINES DE SÉSAME"
+    units: 
+      - gramme
+  - name: "GRAINS DE MAÏS"
+    units: 
+      - gramme
+  - name: "GRAND MARNIER"
+    units: 
+      - cL
+  - name: GRAPPA
+    units: 
+      - cL
+  - name: GRENADINE
+    units: 
+      - cL
+  - name: GRESSIN
+    units: 
+      - pièce
+  - name: GROSEILLE
+    units: 
+      - pièce
+      - gramme
+  - name: GRUYÈRE
+    units: 
+      - gramme
+      - tranche
+  - name: GUACAMOLE
+    units: 
+      - gramme
+  - name: GUINESS
+    units: 
+      - cL
+  - name: HALLOUMI
+    units: 
+      - gramme
+  - name: "HARICOT NOIR"
+    units: 
+      - gramme
+  - name: "HARICOTS BLANCS"
+    units: 
+      - gramme
+  - name: "HARICOTS ROUGES"
+    units: 
+      - gramme
+  - name: "HARICOTS VERTS"
+    units: 
+      - gramme
+  - name: HARISSA
+    units: 
+      - PM
+  - name: "HERBES DE PROVENCE"
+    units: 
+      - PM
+  - name: "HUILE D'OLIVE"
+    units: 
+      - cL
+      - PM
+  - name: "HUILE DE PALME"
+    units: 
+      - cL
+  - name: "HUILE DE SÉSAME"
+    units: 
+      - cL
+  - name: "HUILE DE TOURNESOL"
+    units: 
+      - cL
+  - name: "HUILE VÉGÉTALE"
+    units: 
+      - cL
+      - PM
+  - name: "JACK DANIELS"
+    units: 
+      - cL
+  - name: JAMBON
+    units: 
+      - tranche
+  - name: "JAMBON BLANC"
+    units: 
+      - tranche
+      - gramme
+  - name: "JAMBON CRU"
+    units: 
+      - tranche
+  - name: "JAMBON DE DINDE"
+    units: 
+      - tranche
+  - name: "JAMBON DE PARME"
+    units: 
+      - tranche
+      - gramme
+  - name: "JAMBON SPAM"
+    units: 
+      - gramme
+  - name: "JARRET DE PORC"
+    units: 
+      - gramme
+  - name: "JAUNE D'ŒUF"
+    units: 
+      - pièce
+  - name: "JUS D'ANANAS"
+    units: 
+      - cL
+  - name: "JUS D'ORANGE"
+    units: 
+      - cL
+  - name: "JUS DE CITRON"
+    units: 
+      - cL
+  - name: "JUS DE CRANBERRY"
+    units: 
+      - cL
+  - name: "JUS DE FRAISES"
+    units: 
+      - cL
+  - name: "JUS DE PASTÈQUE"
+    units: 
+      - cL
+  - name: "JUS DE POMME"
+    units: 
+      - cL
+  - name: KAHLUA
+    units: 
+      - cL
+  - name: KETCHUP
+    units: 
+      - PM
+  - name: KIMCHI
+    units: 
+      - gramme
+  - name: KINDER
+    units: 
+      - pièce
+      - gramme
+  - name: "KINDER BUENO"
+    units: 
+      - pièce
+      - gramme
+  - name: "KINDER COUNTRY"
+    units: 
+      - pièce
+      - gramme
+  - name: "KINDER MAXI"
+    units: 
+      - pièce
+      - gramme
+  - name: "KINDER SURPRISE"
+    units: 
+      - pièce
+      - gramme
+  - name: KIRI
+    units: 
+      - pièce
+      - gramme
+  - name: KITKAT
+    units: 
+      - pièce
+      - gramme
+  - name: KIWI
+    units: 
+      - pièce
+      - gramme
+  - name: KNACKI
+    units: 
+      - pièce
+  - name: "KNACKI BALL"
+    units: 
+      - pièce
+  - name: LAIT
+    units: 
+      - cL
+  - name: "LAIT CONCENTRÉ"
+    units: 
+      - gramme
+  - name: "LAIT DE COCO"
+    units: 
+      - cL
+  - name: "LAIT ÉCRÉMÉ"
+    units: 
+      - cL
+  - name: "LAIT ÉCRÉMÉ EN POUDRE"
+    units: 
+      - gramme
+  - name: LAITUE
+    units: 
+      - pièce
+      - gramme
+  - name: LARDONS
+    units: 
+      - gramme
+  - name: LASAGNES
+    units: 
+      - gramme
+  - name: "LASAGNES FRAÎCHES"
+    units: 
+      - gramme
+  - name: LEVURE
+    units: 
+      - sachet
+  - name: "LEVURE DE BOULANGER"
+    units: 
+      - sachet
+      - gramme
+  - name: LIMONADE
+    units: 
+      - cL
+  - name: LIMONCELLO
+    units: 
+      - cL
+  - name: LINDOR
+    units: 
+      - pièce
+  - name: LINGUINE
+    units: 
+      - gramme
+  - name: M&M'S
+    units: 
+      - pièce
+      - gramme
+  - name: MACARONI
+    units: 
+      - gramme
+  - name: MÂCHE
+    units: 
+      - gramme
+      - PM
+  - name: MAÏS
+    units: 
+      - gramme
+  - name: MAÏZENA
+    units: 
+      - gramme
+  - name: MALIBU
+    units: 
+      - cL
+  - name: MALTESERS
+    units: 
+      - pièce
+      - gramme
+  - name: MANGUE
+    units: 
+      - pièce
+      - gramme
+  - name: MARS
+    units: 
+      - pièce
+  - name: MARTINI
+    units: 
+      - cL
+  - name: MASCARPONE
+    units: 
+      - gramme
+  - name: "MAXI KINDER SURPRISE"
+    units: 
+      - pièce
+  - name: MAYONNAISE
+    units: 
+      - PM
+  - name: MELON
+    units: 
+      - pièce
+      - gramme
+  - name: MENTHE
+    units: 
+      - feuille
+      - PM
+  - name: MERGUEZ
+    units: 
+      - pièce
+  - name: "MIE DE PAIN"
+    units: 
+      - gramme
+  - name: MIEL
+    units: 
+      - gramme
+  - name: MIKADO
+    units: 
+      - pièce
+  - name: MILKA
+    units: 
+      - gramme
+  - name: MIMOLETTE
+    units: 
+      - gramme
+      - tranche
+  - name: "MINI CHAMALLOW"
+    units: 
+      - pièce
+  - name: "MINI KINDER BUNO"
+    units: 
+      - pièce
+  - name: "MINI MARS"
+    units: 
+      - pièce
+  - name: "MINI SAUCISSON"
+    units: 
+      - pièce
+  - name: "MINI SMARTIES"
+    units: 
+      - pièce
+  - name: "MISTER FREEZE"
+    units: 
+      - pièce
+  - name: MONT-D'OR
+    units: 
+      - pièce
+  - name: MORTADELLE
+    units: 
+      - tranche
+      - gramme
+  - name: MORUE
+    units: 
+      - gramme
+  - name: "MOUSSE AU CHOCOLAT"
+    units: 
+      - gramme
+  - name: MOUTARDE
+    units: 
+      - gramme
+      - PM
+  - name: "MOUTARDE ANGLAISE"
+    units: 
+      - gramme
+      - PM
+  - name: MOZZARELLA
+    units: 
+      - gramme
+      - boules
+      - billes
+  - name: "MOZZARELLA FUMÉE"
+    units: 
+      - gramme
+  - name: "MOZZARELLA GÉANTE"
+    units: 
+      - pièce
+  - name: "MOZZARELLA RÂPÉE"
+    units: 
+      - gramme
+  - name: MÛRE
+    units: 
+      - pièce
+      - gramme
+  - name: MYRTILLE
+    units: 
+      - pièce
+      - gramme
+  - name: NESQUIK
+    units: 
+      - gramme
+  - name: NOISETTE
+    units: 
+      - pièce
+      - gramme
+  - name: NOIX
+    units: 
+      - pièce
+      - gramme
+  - name: "NOIX DE COCO"
+    units: 
+      - pièce
+      - gramme
+  - name: "NOIX DE COCO RÂPÉE"
+    units: 
+      - gramme
+  - name: "NOIX DE MACADAMIA"
+    units: 
+      - pièce
+      - gramme
+  - name: "NOIX DE MUSCADE"
+    units: 
+      - gramme
+  - name: "NOIX DE PÉCAN"
+    units: 
+      - pièce
+      - gramme
+  - name: "NOUILLES DE RIZ"
+    units: 
+      - gramme
+  - name: NUGGET
+    units: 
+      - pièce
+  - name: NUTELLA
+    units: 
+      - gramme
+  - name: ŒUF
+    units: 
+      - pièce
+  - name: "ŒUF DE CAILLE"
+    units: 
+      - pièce
+  - name: "ŒUF KINDER"
+    units: 
+      - pièce
+  - name: "ŒUFS DE SAUMON"
+    units: 
+      - gramme
+  - name: OIGNON
+    units: 
+      - pièce
+  - name: "OIGNON NOUVEAU"
+    units: 
+      - pièce
+      - gramme
+  - name: "OIGNON ROUGE"
+    units: 
+      - pièce
+      - gramme
+  - name: "OLIVE NOIRE"
+    units: 
+      - pièce
+      - gramme
+  - name: "OLIVE VERTE"
+    units: 
+      - pièce
+      - gramme
+  - name: ORANGE
+    units: 
+      - pièce
+      - gramme
+  - name: OREO
+    units: 
+      - pièce
+      - gramme
+  - name: ORIGAN
+    units: 
+      - PM
+  - name: "OURSON GUIMAUVE"
+    units: 
+      - pièce
+  - name: PAIN
+    units: 
+      - gramme
+  - name: "PAIN À BAGEL"
+    units: 
+      - pièce
+  - name: "PAIN À BURGER"
+    units: 
+      - pièce
+  - name: "PAIN AU LAIT"
+    units: 
+      - pièce
+  - name: "PAIN DE CAMPAGNE"
+    units: 
+      - pièce
+      - gramme
+  - name: "PAIN DE MIE"
+    units: 
+      - tranche
+  - name: "PAIN ROND"
+    units: 
+      - gramme
+  - name: "PALET BRETON"
+    units: 
+      - pièce
+      - gramme
+  - name: "PAN DI STELLE"
+    units: 
+      - pièce
+      - gramme
+  - name: PANCETTA
+    units: 
+      - tranche
+      - gramme
+  - name: PANETTONE
+    units: 
+      - gramme
+  - name: PAPRIKA
+    units: 
+      - PM
+  - name: PARMESAN
+    units: 
+      - gramme
+  - name: "PARMESAN RÂPÉ"
+    units: 
+      - gramme
+  - name: PASTÈQUE
+    units: 
+      - pièce
+      - gramme
+  - name: "PATATE DOUCE"
+    units: 
+      - pièce
+      - gramme
+  - name: "PÂTE À COOKIE"
+    units: 
+      - gramme
+  - name: "PÂTE À DUMPLING"
+    units: 
+      - gramme
+  - name: "PÂTE À LASAGNE"
+    units: 
+      - pièce
+      - gramme
+  - name: "PÂTE À PIZZA"
+    units: 
+      - pièce
+  - name: "PÂTE À PIZZA RECTANGULAIRE"
+    units: 
+      - pièce
+  - name: "PÂTE À TARTINER"
+    units: 
+      - gramme
+  - name: "PÂTE BRISÉE"
+    units: 
+      - pièce
+  - name: "PÂTE DE CURRY THAÏ VERT"
+    units: 
+      - gramme
+  - name: "PÂTE DE CURRY TIKKA MASALA"
+    units: 
+      - gramme
+  - name: "PÂTE FEUILLETÉE"
+    units: 
+      - pièce
+  - name: "PÂTE FEUILLETÉE LIGHT"
+    units: 
+      - pièce
+  - name: "PÂTE FEUILLETÉE RECTANGULAIRE"
+    units: 
+      - pièce
+  - name: "PÂTE FILO"
+    units: 
+      - feuille
+  - name: "PÂTE SABLÉE"
+    units: 
+      - pièce
+  - name: PÂTES
+    units: 
+      - gramme
+  - name: "PÂTES ALPHABET"
+    units: 
+      - gramme
+  - name: PAVESINI
+    units: 
+      - pièce
+  - name: PÊCHE
+    units: 
+      - pièce
+      - gramme
+  - name: "PÊCHE JAUNE"
+    units: 
+      - pièce
+      - gramme
+  - name: PECORINO
+    units: 
+      - gramme
+  - name: PENNE
+    units: 
+      - gramme
+  - name: "PÉPITES DE CHOCOLAT"
+    units: 
+      - gramme
+      - PM
+  - name: PEPPERONI
+    units: 
+      - pièce
+  - name: "PERLES DE SUCRE"
+    units: 
+      - PM
+  - name: PERRIER
+    units: 
+      - cL
+  - name: PERSIL
+    units: 
+      - PM
+  - name: PERSILLADE
+    units: 
+      - PM
+  - name: PESTO
+    units: 
+      - gramme
+  - name: "PESTO ROUGE"
+    units: 
+      - gramme
+  - name: PETIT-BEURRE
+    units: 
+      - pièce
+  - name: PETIT-SUISSE
+    units: 
+      - pièce
+  - name: "PETITS POIS"
+    units: 
+      - gramme
+  - name: PHILADELPHIA
+    units: 
+      - gramme
+  - name: "PIGNON DE PIN"
+    units: 
+      - gramme
+  - name: "PIM'S À L'ORANGE"
+    units: 
+      - pièce
+  - name: PIMENT
+    units: 
+      - gramme
+  - name: "PIMENT D'ESPELETTE"
+    units: 
+      - gramme
+  - name: "PIMENT DE CAYENNE"
+    units: 
+      - pièce
+      - gramme
+  - name: "PIMENT DOUX"
+    units: 
+      - pièce
+      - gramme
+  - name: "PIMENT FRAIS ROUGE"
+    units: 
+      - pièce
+      - gramme
+  - name: "PIMENT FRAIS VERT"
+    units: 
+      - pièce
+      - gramme
+  - name: "PIMENT JALAPEÑO"
+    units: 
+      - pièce
+      - gramme
+  - name: "PIMM'S N°1"
+    units: 
+      - cL
+  - name: "PINK LADY"
+    units: 
+      - pièce
+      - gramme
+  - name: "PIPE RIGATE"
+    units: 
+      - gramme
+  - name: PISTACHES
+    units: 
+      - gramme
+  - name: "PISTOLES DE CHOCOLAT"
+    units: 
+      - gramme
+  - name: PITAS
+    units: 
+      - pièce
+  - name: POIRE
+    units: 
+      - pièce
+      - gramme
+  - name: POIREAU
+    units: 
+      - pièce
+      - gramme
+  - name: "POIS CHICHES"
+    units: 
+      - gramme
+  - name: "POISSON PANÉ"
+    units: 
+      - pièce
+  - name: "POITRINE DE PORC"
+    units: 
+      - gramme
+  - name: "POITRINE FUMÉE"
+    units: 
+      - tranche
+  - name: POIVRE
+    units: 
+      - PM
+  - name: POIVRON
+    units: 
+      - pièce
+      - gramme
+  - name: "POIVRON FRIGGITELLI"
+    units: 
+      - pièce
+      - gramme
+  - name: "POIVRON JAUNE"
+    units: 
+      - pièce
+  - name: "POIVRON LONG VERT"
+    units: 
+      - pièce
+  - name: "POIVRON NOIR"
+    units: 
+      - PM
+  - name: "POIVRON ORANGE"
+    units: 
+      - pièce
+      - gramme
+  - name: "POIVRON ROUGE"
+    units: 
+      - pièce
+  - name: "POIVRON VERT"
+    units: 
+      - pièce
+  - name: POMME
+    units: 
+      - pièce
+      - gramme
+  - name: "POMME DAUPHINE"
+    units: 
+      - pièce
+      - gramme
+  - name: "POMME DE TERRE"
+    units: 
+      - pièce
+      - gramme
+  - name: "POMME DE TERRE GRENAILLE"
+    units: 
+      - pièce
+      - gramme
+  - name: "POMME NOISETTE"
+    units: 
+      - pièce
+      - gramme
+  - name: "POMME ROUGE"
+    units: 
+      - pièce
+      - gramme
+  - name: POPCORN
+    units: 
+      - gramme
+  - name: "PORC HACHÉ"
+    units: 
+      - gramme
+  - name: "PORTO BLANC"
+    units: 
+      - cL
+  - name: POTIMARRON
+    units: 
+      - pièce
+      - gramme
+  - name: "POUDRE D'AMANDES"
+    units: 
+      - gramme
+  - name: "POUDRE DE COCO"
+    units: 
+      - gramme
+  - name: "POUDRE DE NOISETTES"
+    units: 
+      - gramme
+  - name: PRALIN
+    units: 
+      - gramme
+  - name: PRALINE
+    units: 
+      - pièce
+      - gramme
+  - name: PRINGLES
+    units: 
+      - pièce
+      - gramme
+  - name: PROSECCO
+    units: 
+      - cL
+  - name: "PULPE DE TOMATES"
+    units: 
+      - gramme
+  - name: "PURÉE DE TOMATES"
+    units: 
+      - gramme
+  - name: QUATRE-ÉPICES
+    units: 
+      - PM
+  - name: RACLETTE
+    units: 
+      - tranche
+      - gramme
+  - name: RADIS
+    units: 
+      - pièce
+      - gramme
+  - name: RAISIN
+    units: 
+      - pièce
+      - gramme
+  - name: RAMEN
+    units: 
+      - sachet
+  - name: "RAVIOLES DE ROYAN"
+    units: 
+      - gramme
+  - name: RAVIOLI
+    units: 
+      - gramme
+  - name: REBLOCHON
+    units: 
+      - tranche
+      - gramme
+      - pièce
+  - name: RHUM
+    units: 
+      - cL
+  - name: "RHUM BLANC"
+    units: 
+      - cL
+  - name: RICARD
+    units: 
+      - cL
+  - name: "RICE KRISPIES"
+    units: 
+      - gramme
+  - name: RICOTTA
+    units: 
+      - gramme
+  - name: RIZ
+    units: 
+      - gramme
+  - name: "RIZ À SUSHIS"
+    units: 
+      - gramme
+  - name: "RIZ ROND"
+    units: 
+      - gramme
+  - name: ROMARIN
+    units: 
+      - PM
+  - name: ROQUEFORT
+    units: 
+      - gramme
+  - name: ROQUETTE
+    units: 
+      - gramme
+      - PM
+  - name: ROSETTE
+    units: 
+      - tranche
+      - gramme
+  - name: "RÔTI DE BŒUF"
+    units: 
+      - gramme
+  - name: RUMSTEAK
+    units: 
+      - gramme
+  - name: SAINT-MARCELLIN
+    units: 
+      - pièce
+      - gramme
+  - name: SALADE
+    units: 
+      - gramme
+      - PM
+  - name: "SALADE ROMAINE"
+    units: 
+      - pièce
+      - gramme
+  - name: SALSICHA
+    units: 
+      - pièce
+      - gramme
+  - name: "SAUCE AIGRE-DOUCE"
+    units: 
+      - cL
+      - PM
+  - name: "SAUCE AIGRE-DOUCE PIMENTÉE"
+    units: 
+      - cL
+      - PM
+  - name: "SAUCE BARBECUE"
+    units: 
+      - cL
+      - PM
+  - name: "SAUCE BLANCHE"
+    units: 
+      - cL
+      - PM
+  - name: "SAUCE BOLOGNAISE"
+    units: 
+      - gramme
+  - name: "SAUCE BURGER"
+    units: 
+      - cL
+      - PM
+  - name: "SAUCE CARBONARA"
+    units: 
+      - gramme
+  - name: "SAUCE CURRY"
+    units: 
+      - cL
+      - PM
+  - name: "SAUCE GOCHUJANG"
+    units: 
+      - "c. à s."
+  - name: "SAUCE HOLLANDAISE"
+    units: 
+      - cL
+      - PM
+  - name: "SAUCE POIVRE"
+    units: 
+      - cL
+      - PM
+  - name: "SAUCE SAMOURAÏ"
+    units: 
+      - cL
+      - PM
+  - name: "SAUCE SOJA"
+    units: 
+      - cL
+      - PM
+  - name: "SAUCE SOJA SUCRÉE"
+    units: 
+      - cL
+      - PM
+  - name: "SAUCE SRIRACHA"
+    units: 
+      - cL
+      - PM
+  - name: "SAUCE TARTARE"
+    units: 
+      - cL
+      - PM
+  - name: "SAUCE TOMATE"
+    units: 
+      - cL
+  - name: "SAUCE TONKATSU"
+    units: 
+      - "c. à s."
+  - name: "SAUCE WORCESTERSHIRE"
+    units: 
+      - cL
+      - PM
+  - name: SAUCISSE
+    units: 
+      - pièce
+  - name: "SAUCISSE FUMÉE"
+    units: 
+      - gramme
+  - name: SAUCISSON
+    units: 
+      - tranche
+      - gramme
+  - name: SAUMON
+    units: 
+      - gramme
+      - pavé
+  - name: "SAUMON FUMÉ"
+    units: 
+      - tranche
+      - gramme
+  - name: SAVANE
+    units: 
+      - pièce
+  - name: SCAMORZA
+    units: 
+      - pièce
+  - name: SCHOKO-BONS
+    units: 
+      - pièce
+  - name: SCHWEPPES
+    units: 
+      - cL
+  - name: SEL
+    units: 
+      - PM
+  - name: "SEL ET POIVRE"
+    units: 
+      - PM
+  - name: "SIROP D'AGAVE"
+    units: 
+      - cL
+  - name: "SIROP D'ÉRABLE"
+    units: 
+      - cL
+      - PM
+  - name: "SIROP DE MÛRES"
+    units: 
+      - cL
+  - name: "SIROP DE SUCRE"
+    units: 
+      - cL
+  - name: "SIROP DE SUCRE DE CANNE"
+    units: 
+      - cL
+  - name: SKITTLES
+    units: 
+      - pièce
+      - gramme
+  - name: SMARTIES
+    units: 
+      - pièce
+      - gramme
+  - name: SPAGHETTI
+    units: 
+      - gramme
+  - name: SPECK
+    units: 
+      - tranche
+      - gramme
+  - name: SPÉCULOOS
+    units: 
+      - pièce
+      - gramme
+  - name: SPRITE
+    units: 
+      - cL
+  - name: "ST MÔRET"
+    units: 
+      - gramme
+  - name: "ST MÔRET ALLÉGÉ"
+    units: 
+      - gramme
+  - name: "STEAK HACHÉ"
+    units: 
+      - pièce
+      - gramme
+  - name: SUCRE
+    units: 
+      - gramme
+  - name: "SUCRE GLACE"
+    units: 
+      - gramme
+  - name: "SUCRE ROUX"
+    units: 
+      - gramme
+  - name: "SUCRE VANILLÉ"
+    units: 
+      - sachet
+  - name: SUCRINE
+    units: 
+      - feuille
+      - gramme
+  - name: SUNDAE
+    units: 
+      - gramme
+  - name: SURIMI
+    units: 
+      - pièce
+  - name: TABASCO
+    units: 
+      - goutte
+      - cL
+      - PM
+  - name: TAGLIATELLES
+    units: 
+      - gramme
+  - name: TALEGGIO
+    units: 
+      - gramme
+  - name: TAPIOCA
+    units: 
+      - gramme
+  - name: TEQUILA
+    units: 
+      - cL
+  - name: "THÉ EARL GREY"
+    units: 
+      - sachet
+  - name: THON
+    units: 
+      - gramme
+      - boite
+  - name: THYM
+    units: 
+      - PM
+  - name: TOBLERONE
+    units: 
+      - pièce
+      - gramme
+  - name: TOMATE
+    units: 
+      - pièce
+      - gramme
+  - name: "TOMATE CERISE"
+    units: 
+      - pièce
+      - gramme
+  - name: "TOMATE CONFITE"
+    units: 
+      - pièce
+      - gramme
+  - name: "TOMATE JAUNE"
+    units: 
+      - pièce
+      - gramme
+  - name: "TOMATE PELÉE"
+    units: 
+      - pièce
+      - gramme
+  - name: "TOMATE RÔTIE"
+    units: 
+      - pièce
+      - gramme
+  - name: "TOMATE SÉCHÉE"
+    units: 
+      - pièce
+      - gramme
+  - name: "TOMATE VERTE"
+    units: 
+      - pièce
+      - gramme
+  - name: "TOMATES CONCASSÉES"
+    units: 
+      - gramme
+  - name: "TOME FRAÎCHE"
+    units: 
+      - gramme
+  - name: "TOMME DE SAVOIE"
+    units: 
+      - gramme
+  - name: TORTILLAS
+    units: 
+      - pièce
+  - name: "TORTILLAS CHIPS"
+    units: 
+      - gramme
+  - name: TTEOKBOKKI
+    units: 
+      - gramme
+  - name: TZATZIKI
+    units: 
+      - gramme
+      - PM
+  - name: "VACHE QUI RIT"
+    units: 
+      - pièce
+      - gramme
+  - name: VANILLE
+    units: 
+      - grammeousse
+  - name: "VERMICELLES AU CHOCOLAT"
+    units: 
+      - gramme
+  - name: "VERMICELLES DE RIZ"
+    units: 
+      - gramme
+  - name: "VERMICELLES MULTICOLORES"
+    units: 
+      - gramme
+      - PM
+  - name: "VIANDE DES GRISONS"
+    units: 
+      - tranche
+      - gramme
+  - name: "VIN BLANC"
+    units: 
+      - cL
+  - name: "VIN ROSÉ"
+    units: 
+      - cL
+  - name: "VIN ROUGE"
+    units: 
+      - cL
+  - name: VINAIGRE
+    units: 
+      - cL
+  - name: "VINAIGRE BALSAMIQUE"
+    units: 
+      - cL
+  - name: "VINAIGRE DE CIDRE"
+    units: 
+      - cL
+  - name: "VINAIGRE DE RIZ"
+    units: 
+      - cL
+  - name: VIOLETTE
+    units: 
+      - pièce
+      - gramme
+  - name: VODKA
+    units: 
+      - cL
+  - name: WASABI
+    units: 
+      - gramme
+      - pm
+  - name: WHISKY
+    units: 
+      - cL
+  - name: YAOURT
+    units: 
+      - pot
+      - gramme
+  - name: "YAOURT 0 %"
+    units: 
+      - pot
+      - gramme
+  - name: "YAOURT GREC"
+    units: 
+      - pot
+      - gramme
+  - name: "ZESTE D'ORANGE"
+    units: 
+      - PM
+  - name: "ZESTE DE CITRON"
+    units: 
+      - PM
+  - name: "ZESTE DE CITRON VERT"
+    units: 
+      - PM
+  - name: "KNACKI MAX"
+    units: 
+      - pièce
+kitchenware: 
+  - "Alcool à brûler"
+  - Allumette
+  - "Bac à glaçons"
+  - "Baguette chinoise"
+  - Ballon
+  - "Ballon de baudruche"
+  - Bassine
+  - Bâtonnet
+  - "Boîte d'œufs"
+  - Bouchon
+  - Bougie
+  - Bouteille
+  - "Caissette à cupcake"
+  - Cannette
+  - Carton
+  - Colle
+  - Coupe
+  - Cure-dent
+  - "Écumoire araignée"
+  - Entonnoir
+  - Ficelle
+  - "Film alimentaire"
+  - "Gant en latex"
+  - Gobelet
+  - Marmite
+  - "Moule à muffins"
+  - Paille
+  - "Papier aluminium"
+  - "Papier bulle"
+  - "Papier cuisson"
+  - "Papier toilette"
+  - Passoire
+  - "Pince à linge"
+  - "Pique à brochette"
+  - "Poche à douille"
+  - Poêlon
+  - Presse-agrumes
+  - Ramequin
+  - Râpe
+  - Sac
+  - "Sac congélation"
+  - Scotch
+  - Torchon
+  - Tournevis
+  - Verre
+units: 
+  - bille
+  - boîte
+  - bombe
+  - botte
+  - boule
+  - bûche
+  - "c. à c. (teaspoon)"
+  - "c. à s. (tablespoon)"
+  - cL
+  - cube
+  - étoile
+  - feuille
+  - g
+  - gousse
+  - goutte
+  - grappe
+  - kg
+  - L
+  - mL
+  - paquet
+  - pavé
+  - pièce
+  - pincée
+  - PM
+  - pot
+  - sachet
+  - tranche
