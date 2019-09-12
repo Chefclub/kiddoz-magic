@@ -17,3 +17,26 @@ img.logo {
 	display: block;
 	margin: 20px auto;
 }
+
+form {
+	background: url("./images/desktop-banner-2308-back-cups.477de766.png") center;
+}
+
+form > div {
+	text-align: center;
+	padding: 10px;
+}
+
+form table {
+	width: 100%;
+}
+
+form th {
+	background-color: rgba(161, 225, 224, 0.7);
+
+}
+
+form input {
+	display: block;
+	margin: 10px auto;
+}
