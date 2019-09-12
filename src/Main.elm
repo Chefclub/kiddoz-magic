@@ -5,6 +5,7 @@ import Data.Kiddoz exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Http
+import View.Recipe exposing (showRecipe)
 import Yaml.Decode
 
 
@@ -25,6 +26,8 @@ init : Flags -> ( Model, Cmd Msg )
 init flags =
     ( { recipe =
             { title = "Tarte aux citrons"
+            , number_of_people = 6
+            , preparation_minutes = 30
             , sections =
                 [ { title = "Pâte"
                   , ingredients =
@@ -89,6 +92,7 @@ view model =
                 ]
             , div [] [ button [] [ text "Valider la recette " ] ]
             ]
+        , showRecipe model.recipe
         ]
 
 

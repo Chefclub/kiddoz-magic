@@ -40,3 +40,9 @@ form input {
 	display: block;
 	margin: 10px auto;
 }
+
+ol {
+	list-style: none;
+	padding: 0 0 0 30px;
+	margin-top: 0;
+}

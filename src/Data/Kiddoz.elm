@@ -16,13 +16,15 @@ module Data.Kiddoz exposing
 
 type alias Recipe =
     { title : String
+    , number_of_people : Int
+    , preparation_minutes : Int
     , sections : List Section
     }
 
 
 emptyRecipe : Recipe
 emptyRecipe =
-    Recipe "" []
+    Recipe "" 6 20 []
 
 
 type alias Section =
