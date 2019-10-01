@@ -5224,7 +5224,7 @@ var author$project$Main$SetUnit = function (a) {
 var author$project$Data$Kiddoz$food2mL = function (kind) {
 	switch (kind) {
 		case 0:
-			return elm$core$Maybe$Just(180 / 250);
+			return elm$core$Maybe$Just(250 / 180);
 		case 29:
 			return elm$core$Maybe$Just(0.55);
 		case 30:
@@ -5258,19 +5258,19 @@ var author$project$Data$Kiddoz$food2mL = function (kind) {
 		case 7:
 			return elm$core$Maybe$Just(1.13);
 		case 11:
-			return elm$core$Maybe$Just(230 / 250);
+			return elm$core$Maybe$Just(250 / 230);
 		case 9:
 			return elm$core$Maybe$Just(0.61);
 		case 10:
 			return elm$core$Maybe$Just(0.5);
 		case 12:
-			return elm$core$Maybe$Just(200 / 250);
+			return elm$core$Maybe$Just(250 / 200);
 		case 13:
-			return elm$core$Maybe$Just(220 / 250);
+			return elm$core$Maybe$Just(250 / 220);
 		case 14:
-			return elm$core$Maybe$Just(340 / 250);
+			return elm$core$Maybe$Just(250 / 340);
 		case 15:
-			return elm$core$Maybe$Just(100 / 250);
+			return elm$core$Maybe$Just(250 / 100);
 		case 16:
 			return elm$core$Maybe$Just(1);
 		case 8:
