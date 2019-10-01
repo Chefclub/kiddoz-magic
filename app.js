@@ -5325,7 +5325,9 @@ var author$project$Change$coinsList = _List_fromArray(
 		250,
 		125,
 		elm$core$Basics$round(250 / 3),
+		80,
 		elm$core$Basics$round(250 / 4),
+		60,
 		15,
 		5
 	]);
@@ -5754,7 +5756,23 @@ var author$project$View$Recipe$mL2cup = function (mL) {
 								elm$html$Html$Attributes$src('assets/images/0003-chat.png')
 							]),
 						_List_Nil);
+				case 80:
+					return A2(
+						elm$html$Html$img,
+						_List_fromArray(
+							[
+								elm$html$Html$Attributes$src('assets/images/0003-chat.png')
+							]),
+						_List_Nil);
 				case 65:
+					return A2(
+						elm$html$Html$img,
+						_List_fromArray(
+							[
+								elm$html$Html$Attributes$src('assets/images/0004-souris.png')
+							]),
+						_List_Nil);
+				case 60:
 					return A2(
 						elm$html$Html$img,
 						_List_fromArray(
