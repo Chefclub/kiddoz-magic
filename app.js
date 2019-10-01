@@ -784,11 +784,11 @@ function _Debug_crash_UNUSED(identifier, fact1, fact2, fact3, fact4)
 
 function _Debug_regionToString(region)
 {
-	if (region.K.z === region.P.z)
+	if (region.ac.M === region.aj.M)
 	{
-		return 'on line ' + region.K.z;
+		return 'on line ' + region.ac.M;
 	}
-	return 'on lines ' + region.K.z + ' through ' + region.P.z;
+	return 'on lines ' + region.ac.M + ' through ' + region.aj.M;
 }
 
 
@@ -1857,9 +1857,9 @@ var _Platform_worker = F4(function(impl, flagDecoder, debugMetadata, args)
 	return _Platform_initialize(
 		flagDecoder,
 		args,
-		impl.T,
-		impl.ai,
-		impl.az,
+		impl.a6,
+		impl.bk,
+		impl.bj,
 		function() { return function() {} }
 	);
 });
@@ -2314,6 +2314,43 @@ function _Platform_mergeExportsDebug(moduleName, obj, exports)
 
 
 
+var _Bitwise_and = F2(function(a, b)
+{
+	return a & b;
+});
+
+var _Bitwise_or = F2(function(a, b)
+{
+	return a | b;
+});
+
+var _Bitwise_xor = F2(function(a, b)
+{
+	return a ^ b;
+});
+
+function _Bitwise_complement(a)
+{
+	return ~a;
+};
+
+var _Bitwise_shiftLeftBy = F2(function(offset, a)
+{
+	return a << offset;
+});
+
+var _Bitwise_shiftRightBy = F2(function(offset, a)
+{
+	return a >> offset;
+});
+
+var _Bitwise_shiftRightZfBy = F2(function(offset, a)
+{
+	return a >>> offset;
+});
+
+
+
 
 // HELPERS
 
@@ -2659,9 +2696,9 @@ var _VirtualDom_mapEventTuple = F2(function(func, tuple)
 var _VirtualDom_mapEventRecord = F2(function(func, record)
 {
 	return {
-		k: func(record.k),
-		L: record.L,
-		J: record.J
+		u: func(record.u),
+		ad: record.ad,
+		aa: record.aa
 	}
 });
 
@@ -2929,11 +2966,11 @@ function _VirtualDom_makeCallback(eventNode, initialHandler)
 		// 3 = Custom
 
 		var value = result.a;
-		var message = !tag ? value : tag < 3 ? value.a : value.k;
-		var stopPropagation = tag == 1 ? value.b : tag == 3 && value.L;
+		var message = !tag ? value : tag < 3 ? value.a : value.u;
+		var stopPropagation = tag == 1 ? value.b : tag == 3 && value.ad;
 		var currentEventNode = (
 			stopPropagation && event.stopPropagation(),
-			(tag == 2 ? value.b : tag == 3 && value.J) && event.preventDefault(),
+			(tag == 2 ? value.b : tag == 3 && value.aa) && event.preventDefault(),
 			eventNode
 		);
 		var tagger;
@@ -3869,8 +3906,461 @@ function _VirtualDom_dekey(keyedNode)
 		b: keyedNode.b
 	};
 }
-var elm$core$Basics$identity = function (x) {
-	return x;
+
+
+
+
+// ELEMENT
+
+
+var _Debugger_element;
+
+var _Browser_element = _Debugger_element || F4(function(impl, flagDecoder, debugMetadata, args)
+{
+	return _Platform_initialize(
+		flagDecoder,
+		args,
+		impl.a6,
+		impl.bk,
+		impl.bj,
+		function(sendToApp, initialModel) {
+			var view = impl.bm;
+			/**/
+			var domNode = args['node'];
+			//*/
+			/**_UNUSED/
+			var domNode = args && args['node'] ? args['node'] : _Debug_crash(0);
+			//*/
+			var currNode = _VirtualDom_virtualize(domNode);
+
+			return _Browser_makeAnimator(initialModel, function(model)
+			{
+				var nextNode = view(model);
+				var patches = _VirtualDom_diff(currNode, nextNode);
+				domNode = _VirtualDom_applyPatches(domNode, currNode, patches, sendToApp);
+				currNode = nextNode;
+			});
+		}
+	);
+});
+
+
+
+// DOCUMENT
+
+
+var _Debugger_document;
+
+var _Browser_document = _Debugger_document || F4(function(impl, flagDecoder, debugMetadata, args)
+{
+	return _Platform_initialize(
+		flagDecoder,
+		args,
+		impl.a6,
+		impl.bk,
+		impl.bj,
+		function(sendToApp, initialModel) {
+			var divertHrefToApp = impl.N && impl.N(sendToApp)
+			var view = impl.bm;
+			var title = _VirtualDom_doc.title;
+			var bodyNode = _VirtualDom_doc.body;
+			var currNode = _VirtualDom_virtualize(bodyNode);
+			return _Browser_makeAnimator(initialModel, function(model)
+			{
+				_VirtualDom_divertHrefToApp = divertHrefToApp;
+				var doc = view(model);
+				var nextNode = _VirtualDom_node('body')(_List_Nil)(doc.a_);
+				var patches = _VirtualDom_diff(currNode, nextNode);
+				bodyNode = _VirtualDom_applyPatches(bodyNode, currNode, patches, sendToApp);
+				currNode = nextNode;
+				_VirtualDom_divertHrefToApp = 0;
+				(title !== doc.aU) && (_VirtualDom_doc.title = title = doc.aU);
+			});
+		}
+	);
+});
+
+
+
+// ANIMATION
+
+
+var _Browser_cancelAnimationFrame =
+	typeof cancelAnimationFrame !== 'undefined'
+		? cancelAnimationFrame
+		: function(id) { clearTimeout(id); };
+
+var _Browser_requestAnimationFrame =
+	typeof requestAnimationFrame !== 'undefined'
+		? requestAnimationFrame
+		: function(callback) { return setTimeout(callback, 1000 / 60); };
+
+
+function _Browser_makeAnimator(model, draw)
+{
+	draw(model);
+
+	var state = 0;
+
+	function updateIfNeeded()
+	{
+		state = state === 1
+			? 0
+			: ( _Browser_requestAnimationFrame(updateIfNeeded), draw(model), 1 );
+	}
+
+	return function(nextModel, isSync)
+	{
+		model = nextModel;
+
+		isSync
+			? ( draw(model),
+				state === 2 && (state = 1)
+				)
+			: ( state === 0 && _Browser_requestAnimationFrame(updateIfNeeded),
+				state = 2
+				);
+	};
+}
+
+
+
+// APPLICATION
+
+
+function _Browser_application(impl)
+{
+	var onUrlChange = impl.a9;
+	var onUrlRequest = impl.ba;
+	var key = function() { key.a(onUrlChange(_Browser_getUrl())); };
+
+	return _Browser_document({
+		N: function(sendToApp)
+		{
+			key.a = sendToApp;
+			_Browser_window.addEventListener('popstate', key);
+			_Browser_window.navigator.userAgent.indexOf('Trident') < 0 || _Browser_window.addEventListener('hashchange', key);
+
+			return F2(function(domNode, event)
+			{
+				if (!event.ctrlKey && !event.metaKey && !event.shiftKey && event.button < 1 && !domNode.target && !domNode.hasAttribute('download'))
+				{
+					event.preventDefault();
+					var href = domNode.href;
+					var curr = _Browser_getUrl();
+					var next = elm$url$Url$fromString(href).a;
+					sendToApp(onUrlRequest(
+						(next
+							&& curr.aE === next.aE
+							&& curr.ap === next.ap
+							&& curr.aA.a === next.aA.a
+						)
+							? elm$browser$Browser$Internal(next)
+							: elm$browser$Browser$External(href)
+					));
+				}
+			});
+		},
+		a6: function(flags)
+		{
+			return A3(impl.a6, flags, _Browser_getUrl(), key);
+		},
+		bm: impl.bm,
+		bk: impl.bk,
+		bj: impl.bj
+	});
+}
+
+function _Browser_getUrl()
+{
+	return elm$url$Url$fromString(_VirtualDom_doc.location.href).a || _Debug_crash(1);
+}
+
+var _Browser_go = F2(function(key, n)
+{
+	return A2(elm$core$Task$perform, elm$core$Basics$never, _Scheduler_binding(function() {
+		n && history.go(n);
+		key();
+	}));
+});
+
+var _Browser_pushUrl = F2(function(key, url)
+{
+	return A2(elm$core$Task$perform, elm$core$Basics$never, _Scheduler_binding(function() {
+		history.pushState({}, '', url);
+		key();
+	}));
+});
+
+var _Browser_replaceUrl = F2(function(key, url)
+{
+	return A2(elm$core$Task$perform, elm$core$Basics$never, _Scheduler_binding(function() {
+		history.replaceState({}, '', url);
+		key();
+	}));
+});
+
+
+
+// GLOBAL EVENTS
+
+
+var _Browser_fakeNode = { addEventListener: function() {}, removeEventListener: function() {} };
+var _Browser_doc = typeof document !== 'undefined' ? document : _Browser_fakeNode;
+var _Browser_window = typeof window !== 'undefined' ? window : _Browser_fakeNode;
+
+var _Browser_on = F3(function(node, eventName, sendToSelf)
+{
+	return _Scheduler_spawn(_Scheduler_binding(function(callback)
+	{
+		function handler(event)	{ _Scheduler_rawSpawn(sendToSelf(event)); }
+		node.addEventListener(eventName, handler, _VirtualDom_passiveSupported && { passive: true });
+		return function() { node.removeEventListener(eventName, handler); };
+	}));
+});
+
+var _Browser_decodeEvent = F2(function(decoder, event)
+{
+	var result = _Json_runHelp(decoder, event);
+	return elm$core$Result$isOk(result) ? elm$core$Maybe$Just(result.a) : elm$core$Maybe$Nothing;
+});
+
+
+
+// PAGE VISIBILITY
+
+
+function _Browser_visibilityInfo()
+{
+	return (typeof _VirtualDom_doc.hidden !== 'undefined')
+		? { a3: 'hidden', S: 'visibilitychange' }
+		:
+	(typeof _VirtualDom_doc.mozHidden !== 'undefined')
+		? { a3: 'mozHidden', S: 'mozvisibilitychange' }
+		:
+	(typeof _VirtualDom_doc.msHidden !== 'undefined')
+		? { a3: 'msHidden', S: 'msvisibilitychange' }
+		:
+	(typeof _VirtualDom_doc.webkitHidden !== 'undefined')
+		? { a3: 'webkitHidden', S: 'webkitvisibilitychange' }
+		: { a3: 'hidden', S: 'visibilitychange' };
+}
+
+
+
+// ANIMATION FRAMES
+
+
+function _Browser_rAF()
+{
+	return _Scheduler_binding(function(callback)
+	{
+		var id = _Browser_requestAnimationFrame(function() {
+			callback(_Scheduler_succeed(Date.now()));
+		});
+
+		return function() {
+			_Browser_cancelAnimationFrame(id);
+		};
+	});
+}
+
+
+function _Browser_now()
+{
+	return _Scheduler_binding(function(callback)
+	{
+		callback(_Scheduler_succeed(Date.now()));
+	});
+}
+
+
+
+// DOM STUFF
+
+
+function _Browser_withNode(id, doStuff)
+{
+	return _Scheduler_binding(function(callback)
+	{
+		_Browser_requestAnimationFrame(function() {
+			var node = document.getElementById(id);
+			callback(node
+				? _Scheduler_succeed(doStuff(node))
+				: _Scheduler_fail(elm$browser$Browser$Dom$NotFound(id))
+			);
+		});
+	});
+}
+
+
+function _Browser_withWindow(doStuff)
+{
+	return _Scheduler_binding(function(callback)
+	{
+		_Browser_requestAnimationFrame(function() {
+			callback(_Scheduler_succeed(doStuff()));
+		});
+	});
+}
+
+
+// FOCUS and BLUR
+
+
+var _Browser_call = F2(function(functionName, id)
+{
+	return _Browser_withNode(id, function(node) {
+		node[functionName]();
+		return _Utils_Tuple0;
+	});
+});
+
+
+
+// WINDOW VIEWPORT
+
+
+function _Browser_getViewport()
+{
+	return {
+		aO: _Browser_getScene(),
+		aX: {
+			X: _Browser_window.pageXOffset,
+			Y: _Browser_window.pageYOffset,
+			J: _Browser_doc.documentElement.clientWidth,
+			E: _Browser_doc.documentElement.clientHeight
+		}
+	};
+}
+
+function _Browser_getScene()
+{
+	var body = _Browser_doc.body;
+	var elem = _Browser_doc.documentElement;
+	return {
+		J: Math.max(body.scrollWidth, body.offsetWidth, elem.scrollWidth, elem.offsetWidth, elem.clientWidth),
+		E: Math.max(body.scrollHeight, body.offsetHeight, elem.scrollHeight, elem.offsetHeight, elem.clientHeight)
+	};
+}
+
+var _Browser_setViewport = F2(function(x, y)
+{
+	return _Browser_withWindow(function()
+	{
+		_Browser_window.scroll(x, y);
+		return _Utils_Tuple0;
+	});
+});
+
+
+
+// ELEMENT VIEWPORT
+
+
+function _Browser_getViewportOf(id)
+{
+	return _Browser_withNode(id, function(node)
+	{
+		return {
+			aO: {
+				J: node.scrollWidth,
+				E: node.scrollHeight
+			},
+			aX: {
+				X: node.scrollLeft,
+				Y: node.scrollTop,
+				J: node.clientWidth,
+				E: node.clientHeight
+			}
+		};
+	});
+}
+
+
+var _Browser_setViewportOf = F3(function(id, x, y)
+{
+	return _Browser_withNode(id, function(node)
+	{
+		node.scrollLeft = x;
+		node.scrollTop = y;
+		return _Utils_Tuple0;
+	});
+});
+
+
+
+// ELEMENT
+
+
+function _Browser_getElement(id)
+{
+	return _Browser_withNode(id, function(node)
+	{
+		var rect = node.getBoundingClientRect();
+		var x = _Browser_window.pageXOffset;
+		var y = _Browser_window.pageYOffset;
+		return {
+			aO: _Browser_getScene(),
+			aX: {
+				X: x,
+				Y: y,
+				J: _Browser_doc.documentElement.clientWidth,
+				E: _Browser_doc.documentElement.clientHeight
+			},
+			a0: {
+				X: x + rect.left,
+				Y: y + rect.top,
+				J: rect.width,
+				E: rect.height
+			}
+		};
+	});
+}
+
+
+
+// LOAD and RELOAD
+
+
+function _Browser_reload(skipCache)
+{
+	return A2(elm$core$Task$perform, elm$core$Basics$never, _Scheduler_binding(function(callback)
+	{
+		_VirtualDom_doc.location.reload(skipCache);
+	}));
+}
+
+function _Browser_load(url)
+{
+	return A2(elm$core$Task$perform, elm$core$Basics$never, _Scheduler_binding(function(callback)
+	{
+		try
+		{
+			_Browser_window.location = url;
+		}
+		catch(err)
+		{
+			// Only Firefox can throw a NS_ERROR_MALFORMED_URI exception here.
+			// Other browsers reload the page, so let's be consistent about that.
+			_VirtualDom_doc.location.reload(false);
+		}
+	}));
+}
+var author$project$Data$Kiddoz$Butter = 13;
+var author$project$Data$Kiddoz$Flour = 0;
+var author$project$Data$Kiddoz$Grams = 0;
+var author$project$Data$Kiddoz$GroundAlmonds = 1;
+var author$project$Data$Kiddoz$Ingredient = F4(
+	function (name, kind, quantity, unit) {
+		return {au: kind, aw: name, aF: quantity, aW: unit};
+	});
+var author$project$Data$Kiddoz$Sugar = 11;
+var author$project$Data$Kiddoz$Unit = 10;
+var elm$core$Maybe$Nothing = {$: 1};
+var author$project$Data$Kiddoz$emptyIngredient = {au: elm$core$Maybe$Nothing, aw: '', aF: 1, aW: 10};
+var elm$core$Maybe$Just = function (a) {
+	return {$: 0, a: a};
 };
 var elm$core$Basics$False = 1;
 var elm$core$Basics$True = 0;
@@ -3881,11 +4371,6 @@ var elm$core$Result$isOk = function (result) {
 		return false;
 	}
 };
-var elm$core$Array$branchFactor = 32;
-var elm$core$Array$Array_elm_builtin = F4(
-	function (a, b, c, d) {
-		return {$: 0, a: a, b: b, c: c, d: d};
-	});
 var elm$core$Basics$EQ = 1;
 var elm$core$Basics$GT = 2;
 var elm$core$Basics$LT = 0;
@@ -3966,6 +4451,11 @@ var elm$core$Array$foldr = F3(
 var elm$core$Array$toList = function (array) {
 	return A3(elm$core$Array$foldr, elm$core$List$cons, _List_Nil, array);
 };
+var elm$core$Array$branchFactor = 32;
+var elm$core$Array$Array_elm_builtin = F4(
+	function (a, b, c, d) {
+		return {$: 0, a: a, b: b, c: c, d: d};
+	});
 var elm$core$Basics$ceiling = _Basics_ceiling;
 var elm$core$Basics$fdiv = _Basics_fdiv;
 var elm$core$Basics$logBase = F2(
@@ -4069,25 +4559,25 @@ var elm$core$Basics$sub = _Basics_sub;
 var elm$core$Elm$JsArray$length = _JsArray_length;
 var elm$core$Array$builderToArray = F2(
 	function (reverseNodeList, builder) {
-		if (!builder.a) {
+		if (!builder.e) {
 			return A4(
 				elm$core$Array$Array_elm_builtin,
-				elm$core$Elm$JsArray$length(builder.c),
+				elm$core$Elm$JsArray$length(builder.g),
 				elm$core$Array$shiftStep,
 				elm$core$Elm$JsArray$empty,
-				builder.c);
+				builder.g);
 		} else {
-			var treeLen = builder.a * elm$core$Array$branchFactor;
+			var treeLen = builder.e * elm$core$Array$branchFactor;
 			var depth = elm$core$Basics$floor(
 				A2(elm$core$Basics$logBase, elm$core$Array$branchFactor, treeLen - 1));
-			var correctNodeList = reverseNodeList ? elm$core$List$reverse(builder.d) : builder.d;
-			var tree = A2(elm$core$Array$treeFromBuilder, correctNodeList, builder.a);
+			var correctNodeList = reverseNodeList ? elm$core$List$reverse(builder.h) : builder.h;
+			var tree = A2(elm$core$Array$treeFromBuilder, correctNodeList, builder.e);
 			return A4(
 				elm$core$Array$Array_elm_builtin,
-				elm$core$Elm$JsArray$length(builder.c) + treeLen,
+				elm$core$Elm$JsArray$length(builder.g) + treeLen,
 				A2(elm$core$Basics$max, 5, depth * elm$core$Array$shiftStep),
 				tree,
-				builder.c);
+				builder.g);
 		}
 	});
 var elm$core$Basics$idiv = _Basics_idiv;
@@ -4101,7 +4591,7 @@ var elm$core$Array$initializeHelp = F5(
 				return A2(
 					elm$core$Array$builderToArray,
 					false,
-					{d: nodeList, a: (len / elm$core$Array$branchFactor) | 0, c: tail});
+					{h: nodeList, e: (len / elm$core$Array$branchFactor) | 0, g: tail});
 			} else {
 				var leaf = elm$core$Array$Leaf(
 					A3(elm$core$Elm$JsArray$initialize, elm$core$Array$branchFactor, fromIndex, fn));
@@ -4132,10 +4622,6 @@ var elm$core$Array$initialize = F2(
 			return A5(elm$core$Array$initializeHelp, fn, initialFromIndex, len, _List_Nil, tail);
 		}
 	});
-var elm$core$Maybe$Just = function (a) {
-	return {$: 0, a: a};
-};
-var elm$core$Maybe$Nothing = {$: 1};
 var elm$core$Result$Err = function (a) {
 	return {$: 1, a: a};
 };
@@ -4347,6 +4833,855 @@ var elm$json$Json$Decode$errorToStringHelp = F2(
 			}
 		}
 	});
+var elm$core$Platform$Cmd$batch = _Platform_batch;
+var elm$core$Platform$Cmd$none = elm$core$Platform$Cmd$batch(_List_Nil);
+var author$project$Main$init = function (flags) {
+	return _Utils_Tuple2(
+		{
+			aH: {
+				a8: 6,
+				bc: 30,
+				bf: _List_fromArray(
+					[
+						{
+						a5: _List_fromArray(
+							[
+								A4(
+								author$project$Data$Kiddoz$Ingredient,
+								'Farine',
+								elm$core$Maybe$Just(0),
+								250,
+								0),
+								A4(
+								author$project$Data$Kiddoz$Ingredient,
+								'Sucre',
+								elm$core$Maybe$Just(11),
+								100,
+								0),
+								A4(
+								author$project$Data$Kiddoz$Ingredient,
+								'Beurre',
+								elm$core$Maybe$Just(13),
+								150,
+								0),
+								A4(author$project$Data$Kiddoz$Ingredient, 'Œuf', elm$core$Maybe$Nothing, 1, 10),
+								A4(
+								author$project$Data$Kiddoz$Ingredient,
+								'Poudre d\'amande',
+								elm$core$Maybe$Just(1),
+								100,
+								0)
+							]),
+						bi: _List_fromArray(
+							['Préchauffer le four à 180 °C (th. 6). ', 'Dans un bol, mélanger le beurre avec le sucre glace', 'Ajouter l\'oeuf puis la farine et la poudre d\'amande (ne pas trop travailler la pâte)', 'Faire une boule avec la pâte, la mettre dans un film alimentaire et la laisser reposer au moins 15 minutes au frais.', 'A l\'aide d\'un rouleau à pâtisserie, étaler la pâte, et la répartir ensuite dans un moule à tarte.']),
+						aU: 'Pâte'
+					},
+						{
+						a5: _List_fromArray(
+							[
+								A4(author$project$Data$Kiddoz$Ingredient, 'Citrons', elm$core$Maybe$Nothing, 2, 10),
+								A4(
+								author$project$Data$Kiddoz$Ingredient,
+								'Sucre',
+								elm$core$Maybe$Just(11),
+								150,
+								0),
+								A4(author$project$Data$Kiddoz$Ingredient, 'Œufs', elm$core$Maybe$Nothing, 3, 10),
+								A4(
+								author$project$Data$Kiddoz$Ingredient,
+								'Beurre',
+								elm$core$Maybe$Just(13),
+								120,
+								0)
+							]),
+						bi: _List_fromArray(
+							['Dans une casserole, presser le jus des citrons et le mélanger avec le beurre.', 'Les faire fondre à feu doux.', 'Dans un bol, blanchir les oeufs avec le sucre en fouettant vigoureusement', 'Verser le beurre fondu et le jus de citron dessus.', 'Verser l\'appareil sur la pâte cuite et enfourner 20 à 30 minutes.']),
+						aU: 'Appareil'
+					}
+					]),
+				aU: 'Tarte aux citrons'
+			},
+			r: _Utils_update(
+				author$project$Data$Kiddoz$emptyIngredient,
+				{
+					au: elm$core$Maybe$Just(0),
+					aW: 0
+				})
+		},
+		elm$core$Platform$Cmd$none);
+};
+var elm$core$Platform$Sub$batch = _Platform_batch;
+var elm$core$Platform$Sub$none = elm$core$Platform$Sub$batch(_List_Nil);
+var author$project$Main$subscriptions = function (model) {
+	return elm$core$Platform$Sub$none;
+};
+var author$project$Data$Kiddoz$Bicarbonate = 5;
+var author$project$Data$Kiddoz$Breadcrumbs = 23;
+var author$project$Data$Kiddoz$BrownSugar = 9;
+var author$project$Data$Kiddoz$Cilentro = 17;
+var author$project$Data$Kiddoz$Cinnamon = 22;
+var author$project$Data$Kiddoz$Cocoa = 2;
+var author$project$Data$Kiddoz$Curcuma = 19;
+var author$project$Data$Kiddoz$Curry = 18;
+var author$project$Data$Kiddoz$EggWhite = 6;
+var author$project$Data$Kiddoz$EggYellow = 7;
+var author$project$Data$Kiddoz$GrattedCheese = 15;
+var author$project$Data$Kiddoz$GroundCoffee = 21;
+var author$project$Data$Kiddoz$Honey = 25;
+var author$project$Data$Kiddoz$IcingSugar = 10;
+var author$project$Data$Kiddoz$InstantCoffee = 20;
+var author$project$Data$Kiddoz$Jam = 8;
+var author$project$Data$Kiddoz$Liquid = 16;
+var author$project$Data$Kiddoz$Mustard = 26;
+var author$project$Data$Kiddoz$OatMeal = 3;
+var author$project$Data$Kiddoz$Oil = 24;
+var author$project$Data$Kiddoz$Parmesan = 28;
+var author$project$Data$Kiddoz$Pepper = 31;
+var author$project$Data$Kiddoz$PineNut = 29;
+var author$project$Data$Kiddoz$Polenta = 30;
+var author$project$Data$Kiddoz$Quinoa = 32;
+var author$project$Data$Kiddoz$Rice = 12;
+var author$project$Data$Kiddoz$Salt = 14;
+var author$project$Data$Kiddoz$Spread = 27;
+var author$project$Data$Kiddoz$TomatoSauce = 33;
+var author$project$Data$Kiddoz$WheatSeed = 4;
+var author$project$Data$Kiddoz$kindFromName = function (kind) {
+	switch (kind) {
+		case 'Farine':
+			return elm$core$Maybe$Just(0);
+		case 'Pignons':
+			return elm$core$Maybe$Just(29);
+		case 'Polenta':
+			return elm$core$Maybe$Just(30);
+		case 'Chocolat':
+			return elm$core$Maybe$Just(2);
+		case 'Miettes de pain':
+			return elm$core$Maybe$Just(23);
+		case 'Cannelle':
+			return elm$core$Maybe$Just(22);
+		case 'Café instantané':
+			return elm$core$Maybe$Just(20);
+		case 'Café moulu':
+			return elm$core$Maybe$Just(21);
+		case 'Coriandre':
+			return elm$core$Maybe$Just(17);
+		case 'Curry':
+			return elm$core$Maybe$Just(18);
+		case 'Curcuma':
+			return elm$core$Maybe$Just(19);
+		case 'Graines de blé':
+			return elm$core$Maybe$Just(4);
+		case 'Amandes moulues':
+			return elm$core$Maybe$Just(1);
+		case 'Flocons d\'avoine':
+			return elm$core$Maybe$Just(3);
+		case 'Bicarbonate':
+			return elm$core$Maybe$Just(5);
+		case 'Blanc d\'œufs':
+			return elm$core$Maybe$Just(6);
+		case 'Jaune d\'œufs':
+			return elm$core$Maybe$Just(7);
+		case 'Sucre en poudre':
+			return elm$core$Maybe$Just(11);
+		case 'Cassonade':
+			return elm$core$Maybe$Just(9);
+		case 'Sucre glace':
+			return elm$core$Maybe$Just(10);
+		case 'Riz':
+			return elm$core$Maybe$Just(12);
+		case 'Beurre':
+			return elm$core$Maybe$Just(13);
+		case 'Sel':
+			return elm$core$Maybe$Just(14);
+		case 'Fromage râpé':
+			return elm$core$Maybe$Just(15);
+		case 'Liquides':
+			return elm$core$Maybe$Just(16);
+		case 'Confiture':
+			return elm$core$Maybe$Just(8);
+		case 'Huile':
+			return elm$core$Maybe$Just(24);
+		case 'Miel':
+			return elm$core$Maybe$Just(25);
+		case 'Moutarde':
+			return elm$core$Maybe$Just(26);
+		case 'Pâte à tartiner':
+			return elm$core$Maybe$Just(27);
+		case 'Parmesan':
+			return elm$core$Maybe$Just(28);
+		case 'Poivre':
+			return elm$core$Maybe$Just(31);
+		case 'Quinoa':
+			return elm$core$Maybe$Just(32);
+		case 'Sauce tomate':
+			return elm$core$Maybe$Just(33);
+		default:
+			return elm$core$Maybe$Nothing;
+	}
+};
+var author$project$Data$Kiddoz$Centiliters = 1;
+var author$project$Data$Kiddoz$Cup = 3;
+var author$project$Data$Kiddoz$HalfCup = 4;
+var author$project$Data$Kiddoz$Milliliters = 2;
+var author$project$Data$Kiddoz$Oz = 9;
+var author$project$Data$Kiddoz$QuarterCup = 6;
+var author$project$Data$Kiddoz$Tablespoon = 7;
+var author$project$Data$Kiddoz$Teaspoon = 8;
+var author$project$Data$Kiddoz$ThirdCup = 5;
+var author$project$Data$Kiddoz$unitFromName = function (unit) {
+	switch (unit) {
+		case 'grams':
+			return 0;
+		case 'centiliters':
+			return 1;
+		case 'milliliters':
+			return 2;
+		case 'cup':
+			return 3;
+		case '½ cup':
+			return 4;
+		case '⅓ cup':
+			return 5;
+		case '¼ cup':
+			return 6;
+		case 'tbsp':
+			return 7;
+		case 'tsp':
+			return 8;
+		case 'oz':
+			return 9;
+		default:
+			return 10;
+	}
+};
+var elm$core$Maybe$withDefault = F2(
+	function (_default, maybe) {
+		if (!maybe.$) {
+			var value = maybe.a;
+			return value;
+		} else {
+			return _default;
+		}
+	});
+var elm$core$String$toInt = _String_toInt;
+var author$project$Main$update = F2(
+	function (msg, model) {
+		var selectedIngredient = model.r;
+		switch (msg.$) {
+			case 2:
+				var name = msg.a;
+				var ingredient = _Utils_update(
+					selectedIngredient,
+					{
+						au: author$project$Data$Kiddoz$kindFromName(name),
+						aw: name
+					});
+				return _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{r: ingredient}),
+					elm$core$Platform$Cmd$none);
+			case 1:
+				var unit = msg.a;
+				var ingredient = _Utils_update(
+					selectedIngredient,
+					{
+						aW: author$project$Data$Kiddoz$unitFromName(unit)
+					});
+				return _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{r: ingredient}),
+					elm$core$Platform$Cmd$none);
+			default:
+				var quantity = msg.a;
+				var ingredient = _Utils_update(
+					selectedIngredient,
+					{
+						aF: A2(
+							elm$core$Maybe$withDefault,
+							0,
+							elm$core$String$toInt(quantity))
+					});
+				return _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{r: ingredient}),
+					elm$core$Platform$Cmd$none);
+		}
+	});
+var author$project$Data$Kiddoz$existingIngredients = _List_fromArray(
+	[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33]);
+var author$project$Data$Kiddoz$existingUnits = _List_fromArray(
+	[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+var author$project$Data$Kiddoz$kindToString = function (kind) {
+	switch (kind) {
+		case 0:
+			return 'Farine';
+		case 29:
+			return 'Pignons';
+		case 30:
+			return 'Polenta';
+		case 2:
+			return 'Chocolat';
+		case 23:
+			return 'Miettes de pain';
+		case 22:
+			return 'Cannelle';
+		case 20:
+			return 'Café instantané';
+		case 21:
+			return 'Café moulu';
+		case 17:
+			return 'Coriandre';
+		case 18:
+			return 'Curry';
+		case 19:
+			return 'Curcuma';
+		case 4:
+			return 'Graines de blé';
+		case 1:
+			return 'Amandes moulues';
+		case 3:
+			return 'Flocons d\'avoine';
+		case 5:
+			return 'Bicarbonate';
+		case 6:
+			return 'Blanc d\'œufs';
+		case 7:
+			return 'Jaune d\'œufs';
+		case 11:
+			return 'Sucre en poudre';
+		case 9:
+			return 'Cassonade';
+		case 10:
+			return 'Sucre glace';
+		case 12:
+			return 'Riz';
+		case 13:
+			return 'Beurre';
+		case 14:
+			return 'Sel';
+		case 15:
+			return 'Fromage râpé';
+		case 16:
+			return 'Liquides';
+		case 8:
+			return 'Confiture';
+		case 24:
+			return 'Huile';
+		case 25:
+			return 'Miel';
+		case 26:
+			return 'Moutarde';
+		case 27:
+			return 'Pâte à tartiner';
+		case 28:
+			return 'Parmesan';
+		case 31:
+			return 'Poivre';
+		case 32:
+			return 'Quinoa';
+		default:
+			return 'Sauce tomate';
+	}
+};
+var author$project$Data$Kiddoz$unitToString = function (unit) {
+	switch (unit) {
+		case 0:
+			return 'grams';
+		case 1:
+			return 'centiliters';
+		case 2:
+			return 'milliliters';
+		case 3:
+			return 'cup';
+		case 4:
+			return '½ cup';
+		case 5:
+			return '⅓ cup';
+		case 6:
+			return '¼ cup';
+		case 7:
+			return 'tbsp';
+		case 8:
+			return 'tsp';
+		case 9:
+			return 'oz';
+		default:
+			return 'piece';
+	}
+};
+var author$project$Main$SetKind = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$Main$SetQuantity = function (a) {
+	return {$: 0, a: a};
+};
+var author$project$Main$SetUnit = function (a) {
+	return {$: 1, a: a};
+};
+var author$project$Data$Kiddoz$food2mL = function (kind) {
+	switch (kind) {
+		case 0:
+			return elm$core$Maybe$Just(180 / 250);
+		case 29:
+			return elm$core$Maybe$Just(0.55);
+		case 30:
+			return elm$core$Maybe$Just(0.75);
+		case 2:
+			return elm$core$Maybe$Just(0.44);
+		case 23:
+			return elm$core$Maybe$Just(0.45);
+		case 22:
+			return elm$core$Maybe$Just(0.5);
+		case 20:
+			return elm$core$Maybe$Just(0.2);
+		case 21:
+			return elm$core$Maybe$Just(0.4);
+		case 17:
+			return elm$core$Maybe$Just(6.8e-2);
+		case 18:
+			return elm$core$Maybe$Just(0.57);
+		case 19:
+			return elm$core$Maybe$Just(0.59);
+		case 4:
+			return elm$core$Maybe$Just(0.75);
+		case 1:
+			return elm$core$Maybe$Just(0.36);
+		case 3:
+			return elm$core$Maybe$Just(0.34);
+		case 5:
+			return elm$core$Maybe$Just(0.87);
+		case 6:
+			return elm$core$Maybe$Just(1.03);
+		case 7:
+			return elm$core$Maybe$Just(1.13);
+		case 11:
+			return elm$core$Maybe$Just(230 / 250);
+		case 9:
+			return elm$core$Maybe$Just(0.61);
+		case 10:
+			return elm$core$Maybe$Just(0.5);
+		case 12:
+			return elm$core$Maybe$Just(200 / 250);
+		case 13:
+			return elm$core$Maybe$Just(220 / 250);
+		case 14:
+			return elm$core$Maybe$Just(340 / 250);
+		case 15:
+			return elm$core$Maybe$Just(100 / 250);
+		case 16:
+			return elm$core$Maybe$Just(1);
+		case 8:
+			return elm$core$Maybe$Just(1.37);
+		case 24:
+			return elm$core$Maybe$Just(0.9);
+		case 25:
+			return elm$core$Maybe$Just(1.4);
+		case 26:
+			return elm$core$Maybe$Just(1.05);
+		case 27:
+			return elm$core$Maybe$Just(1.05);
+		case 28:
+			return elm$core$Maybe$Just(0.42);
+		case 31:
+			return elm$core$Maybe$Just(0.5);
+		case 32:
+			return elm$core$Maybe$Just(0.71);
+		default:
+			return elm$core$Maybe$Just(0.91);
+	}
+};
+var author$project$Data$Kiddoz$unitTomL = function (unit) {
+	switch (unit) {
+		case 0:
+			return elm$core$Maybe$Nothing;
+		case 1:
+			return elm$core$Maybe$Just(10);
+		case 2:
+			return elm$core$Maybe$Just(1);
+		case 3:
+			return elm$core$Maybe$Just(250);
+		case 4:
+			return elm$core$Maybe$Just(125);
+		case 5:
+			return elm$core$Maybe$Just(80);
+		case 6:
+			return elm$core$Maybe$Just(60);
+		case 7:
+			return elm$core$Maybe$Just(15);
+		case 8:
+			return elm$core$Maybe$Just(5);
+		case 9:
+			return elm$core$Maybe$Just(30);
+		default:
+			return elm$core$Maybe$Nothing;
+	}
+};
+var author$project$Change$coinsList = _List_fromArray(
+	[250, 125, 80, 60, 15, 5]);
+var author$project$Change$ChangeInfo = F3(
+	function (amount, weight, change) {
+		return {L: amount, S: change, x: weight};
+	});
+var author$project$Change$emptyChangeInfo = F2(
+	function (maxWeight, currentAmount) {
+		return A3(author$project$Change$ChangeInfo, currentAmount, maxWeight, _List_Nil);
+	});
+var elm$core$Bitwise$shiftRightZfBy = _Bitwise_shiftRightZfBy;
+var elm$core$Array$bitMask = 4294967295 >>> (32 - elm$core$Array$shiftStep);
+var elm$core$Bitwise$and = _Bitwise_and;
+var elm$core$Elm$JsArray$unsafeGet = _JsArray_unsafeGet;
+var elm$core$Array$getHelp = F3(
+	function (shift, index, tree) {
+		getHelp:
+		while (true) {
+			var pos = elm$core$Array$bitMask & (index >>> shift);
+			var _n0 = A2(elm$core$Elm$JsArray$unsafeGet, pos, tree);
+			if (!_n0.$) {
+				var subTree = _n0.a;
+				var $temp$shift = shift - elm$core$Array$shiftStep,
+					$temp$index = index,
+					$temp$tree = subTree;
+				shift = $temp$shift;
+				index = $temp$index;
+				tree = $temp$tree;
+				continue getHelp;
+			} else {
+				var values = _n0.a;
+				return A2(elm$core$Elm$JsArray$unsafeGet, elm$core$Array$bitMask & index, values);
+			}
+		}
+	});
+var elm$core$Bitwise$shiftLeftBy = _Bitwise_shiftLeftBy;
+var elm$core$Array$tailIndex = function (len) {
+	return (len >>> 5) << 5;
+};
+var elm$core$Basics$ge = _Utils_ge;
+var elm$core$Array$get = F2(
+	function (index, _n0) {
+		var len = _n0.a;
+		var startShift = _n0.b;
+		var tree = _n0.c;
+		var tail = _n0.d;
+		return ((index < 0) || (_Utils_cmp(index, len) > -1)) ? elm$core$Maybe$Nothing : ((_Utils_cmp(
+			index,
+			elm$core$Array$tailIndex(len)) > -1) ? elm$core$Maybe$Just(
+			A2(elm$core$Elm$JsArray$unsafeGet, elm$core$Array$bitMask & index, tail)) : elm$core$Maybe$Just(
+			A3(elm$core$Array$getHelp, startShift, index, tree)));
+	});
+var elm$core$Elm$JsArray$unsafeSet = _JsArray_unsafeSet;
+var elm$core$Array$setHelp = F4(
+	function (shift, index, value, tree) {
+		var pos = elm$core$Array$bitMask & (index >>> shift);
+		var _n0 = A2(elm$core$Elm$JsArray$unsafeGet, pos, tree);
+		if (!_n0.$) {
+			var subTree = _n0.a;
+			var newSub = A4(elm$core$Array$setHelp, shift - elm$core$Array$shiftStep, index, value, subTree);
+			return A3(
+				elm$core$Elm$JsArray$unsafeSet,
+				pos,
+				elm$core$Array$SubTree(newSub),
+				tree);
+		} else {
+			var values = _n0.a;
+			var newLeaf = A3(elm$core$Elm$JsArray$unsafeSet, elm$core$Array$bitMask & index, value, values);
+			return A3(
+				elm$core$Elm$JsArray$unsafeSet,
+				pos,
+				elm$core$Array$Leaf(newLeaf),
+				tree);
+		}
+	});
+var elm$core$Array$set = F3(
+	function (index, value, array) {
+		var len = array.a;
+		var startShift = array.b;
+		var tree = array.c;
+		var tail = array.d;
+		return ((index < 0) || (_Utils_cmp(index, len) > -1)) ? array : ((_Utils_cmp(
+			index,
+			elm$core$Array$tailIndex(len)) > -1) ? A4(
+			elm$core$Array$Array_elm_builtin,
+			len,
+			startShift,
+			tree,
+			A3(elm$core$Elm$JsArray$unsafeSet, elm$core$Array$bitMask & index, value, tail)) : A4(
+			elm$core$Array$Array_elm_builtin,
+			len,
+			startShift,
+			A4(elm$core$Array$setHelp, startShift, index, value, tree),
+			tail));
+	});
+var elm$core$List$foldrHelper = F4(
+	function (fn, acc, ctr, ls) {
+		if (!ls.b) {
+			return acc;
+		} else {
+			var a = ls.a;
+			var r1 = ls.b;
+			if (!r1.b) {
+				return A2(fn, a, acc);
+			} else {
+				var b = r1.a;
+				var r2 = r1.b;
+				if (!r2.b) {
+					return A2(
+						fn,
+						a,
+						A2(fn, b, acc));
+				} else {
+					var c = r2.a;
+					var r3 = r2.b;
+					if (!r3.b) {
+						return A2(
+							fn,
+							a,
+							A2(
+								fn,
+								b,
+								A2(fn, c, acc)));
+					} else {
+						var d = r3.a;
+						var r4 = r3.b;
+						var res = (ctr > 500) ? A3(
+							elm$core$List$foldl,
+							fn,
+							acc,
+							elm$core$List$reverse(r4)) : A4(elm$core$List$foldrHelper, fn, acc, ctr + 1, r4);
+						return A2(
+							fn,
+							a,
+							A2(
+								fn,
+								b,
+								A2(
+									fn,
+									c,
+									A2(fn, d, res))));
+					}
+				}
+			}
+		}
+	});
+var elm$core$List$foldr = F3(
+	function (fn, acc, ls) {
+		return A4(elm$core$List$foldrHelper, fn, acc, 0, ls);
+	});
+var elm$core$List$filter = F2(
+	function (isGood, list) {
+		return A3(
+			elm$core$List$foldr,
+			F2(
+				function (x, xs) {
+					return isGood(x) ? A2(elm$core$List$cons, x, xs) : xs;
+				}),
+			_List_Nil,
+			list);
+	});
+var elm$core$List$head = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return elm$core$Maybe$Just(x);
+	} else {
+		return elm$core$Maybe$Nothing;
+	}
+};
+var elm$core$List$map = F2(
+	function (f, xs) {
+		return A3(
+			elm$core$List$foldr,
+			F2(
+				function (x, acc) {
+					return A2(
+						elm$core$List$cons,
+						f(x),
+						acc);
+				}),
+			_List_Nil,
+			xs);
+	});
+var elm$core$Basics$min = F2(
+	function (x, y) {
+		return (_Utils_cmp(x, y) < 0) ? x : y;
+	});
+var elm$core$List$minimum = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return elm$core$Maybe$Just(
+			A3(elm$core$List$foldl, elm$core$Basics$min, x, xs));
+	} else {
+		return elm$core$Maybe$Nothing;
+	}
+};
+var author$project$Change$backTrackChange = F4(
+	function (min_coin, coins, currentInfo, previousInfos) {
+		if (!currentInfo.L) {
+			return A3(
+				elm$core$Array$set,
+				0,
+				_Utils_update(
+					currentInfo,
+					{x: 0}),
+				previousInfos);
+		} else {
+			var candidates = A2(
+				elm$core$List$map,
+				function (coin) {
+					if (_Utils_cmp(currentInfo.L, coin) > -1) {
+						var previousMap = currentInfo.L - coin;
+						var previousInfo = A2(
+							elm$core$Maybe$withDefault,
+							A2(author$project$Change$emptyChangeInfo, 10000, previousMap),
+							A2(elm$core$Array$get, previousMap, previousInfos));
+						return (_Utils_cmp(previousInfo.x + 1, currentInfo.x) < 0) ? _Utils_update(
+							currentInfo,
+							{
+								S: A2(elm$core$List$cons, coin * min_coin, previousInfo.S),
+								x: previousInfo.x + 1
+							}) : currentInfo;
+					} else {
+						return currentInfo;
+					}
+				},
+				coins);
+			var minimum = A2(
+				elm$core$Maybe$withDefault,
+				0,
+				elm$core$List$minimum(
+					A2(
+						elm$core$List$map,
+						function ($) {
+							return $.x;
+						},
+						candidates)));
+			var lowerCandidate = elm$core$List$head(
+				A2(
+					elm$core$List$filter,
+					function (changeInfo) {
+						return _Utils_eq(changeInfo.x, minimum);
+					},
+					candidates));
+			if (lowerCandidate.$ === 1) {
+				return previousInfos;
+			} else {
+				var candidate = lowerCandidate.a;
+				return A3(elm$core$Array$set, currentInfo.L, candidate, previousInfos);
+			}
+		}
+	});
+var elm$core$Elm$JsArray$foldl = _JsArray_foldl;
+var elm$core$Array$foldl = F3(
+	function (func, baseCase, _n0) {
+		var tree = _n0.c;
+		var tail = _n0.d;
+		var helper = F2(
+			function (node, acc) {
+				if (!node.$) {
+					var subTree = node.a;
+					return A3(elm$core$Elm$JsArray$foldl, helper, acc, subTree);
+				} else {
+					var values = node.a;
+					return A3(elm$core$Elm$JsArray$foldl, func, acc, values);
+				}
+			});
+		return A3(
+			elm$core$Elm$JsArray$foldl,
+			func,
+			A3(elm$core$Elm$JsArray$foldl, helper, baseCase, tree),
+			tail);
+	});
+var elm$core$Array$fromListHelp = F3(
+	function (list, nodeList, nodeListSize) {
+		fromListHelp:
+		while (true) {
+			var _n0 = A2(elm$core$Elm$JsArray$initializeFromList, elm$core$Array$branchFactor, list);
+			var jsArray = _n0.a;
+			var remainingItems = _n0.b;
+			if (_Utils_cmp(
+				elm$core$Elm$JsArray$length(jsArray),
+				elm$core$Array$branchFactor) < 0) {
+				return A2(
+					elm$core$Array$builderToArray,
+					true,
+					{h: nodeList, e: nodeListSize, g: jsArray});
+			} else {
+				var $temp$list = remainingItems,
+					$temp$nodeList = A2(
+					elm$core$List$cons,
+					elm$core$Array$Leaf(jsArray),
+					nodeList),
+					$temp$nodeListSize = nodeListSize + 1;
+				list = $temp$list;
+				nodeList = $temp$nodeList;
+				nodeListSize = $temp$nodeListSize;
+				continue fromListHelp;
+			}
+		}
+	});
+var elm$core$Array$fromList = function (list) {
+	if (!list.b) {
+		return elm$core$Array$empty;
+	} else {
+		return A3(elm$core$Array$fromListHelp, list, _List_Nil, 0);
+	}
+};
+var elm$core$Maybe$map = F2(
+	function (f, maybe) {
+		if (!maybe.$) {
+			var value = maybe.a;
+			return elm$core$Maybe$Just(
+				f(value));
+		} else {
+			return elm$core$Maybe$Nothing;
+		}
+	});
+var author$project$Change$giveChange = F2(
+	function (initialAmount, coins) {
+		var _n0 = elm$core$List$minimum(coins);
+		if (_n0.$ === 1) {
+			return _List_Nil;
+		} else {
+			var min_coin = _n0.a;
+			var new_coins = A2(
+				elm$core$List$map,
+				function (coin) {
+					return (coin / min_coin) | 0;
+				},
+				coins);
+			var amount_min = ((initialAmount / min_coin) | 0) * min_coin;
+			var amount_max = (((initialAmount / min_coin) | 0) + 1) * min_coin;
+			var amount = (_Utils_cmp(amount_max - initialAmount, initialAmount - amount_min) > 0) ? amount_min : amount_max;
+			var matrix = elm$core$Array$fromList(
+				A2(
+					elm$core$List$map,
+					author$project$Change$emptyChangeInfo(amount),
+					A2(elm$core$List$range, 0, (amount / min_coin) | 0)));
+			var possible_things = A3(
+				elm$core$Array$foldl,
+				A2(author$project$Change$backTrackChange, min_coin, new_coins),
+				matrix,
+				matrix);
+			return A2(
+				elm$core$Maybe$withDefault,
+				_List_Nil,
+				A2(
+					elm$core$Maybe$map,
+					function ($) {
+						return $.S;
+					},
+					elm$core$List$head(
+						elm$core$List$reverse(
+							elm$core$Array$toList(possible_things)))));
+		}
+	});
+var elm$core$Basics$round = _Basics_round;
+var elm$core$Basics$identity = function (x) {
+	return x;
+};
 var elm$json$Json$Decode$map = _Json_map1;
 var elm$json$Json$Decode$map2 = _Json_map2;
 var elm$json$Json$Decode$succeed = _Json_succeed;
@@ -4362,14 +5697,599 @@ var elm$virtual_dom$VirtualDom$toHandlerInt = function (handler) {
 			return 3;
 	}
 };
-var elm$html$Html$div = _VirtualDom_node('div');
+var elm$html$Html$img = _VirtualDom_node('img');
 var elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
 var elm$html$Html$text = elm$virtual_dom$VirtualDom$text;
-var author$project$Main$main = A2(
-	elm$html$Html$div,
-	_List_Nil,
+var elm$json$Json$Encode$string = _Json_wrap;
+var elm$html$Html$Attributes$stringProperty = F2(
+	function (key, string) {
+		return A2(
+			_VirtualDom_property,
+			key,
+			elm$json$Json$Encode$string(string));
+	});
+var elm$html$Html$Attributes$src = function (url) {
+	return A2(
+		elm$html$Html$Attributes$stringProperty,
+		'src',
+		_VirtualDom_noJavaScriptOrHtmlUri(url));
+};
+var author$project$View$Recipe$mL2cup = function (mL) {
+	var change = A2(
+		author$project$Change$giveChange,
+		elm$core$Basics$round(mL),
+		author$project$Change$coinsList);
+	return A2(
+		elm$core$List$map,
+		function (value) {
+			switch (value) {
+				case 250:
+					return A2(
+						elm$html$Html$img,
+						_List_fromArray(
+							[
+								elm$html$Html$Attributes$src('assets/images/0001-chef.png')
+							]),
+						_List_Nil);
+				case 125:
+					return A2(
+						elm$html$Html$img,
+						_List_fromArray(
+							[
+								elm$html$Html$Attributes$src('assets/images/0002-cochon.png')
+							]),
+						_List_Nil);
+				case 80:
+					return A2(
+						elm$html$Html$img,
+						_List_fromArray(
+							[
+								elm$html$Html$Attributes$src('assets/images/0003-chat.png')
+							]),
+						_List_Nil);
+				case 60:
+					return A2(
+						elm$html$Html$img,
+						_List_fromArray(
+							[
+								elm$html$Html$Attributes$src('assets/images/0004-souris.png')
+							]),
+						_List_Nil);
+				case 15:
+					return A2(
+						elm$html$Html$img,
+						_List_fromArray(
+							[
+								elm$html$Html$Attributes$src('assets/images/0005-poule.png')
+							]),
+						_List_Nil);
+				case 5:
+					return A2(
+						elm$html$Html$img,
+						_List_fromArray(
+							[
+								elm$html$Html$Attributes$src('assets/images/0006-poussin.png')
+							]),
+						_List_Nil);
+				default:
+					return elm$html$Html$text(
+						elm$core$String$fromInt(value));
+			}
+		},
+		change);
+};
+var elm$core$List$append = F2(
+	function (xs, ys) {
+		if (!ys.b) {
+			return xs;
+		} else {
+			return A3(elm$core$List$foldr, elm$core$List$cons, ys, xs);
+		}
+	});
+var elm$core$List$concat = function (lists) {
+	return A3(elm$core$List$foldr, elm$core$List$append, _List_Nil, lists);
+};
+var elm$html$Html$strong = _VirtualDom_node('strong');
+var author$project$View$Recipe$showKiddozQuantity = function (ingredient) {
+	var maybeMLFactor = function () {
+		var _n1 = _Utils_Tuple2(ingredient.aW, ingredient.au);
+		if ((!_n1.a) && (!_n1.b.$)) {
+			var _n2 = _n1.a;
+			var kind = _n1.b.a;
+			return author$project$Data$Kiddoz$food2mL(kind);
+		} else {
+			return author$project$Data$Kiddoz$unitTomL(ingredient.aW);
+		}
+	}();
+	var maybeML = A2(
+		elm$core$Maybe$map,
+		function (mLFactor) {
+			return ingredient.aF * mLFactor;
+		},
+		maybeMLFactor);
+	if (!maybeML.$) {
+		var mL = maybeML.a;
+		return elm$core$List$concat(
+			_List_fromArray(
+				[
+					author$project$View$Recipe$mL2cup(mL)
+				]));
+	} else {
+		return _List_fromArray(
+			[
+				A2(
+				elm$html$Html$strong,
+				_List_Nil,
+				_List_fromArray(
+					[
+						elm$html$Html$text(
+						elm$core$String$fromInt(ingredient.aF))
+					])),
+				elm$html$Html$text(' '),
+				elm$html$Html$text(ingredient.aw)
+			]);
+	}
+};
+var elm$core$List$sortBy = _List_sortBy;
+var elm$core$List$sort = function (xs) {
+	return A2(elm$core$List$sortBy, elm$core$Basics$identity, xs);
+};
+var elm$html$Html$div = _VirtualDom_node('div');
+var elm$html$Html$form = _VirtualDom_node('form');
+var elm$html$Html$h2 = _VirtualDom_node('h2');
+var elm$html$Html$input = _VirtualDom_node('input');
+var elm$html$Html$option = _VirtualDom_node('option');
+var elm$html$Html$select = _VirtualDom_node('select');
+var elm$html$Html$table = _VirtualDom_node('table');
+var elm$html$Html$tbody = _VirtualDom_node('tbody');
+var elm$html$Html$td = _VirtualDom_node('td');
+var elm$html$Html$th = _VirtualDom_node('th');
+var elm$html$Html$thead = _VirtualDom_node('thead');
+var elm$html$Html$tr = _VirtualDom_node('tr');
+var elm$html$Html$Attributes$alt = elm$html$Html$Attributes$stringProperty('alt');
+var elm$html$Html$Attributes$class = elm$html$Html$Attributes$stringProperty('className');
+var elm$html$Html$Attributes$id = elm$html$Html$Attributes$stringProperty('id');
+var elm$html$Html$Attributes$min = elm$html$Html$Attributes$stringProperty('min');
+var elm$html$Html$Attributes$placeholder = elm$html$Html$Attributes$stringProperty('placeholder');
+var elm$json$Json$Encode$bool = _Json_wrap;
+var elm$html$Html$Attributes$boolProperty = F2(
+	function (key, bool) {
+		return A2(
+			_VirtualDom_property,
+			key,
+			elm$json$Json$Encode$bool(bool));
+	});
+var elm$html$Html$Attributes$selected = elm$html$Html$Attributes$boolProperty('selected');
+var elm$html$Html$Attributes$type_ = elm$html$Html$Attributes$stringProperty('type');
+var elm$html$Html$Attributes$value = elm$html$Html$Attributes$stringProperty('value');
+var elm$html$Html$Events$alwaysStop = function (x) {
+	return _Utils_Tuple2(x, true);
+};
+var elm$virtual_dom$VirtualDom$MayStopPropagation = function (a) {
+	return {$: 1, a: a};
+};
+var elm$virtual_dom$VirtualDom$on = _VirtualDom_on;
+var elm$html$Html$Events$stopPropagationOn = F2(
+	function (event, decoder) {
+		return A2(
+			elm$virtual_dom$VirtualDom$on,
+			event,
+			elm$virtual_dom$VirtualDom$MayStopPropagation(decoder));
+	});
+var elm$json$Json$Decode$field = _Json_decodeField;
+var elm$json$Json$Decode$at = F2(
+	function (fields, decoder) {
+		return A3(elm$core$List$foldr, elm$json$Json$Decode$field, decoder, fields);
+	});
+var elm$json$Json$Decode$string = _Json_decodeString;
+var elm$html$Html$Events$targetValue = A2(
+	elm$json$Json$Decode$at,
 	_List_fromArray(
-		[
-			elm$html$Html$text('Kiddoz Recipe Converter')
-		]));
-_Platform_export({'Main':{'init':_VirtualDom_init(author$project$Main$main)(0)(0)}});}(this));
+		['target', 'value']),
+	elm$json$Json$Decode$string);
+var elm$html$Html$Events$onInput = function (tagger) {
+	return A2(
+		elm$html$Html$Events$stopPropagationOn,
+		'input',
+		A2(
+			elm$json$Json$Decode$map,
+			elm$html$Html$Events$alwaysStop,
+			A2(elm$json$Json$Decode$map, tagger, elm$html$Html$Events$targetValue)));
+};
+var author$project$Main$view = function (model) {
+	var currentUnit = author$project$Data$Kiddoz$unitToString(model.r.aW);
+	var currentKind = A2(
+		elm$core$Maybe$withDefault,
+		'--',
+		A2(elm$core$Maybe$map, author$project$Data$Kiddoz$kindToString, model.r.au));
+	var buildOption = F2(
+		function (current, ingredient) {
+			return A2(
+				elm$html$Html$option,
+				_List_fromArray(
+					[
+						elm$html$Html$Attributes$value(ingredient),
+						elm$html$Html$Attributes$selected(
+						_Utils_eq(ingredient, current))
+					]),
+				_List_fromArray(
+					[
+						elm$html$Html$text(ingredient)
+					]));
+		});
+	return A2(
+		elm$html$Html$div,
+		_List_fromArray(
+			[
+				elm$html$Html$Attributes$id('content')
+			]),
+		_List_fromArray(
+			[
+				A2(
+				elm$html$Html$img,
+				_List_fromArray(
+					[
+						elm$html$Html$Attributes$src('assets/images/Logo-KIDDOZ-01.svg'),
+						elm$html$Html$Attributes$alt('Kiddoz logo'),
+						elm$html$Html$Attributes$class('logo')
+					]),
+				_List_Nil),
+				A2(
+				elm$html$Html$h2,
+				_List_Nil,
+				_List_fromArray(
+					[
+						elm$html$Html$text('Convertisseur de recettes')
+					])),
+				A2(
+				elm$html$Html$form,
+				_List_Nil,
+				_List_fromArray(
+					[
+						A2(
+						elm$html$Html$table,
+						_List_Nil,
+						_List_fromArray(
+							[
+								A2(
+								elm$html$Html$thead,
+								_List_Nil,
+								_List_fromArray(
+									[
+										A2(
+										elm$html$Html$tr,
+										_List_Nil,
+										_List_fromArray(
+											[
+												A2(
+												elm$html$Html$th,
+												_List_Nil,
+												_List_fromArray(
+													[
+														elm$html$Html$text('Ingrédient')
+													])),
+												A2(
+												elm$html$Html$th,
+												_List_Nil,
+												_List_fromArray(
+													[
+														elm$html$Html$text('Quantité')
+													])),
+												A2(
+												elm$html$Html$th,
+												_List_Nil,
+												_List_fromArray(
+													[
+														elm$html$Html$text('Unité')
+													]))
+											]))
+									])),
+								A2(
+								elm$html$Html$tbody,
+								_List_Nil,
+								_List_fromArray(
+									[
+										A2(
+										elm$html$Html$tr,
+										_List_Nil,
+										_List_fromArray(
+											[
+												A2(
+												elm$html$Html$td,
+												_List_Nil,
+												_List_fromArray(
+													[
+														A2(
+														elm$html$Html$select,
+														_List_fromArray(
+															[
+																elm$html$Html$Events$onInput(author$project$Main$SetKind)
+															]),
+														elm$core$List$concat(
+															_List_fromArray(
+																[
+																	_List_fromArray(
+																	[
+																		A2(buildOption, currentKind, '--')
+																	]),
+																	A2(
+																	elm$core$List$map,
+																	buildOption(currentKind),
+																	elm$core$List$sort(
+																		A2(elm$core$List$map, author$project$Data$Kiddoz$kindToString, author$project$Data$Kiddoz$existingIngredients)))
+																])))
+													])),
+												A2(
+												elm$html$Html$td,
+												_List_Nil,
+												_List_fromArray(
+													[
+														A2(
+														elm$html$Html$input,
+														_List_fromArray(
+															[
+																elm$html$Html$Attributes$type_('number'),
+																elm$html$Html$Attributes$min('0'),
+																elm$html$Html$Attributes$placeholder('Quantité'),
+																elm$html$Html$Events$onInput(author$project$Main$SetQuantity)
+															]),
+														_List_Nil)
+													])),
+												A2(
+												elm$html$Html$td,
+												_List_Nil,
+												_List_fromArray(
+													[
+														A2(
+														elm$html$Html$select,
+														_List_fromArray(
+															[
+																elm$html$Html$Events$onInput(author$project$Main$SetUnit)
+															]),
+														elm$core$List$concat(
+															_List_fromArray(
+																[
+																	_List_fromArray(
+																	[
+																		A2(buildOption, currentUnit, '--')
+																	]),
+																	A2(
+																	elm$core$List$map,
+																	buildOption(currentUnit),
+																	A2(elm$core$List$map, author$project$Data$Kiddoz$unitToString, author$project$Data$Kiddoz$existingUnits))
+																])))
+													]))
+											]))
+									]))
+							])),
+						A2(
+						elm$html$Html$div,
+						_List_Nil,
+						author$project$View$Recipe$showKiddozQuantity(model.r))
+					]))
+			]));
+};
+var elm$browser$Browser$External = function (a) {
+	return {$: 1, a: a};
+};
+var elm$browser$Browser$Internal = function (a) {
+	return {$: 0, a: a};
+};
+var elm$browser$Browser$Dom$NotFound = elm$core$Basics$identity;
+var elm$core$Basics$never = function (_n0) {
+	never:
+	while (true) {
+		var nvr = _n0;
+		var $temp$_n0 = nvr;
+		_n0 = $temp$_n0;
+		continue never;
+	}
+};
+var elm$core$Task$Perform = elm$core$Basics$identity;
+var elm$core$Task$succeed = _Scheduler_succeed;
+var elm$core$Task$init = elm$core$Task$succeed(0);
+var elm$core$Task$andThen = _Scheduler_andThen;
+var elm$core$Task$map = F2(
+	function (func, taskA) {
+		return A2(
+			elm$core$Task$andThen,
+			function (a) {
+				return elm$core$Task$succeed(
+					func(a));
+			},
+			taskA);
+	});
+var elm$core$Task$map2 = F3(
+	function (func, taskA, taskB) {
+		return A2(
+			elm$core$Task$andThen,
+			function (a) {
+				return A2(
+					elm$core$Task$andThen,
+					function (b) {
+						return elm$core$Task$succeed(
+							A2(func, a, b));
+					},
+					taskB);
+			},
+			taskA);
+	});
+var elm$core$Task$sequence = function (tasks) {
+	return A3(
+		elm$core$List$foldr,
+		elm$core$Task$map2(elm$core$List$cons),
+		elm$core$Task$succeed(_List_Nil),
+		tasks);
+};
+var elm$core$Platform$sendToApp = _Platform_sendToApp;
+var elm$core$Task$spawnCmd = F2(
+	function (router, _n0) {
+		var task = _n0;
+		return _Scheduler_spawn(
+			A2(
+				elm$core$Task$andThen,
+				elm$core$Platform$sendToApp(router),
+				task));
+	});
+var elm$core$Task$onEffects = F3(
+	function (router, commands, state) {
+		return A2(
+			elm$core$Task$map,
+			function (_n0) {
+				return 0;
+			},
+			elm$core$Task$sequence(
+				A2(
+					elm$core$List$map,
+					elm$core$Task$spawnCmd(router),
+					commands)));
+	});
+var elm$core$Task$onSelfMsg = F3(
+	function (_n0, _n1, _n2) {
+		return elm$core$Task$succeed(0);
+	});
+var elm$core$Task$cmdMap = F2(
+	function (tagger, _n0) {
+		var task = _n0;
+		return A2(elm$core$Task$map, tagger, task);
+	});
+_Platform_effectManagers['Task'] = _Platform_createManager(elm$core$Task$init, elm$core$Task$onEffects, elm$core$Task$onSelfMsg, elm$core$Task$cmdMap);
+var elm$core$Task$command = _Platform_leaf('Task');
+var elm$core$Task$perform = F2(
+	function (toMessage, task) {
+		return elm$core$Task$command(
+			A2(elm$core$Task$map, toMessage, task));
+	});
+var elm$core$String$length = _String_length;
+var elm$core$String$slice = _String_slice;
+var elm$core$String$dropLeft = F2(
+	function (n, string) {
+		return (n < 1) ? string : A3(
+			elm$core$String$slice,
+			n,
+			elm$core$String$length(string),
+			string);
+	});
+var elm$core$String$startsWith = _String_startsWith;
+var elm$url$Url$Http = 0;
+var elm$url$Url$Https = 1;
+var elm$core$String$indexes = _String_indexes;
+var elm$core$String$isEmpty = function (string) {
+	return string === '';
+};
+var elm$core$String$left = F2(
+	function (n, string) {
+		return (n < 1) ? '' : A3(elm$core$String$slice, 0, n, string);
+	});
+var elm$core$String$contains = _String_contains;
+var elm$url$Url$Url = F6(
+	function (protocol, host, port_, path, query, fragment) {
+		return {an: fragment, ap: host, ay: path, aA: port_, aE: protocol, aG: query};
+	});
+var elm$url$Url$chompBeforePath = F5(
+	function (protocol, path, params, frag, str) {
+		if (elm$core$String$isEmpty(str) || A2(elm$core$String$contains, '@', str)) {
+			return elm$core$Maybe$Nothing;
+		} else {
+			var _n0 = A2(elm$core$String$indexes, ':', str);
+			if (!_n0.b) {
+				return elm$core$Maybe$Just(
+					A6(elm$url$Url$Url, protocol, str, elm$core$Maybe$Nothing, path, params, frag));
+			} else {
+				if (!_n0.b.b) {
+					var i = _n0.a;
+					var _n1 = elm$core$String$toInt(
+						A2(elm$core$String$dropLeft, i + 1, str));
+					if (_n1.$ === 1) {
+						return elm$core$Maybe$Nothing;
+					} else {
+						var port_ = _n1;
+						return elm$core$Maybe$Just(
+							A6(
+								elm$url$Url$Url,
+								protocol,
+								A2(elm$core$String$left, i, str),
+								port_,
+								path,
+								params,
+								frag));
+					}
+				} else {
+					return elm$core$Maybe$Nothing;
+				}
+			}
+		}
+	});
+var elm$url$Url$chompBeforeQuery = F4(
+	function (protocol, params, frag, str) {
+		if (elm$core$String$isEmpty(str)) {
+			return elm$core$Maybe$Nothing;
+		} else {
+			var _n0 = A2(elm$core$String$indexes, '/', str);
+			if (!_n0.b) {
+				return A5(elm$url$Url$chompBeforePath, protocol, '/', params, frag, str);
+			} else {
+				var i = _n0.a;
+				return A5(
+					elm$url$Url$chompBeforePath,
+					protocol,
+					A2(elm$core$String$dropLeft, i, str),
+					params,
+					frag,
+					A2(elm$core$String$left, i, str));
+			}
+		}
+	});
+var elm$url$Url$chompBeforeFragment = F3(
+	function (protocol, frag, str) {
+		if (elm$core$String$isEmpty(str)) {
+			return elm$core$Maybe$Nothing;
+		} else {
+			var _n0 = A2(elm$core$String$indexes, '?', str);
+			if (!_n0.b) {
+				return A4(elm$url$Url$chompBeforeQuery, protocol, elm$core$Maybe$Nothing, frag, str);
+			} else {
+				var i = _n0.a;
+				return A4(
+					elm$url$Url$chompBeforeQuery,
+					protocol,
+					elm$core$Maybe$Just(
+						A2(elm$core$String$dropLeft, i + 1, str)),
+					frag,
+					A2(elm$core$String$left, i, str));
+			}
+		}
+	});
+var elm$url$Url$chompAfterProtocol = F2(
+	function (protocol, str) {
+		if (elm$core$String$isEmpty(str)) {
+			return elm$core$Maybe$Nothing;
+		} else {
+			var _n0 = A2(elm$core$String$indexes, '#', str);
+			if (!_n0.b) {
+				return A3(elm$url$Url$chompBeforeFragment, protocol, elm$core$Maybe$Nothing, str);
+			} else {
+				var i = _n0.a;
+				return A3(
+					elm$url$Url$chompBeforeFragment,
+					protocol,
+					elm$core$Maybe$Just(
+						A2(elm$core$String$dropLeft, i + 1, str)),
+					A2(elm$core$String$left, i, str));
+			}
+		}
+	});
+var elm$url$Url$fromString = function (str) {
+	return A2(elm$core$String$startsWith, 'http://', str) ? A2(
+		elm$url$Url$chompAfterProtocol,
+		0,
+		A2(elm$core$String$dropLeft, 7, str)) : (A2(elm$core$String$startsWith, 'https://', str) ? A2(
+		elm$url$Url$chompAfterProtocol,
+		1,
+		A2(elm$core$String$dropLeft, 8, str)) : elm$core$Maybe$Nothing);
+};
+var elm$browser$Browser$element = _Browser_element;
+var author$project$Main$main = elm$browser$Browser$element(
+	{a6: author$project$Main$init, bj: author$project$Main$subscriptions, bk: author$project$Main$update, bm: author$project$Main$view});
+_Platform_export({'Main':{'init':author$project$Main$main(
+	elm$json$Json$Decode$succeed(0))(0)}});}(this));
