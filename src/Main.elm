@@ -1,6 +1,7 @@
 module Main exposing (main)
 
 import Browser
+import Change exposing (coinsList, giveChange)
 import Data.Kiddoz exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -24,6 +25,11 @@ type Msg
 
 init : Flags -> ( Model, Cmd Msg )
 init flags =
+    let
+        change =
+            giveChange 300 coinsList
+                |> Debug.log "Give me change"
+    in
     ( { recipe =
             { title = "Tarte aux citrons"
             , number_of_people = 6
