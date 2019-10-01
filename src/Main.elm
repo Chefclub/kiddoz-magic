@@ -5,8 +5,9 @@ import Change exposing (coinsList, giveChange)
 import Data.Kiddoz exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Html.Events exposing (..)
 import Http
-import View.Recipe exposing (showRecipe)
+import View.Recipe exposing (showKiddozQuantity, showRecipe)
 import Yaml.Decode
 
 
@@ -16,11 +17,14 @@ type alias Flags =
 
 type alias Model =
     { recipe : Recipe
+    , selectedIngredient : Ingredient
     }
 
 
 type Msg
-    = NoOp
+    = SetQuantity String
+    | SetUnit String
+    | SetKind String
 
 
 init : Flags -> ( Model, Cmd Msg )
@@ -30,18 +34,23 @@ init flags =
             giveChange 300 coinsList
                 |> Debug.log "Give me change"
     in
-    ( { recipe =
+    ( { selectedIngredient =
+            { emptyIngredient
+                | kind = Just Flour
+                , unit = Grams
+            }
+      , recipe =
             { title = "Tarte aux citrons"
             , number_of_people = 6
             , preparation_minutes = 30
             , sections =
                 [ { title = "Pâte"
                   , ingredients =
-                        [ Ingredient "Farine" Flour 250 Grams
-                        , Ingredient "Sucre" Sugar 100 Grams
-                        , Ingredient "Beurre" Butter 150 Grams
-                        , Ingredient "Œuf" Piece 1 Unit
-                        , Ingredient "Poudre d'amande" GroundAlmonds 100 Grams
+                        [ Ingredient "Farine" (Just Flour) 250 Grams
+                        , Ingredient "Sucre" (Just Sugar) 100 Grams
+                        , Ingredient "Beurre" (Just Butter) 150 Grams
+                        , Ingredient "Œuf" Nothing 1 Unit
+                        , Ingredient "Poudre d'amande" (Just GroundAlmonds) 100 Grams
                         ]
                   , steps =
                         [ "Préchauffer le four à 180 °C (th. 6). "
@@ -53,10 +62,10 @@ init flags =
                   }
                 , { title = "Appareil"
                   , ingredients =
-                        [ Ingredient "Citrons" Piece 2 Unit
-                        , Ingredient "Sucre" Sugar 150 Grams
-                        , Ingredient "Œufs" Piece 3 Unit
-                        , Ingredient "Beurre" Butter 120 Grams
+                        [ Ingredient "Citrons" Nothing 2 Unit
+                        , Ingredient "Sucre" (Just Sugar) 150 Grams
+                        , Ingredient "Œufs" Nothing 3 Unit
+                        , Ingredient "Beurre" (Just Butter) 120 Grams
                         ]
                   , steps =
                         [ "Dans une casserole, presser le jus des citrons et le mélanger avec le beurre."
@@ -74,6 +83,18 @@ init flags =
 
 
 view model =
+    let
+        currentKind =
+            model.selectedIngredient.kind
+                |> Maybe.map kindToString
+                |> Maybe.withDefault "--"
+
+        currentUnit =
+            model.selectedIngredient.unit |> unitToString
+
+        buildOption current ingredient =
+            option [ value ingredient, selected (ingredient == current) ] [ text ingredient ]
+    in
     div [ id "content" ]
         [ img [ src "assets/images/Logo-KIDDOZ-01.svg", alt "Kiddoz logo", class "logo" ] []
         , h2 [] [ text "Convertisseur de recettes" ]
@@ -84,27 +105,99 @@ view model =
                         [ th [] [ text "Ingrédient" ]
                         , th [] [ text "Quantité" ]
                         , th [] [ text "Unité" ]
-                        , th [] [ text "Kiddoz" ]
                         ]
                     ]
                 , tbody []
                     [ tr []
-                        [ td [] [ input [ type_ "text", placeholder "Ingrédient" ] [] ]
-                        , td [] [ input [ type_ "text", placeholder "Quantité" ] [] ]
-                        , td [] [ input [ type_ "text", placeholder "Unité" ] [] ]
-                        , td [] []
+                        [ td []
+                            [ [ [ buildOption currentKind "--" ]
+                              , existingIngredients
+                                    |> List.map kindToString
+                                    |> List.sort
+                                    |> List.map (buildOption currentKind)
+                              ]
+                                |> List.concat
+                                |> select [ onInput SetKind ]
+                            ]
+                        , td []
+                            [ input
+                                [ type_ "number"
+                                , Html.Attributes.min "0"
+                                , placeholder "Quantité"
+                                , onInput SetQuantity
+                                ]
+                                []
+                            ]
+                        , td []
+                            [ [ [ buildOption currentUnit "--"
+                                ]
+                              , existingUnits
+                                    |> List.map unitToString
+                                    |> List.map (buildOption currentUnit)
+                              ]
+                                |> List.concat
+                                |> select [ onInput SetUnit ]
+                            ]
                         ]
                     ]
                 ]
-            , div [] [ button [] [ text "Valider la recette " ] ]
+            , showKiddozQuantity model.selectedIngredient |> div []
+
+            --, div [] [ button [] [ text "Valider la recette " ] ]
             ]
-        , showRecipe model.recipe
+
+        --         , Html.form []
+        --             [ table []
+        --                 [ thead []
+        --                     [ tr []
+        --                         [ th [] [ text "Ingrédient" ]
+        --                         , th [] [ text "Quantité" ]
+        --                         , th [] [ text "Unité" ]
+        --                         , th [] [ text "Kiddoz" ]
+        --                         ]
+        --                     ]
+        --                 , tbody []
+        --                     [ tr []
+        --                         [ td [] [ input [ type_ "text", placeholder "Ingrédient" ] [] ]
+        --                         , td [] [ input [ type_ "text", placeholder "Quantité" ] [] ]
+        --                         , td [] [ input [ type_ "text", placeholder "Unité" ] [] ]
+        --                         , td [] []
+        --                         ]
+        --                     ]
+        --                 ]
+        --             , div [] [ button [] [ text "Valider la recette " ] ]
+        --             ]
+        -- , showRecipe model.recipe
         ]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
-update msg model =
-    ( model, Cmd.none )
+update msg ({ selectedIngredient } as model) =
+    case msg of
+        SetKind name ->
+            let
+                ingredient =
+                    { selectedIngredient | name = name, kind = kindFromName name }
+            in
+            ( { model | selectedIngredient = ingredient }, Cmd.none )
+
+        SetUnit unit ->
+            let
+                ingredient =
+                    { selectedIngredient | unit = unitFromName unit }
+            in
+            ( { model | selectedIngredient = ingredient }, Cmd.none )
+
+        SetQuantity quantity ->
+            let
+                ingredient =
+                    { selectedIngredient
+                        | quantity =
+                            String.toInt quantity
+                                |> Maybe.withDefault 0
+                    }
+            in
+            ( { model | selectedIngredient = ingredient }, Cmd.none )
 
 
 subscriptions : Model -> Sub Msg

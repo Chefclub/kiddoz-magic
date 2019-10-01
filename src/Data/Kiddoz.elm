@@ -9,7 +9,13 @@ module Data.Kiddoz exposing
     , emptyRecipe
     , emptySection
     , emptyStep
+    , existingIngredients
+    , existingUnits
     , food2mL
+    , kindFromName
+    , kindToString
+    , unitFromName
+    , unitToString
     , unitTomL
     )
 
@@ -41,8 +47,8 @@ emptySection =
 
 type alias Ingredient =
     { name : String
-    , kind : Kind
-    , quantity : Float
+    , kind : Maybe Kind
+    , quantity : Int
     , unit : Unit
     }
 
@@ -50,7 +56,7 @@ type alias Ingredient =
 emptyIngredient : Ingredient
 emptyIngredient =
     { name = ""
-    , kind = Piece
+    , kind = Nothing
     , quantity = 1
     , unit = Unit
     }
@@ -83,7 +89,6 @@ type Kind
     | Salt
     | GrattedCheese
     | Liquid
-    | Piece
     | Cilentro
     | Curry
     | Curcuma
@@ -103,6 +108,44 @@ type Kind
     | TomatoSauce
 
 
+existingIngredients =
+    [ Flour
+    , GroundAlmonds
+    , Cocoa
+    , OatMeal
+    , WheatSeed
+    , Bicarbonate
+    , EggWhite
+    , EggYellow
+    , Jam
+    , BrownSugar
+    , IcingSugar
+    , Sugar
+    , Rice
+    , Butter
+    , Salt
+    , GrattedCheese
+    , Liquid
+    , Cilentro
+    , Curry
+    , Curcuma
+    , InstantCoffee
+    , GroundCoffee
+    , Cinnamon
+    , Breadcrumbs
+    , Oil
+    , Honey
+    , Mustard
+    , Spread
+    , Parmesan
+    , PineNut
+    , Polenta
+    , Pepper
+    , Quinoa
+    , TomatoSauce
+    ]
+
+
 type Unit
     = Grams
     | Centiliters
@@ -115,6 +158,21 @@ type Unit
     | Teaspoon -- Poussin -- 5 mL
     | Oz -- 28g / 30mL
     | Unit
+
+
+existingUnits =
+    [ Grams
+    , Centiliters
+    , Milliliters
+    , Cup -- Chef -- 250 mL
+    , HalfCup -- Cochon -- 125 mL
+    , ThirdCup -- Chat -- 80 mL
+    , QuarterCup -- Souris -- 60 mL
+    , Tablespoon -- Poule -- 15 mL
+    , Teaspoon -- Poussin -- 5 mL
+    , Oz -- 28g / 30mL
+    , Unit
+    ]
 
 
 food2mL : Kind -> Maybe Float
@@ -222,8 +280,79 @@ food2mL kind =
         TomatoSauce ->
             Just 0.91
 
-        Piece ->
-            Nothing
+
+unitToString : Unit -> String
+unitToString unit =
+    case unit of
+        Grams ->
+            "grams"
+
+        Centiliters ->
+            "centiliters"
+
+        Milliliters ->
+            "milliliters"
+
+        Cup ->
+            "cup"
+
+        HalfCup ->
+            "½ cup"
+
+        ThirdCup ->
+            "⅓ cup"
+
+        QuarterCup ->
+            "¼ cup"
+
+        Tablespoon ->
+            "tbsp"
+
+        Teaspoon ->
+            "tsp"
+
+        Oz ->
+            "oz"
+
+        Unit ->
+            "piece"
+
+
+unitFromName : String -> Unit
+unitFromName unit =
+    case unit of
+        "grams" ->
+            Grams
+
+        "centiliters" ->
+            Centiliters
+
+        "milliliters" ->
+            Milliliters
+
+        "cup" ->
+            Cup
+
+        "½ cup" ->
+            HalfCup
+
+        "⅓ cup" ->
+            ThirdCup
+
+        "¼ cup" ->
+            QuarterCup
+
+        "tbsp" ->
+            Tablespoon
+
+        "tsp" ->
+            Teaspoon
+
+        "oz" ->
+            Oz
+
+        _ ->
+            Unit
 
 
 unitTomL : Unit -> Maybe Float
@@ -260,4 +389,219 @@ unitTomL unit =
             Just 30
 
         Unit ->
+            Nothing
+
+
+kindToString : Kind -> String
+kindToString kind =
+    case kind of
+        Flour ->
+            "Farine"
+
+        PineNut ->
+            "Pignons"
+
+        Polenta ->
+            "Polenta"
+
+        Cocoa ->
+            "Chocolat"
+
+        Breadcrumbs ->
+            "Miettes de pain"
+
+        Cinnamon ->
+            "Cannelle"
+
+        InstantCoffee ->
+            "Café instantané"
+
+        GroundCoffee ->
+            "Café moulu"
+
+        Cilentro ->
+            "Coriandre"
+
+        Curry ->
+            "Curry"
+
+        Curcuma ->
+            "Curcuma"
+
+        WheatSeed ->
+            "Graines de blé"
+
+        GroundAlmonds ->
+            "Amandes moulues"
+
+        OatMeal ->
+            "Flocons d'avoine"
+
+        Bicarbonate ->
+            "Bicarbonate"
+
+        EggWhite ->
+            "Blanc d'œufs"
+
+        EggYellow ->
+            "Jaune d'œufs"
+
+        Sugar ->
+            "Sucre en poudre"
+
+        BrownSugar ->
+            "Cassonade"
+
+        IcingSugar ->
+            "Sucre glace"
+
+        Rice ->
+            "Riz"
+
+        Butter ->
+            "Beurre"
+
+        Salt ->
+            "Sel"
+
+        GrattedCheese ->
+            "Fromage râpé"
+
+        Liquid ->
+            "Liquides"
+
+        Jam ->
+            "Confiture"
+
+        Oil ->
+            "Huile"
+
+        Honey ->
+            "Miel"
+
+        Mustard ->
+            "Moutarde"
+
+        Spread ->
+            "Pâte à tartiner"
+
+        Parmesan ->
+            "Parmesan"
+
+        Pepper ->
+            "Poivre"
+
+        Quinoa ->
+            "Quinoa"
+
+        TomatoSauce ->
+            "Sauce tomate"
+
+
+kindFromName : String -> Maybe Kind
+kindFromName kind =
+    case kind of
+        "Farine" ->
+            Just Flour
+
+        "Pignons" ->
+            Just PineNut
+
+        "Polenta" ->
+            Just Polenta
+
+        "Chocolat" ->
+            Just Cocoa
+
+        "Miettes de pain" ->
+            Just Breadcrumbs
+
+        "Cannelle" ->
+            Just Cinnamon
+
+        "Café instantané" ->
+            Just InstantCoffee
+
+        "Café moulu" ->
+            Just GroundCoffee
+
+        "Coriandre" ->
+            Just Cilentro
+
+        "Curry" ->
+            Just Curry
+
+        "Curcuma" ->
+            Just Curcuma
+
+        "Graines de blé" ->
+            Just WheatSeed
+
+        "Amandes moulues" ->
+            Just GroundAlmonds
+
+        "Flocons d'avoine" ->
+            Just OatMeal
+
+        "Bicarbonate" ->
+            Just Bicarbonate
+
+        "Blanc d'œufs" ->
+            Just EggWhite
+
+        "Jaune d'œufs" ->
+            Just EggYellow
+
+        "Sucre en poudre" ->
+            Just Sugar
+
+        "Cassonade" ->
+            Just BrownSugar
+
+        "Sucre glace" ->
+            Just IcingSugar
+
+        "Riz" ->
+            Just Rice
+
+        "Beurre" ->
+            Just Butter
+
+        "Sel" ->
+            Just Salt
+
+        "Fromage râpé" ->
+            Just GrattedCheese
+
+        "Liquides" ->
+            Just Liquid
+
+        "Confiture" ->
+            Just Jam
+
+        "Huile" ->
+            Just Oil
+
+        "Miel" ->
+            Just Honey
+
+        "Moutarde" ->
+            Just Mustard
+
+        "Pâte à tartiner" ->
+            Just Spread
+
+        "Parmesan" ->
+            Just Parmesan
+
+        "Poivre" ->
+            Just Pepper
+
+        "Quinoa" ->
+            Just Quinoa
+
+        "Sauce tomate" ->
+            Just TomatoSauce
+
+        _ ->
             Nothing

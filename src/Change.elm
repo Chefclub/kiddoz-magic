@@ -53,7 +53,7 @@ giveChange initialAmount coins =
                 matrix =
                     -- Initialise the empty matrix to fill up
                     List.range 0 (amount // min_coin)
-                        |> List.map (emptyChangeInfo <| (amount // min_coin))
+                        |> List.map (emptyChangeInfo <| amount)
                         |> Array.fromList
 
                 possible_things =
@@ -80,6 +80,9 @@ backTrackChange min_coin coins currentInfo previousInfos =
 
         p =
             Debug.log "previousInfo" previousInfos
+
+        c =
+            Debug.log "coins" coins
     in
     if currentInfo.amount == 0 then
         -- The amount 0 needs no coins

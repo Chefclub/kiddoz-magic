@@ -1,5 +1,6 @@
-module View.Recipe exposing (showRecipe)
+module View.Recipe exposing (showKiddozQuantity, showRecipe)
 
+import Change exposing (coinsList, giveChange)
 import Data.Kiddoz exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -62,7 +63,6 @@ showIngredient ingredient =
     li []
         [ strong []
             [ ingredient.quantity
-                |> round
                 |> String.fromInt
                 |> text
             , text " "
@@ -77,9 +77,8 @@ showIngredient ingredient =
 
 showKiddoz : Ingredient -> Html msg
 showKiddoz ingredient =
-    li []
-        [ showKiddozQuantity ingredient
-        ]
+    showKiddozQuantity ingredient
+        |> li []
 
 
 showStep : Step -> Html msg
@@ -87,44 +86,72 @@ showStep step =
     li [] [ text step ]
 
 
-showKiddozQuantity : Ingredient -> Html msg
+showKiddozQuantity : Ingredient -> List (Html msg)
 showKiddozQuantity ingredient =
     let
         maybeMLFactor =
-            case ingredient.unit of
-                Grams ->
-                    food2mL ingredient.kind
+            case ( ingredient.unit, ingredient.kind ) of
+                ( Grams, Just kind ) ->
+                    food2mL kind
 
                 _ ->
                     unitTomL ingredient.unit
 
         maybeML =
-            Maybe.map (\mLFactor -> ingredient.quantity * mLFactor) maybeMLFactor
+            Maybe.map (\mLFactor -> toFloat ingredient.quantity * mLFactor) maybeMLFactor
     in
     case maybeML of
         Just mL ->
+            let
+                _ =
+                    Debug.log "mL" mL
+            in
             List.concat
                 [ mL2cup mL
-                , [ text " ", text ingredient.name ]
                 ]
-                |> li []
 
         Nothing ->
-            li []
-                [ strong []
-                    [ ingredient.quantity
-                        |> round
-                        |> String.fromInt
-                        |> text
-                    ]
-                , text " "
-                , text ingredient.name
+            [ strong []
+                [ ingredient.quantity
+                    |> String.fromInt
+                    |> text
                 ]
+            , text " "
+            , text ingredient.name
+            ]
 
 
 mL2cup : Float -> List (Html msg)
 mL2cup mL =
-    [ img [ src "assets/images/chef.png" ] [] ]
+    let
+        change =
+            giveChange (mL |> round) coinsList
+    in
+    change
+        |> List.map
+            (\value ->
+                case value of
+                    250 ->
+                        img [ src "assets/images/0001-chef.png" ] []
+
+                    125 ->
+                        img [ src "assets/images/0002-cochon.png" ] []
+
+                    80 ->
+                        img [ src "assets/images/0003-chat.png" ] []
+
+                    60 ->
+                        img [ src "assets/images/0004-souris.png" ] []
+
+                    15 ->
+                        img [ src "assets/images/0005-poule.png" ] []
+
+                    5 ->
+                        img [ src "assets/images/0006-poussin.png" ] []
+
+                    _ ->
+                        text <| String.fromInt value
+            )
 
 
 unitToString : Unit -> String
