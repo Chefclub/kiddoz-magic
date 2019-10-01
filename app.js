@@ -5657,7 +5657,7 @@ var author$project$Change$giveChange = F2(
 			var new_coins = A2(
 				elm$core$List$map,
 				function (coin) {
-					return (coin / min_coin) | 0;
+					return elm$core$Basics$ceiling(coin / min_coin);
 				},
 				coins);
 			var amount_min = ((initialAmount / min_coin) | 0) * min_coin;
@@ -5746,7 +5746,7 @@ var author$project$View$Recipe$mL2cup = function (mL) {
 								elm$html$Html$Attributes$src('assets/images/0002-cochon.png')
 							]),
 						_List_Nil);
-				case 80:
+				case 85:
 					return A2(
 						elm$html$Html$img,
 						_List_fromArray(
@@ -5754,7 +5754,7 @@ var author$project$View$Recipe$mL2cup = function (mL) {
 								elm$html$Html$Attributes$src('assets/images/0003-chat.png')
 							]),
 						_List_Nil);
-				case 60:
+				case 65:
 					return A2(
 						elm$html$Html$img,
 						_List_fromArray(
