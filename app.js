@@ -5320,7 +5320,7 @@ var author$project$Data$Kiddoz$unitTomL = function (unit) {
 	}
 };
 var author$project$Change$coinsList = _List_fromArray(
-	[250, 125, 80, 60, 15, 5]);
+	[250, 125, 83, 63, 15, 5]);
 var author$project$Change$ChangeInfo = F3(
 	function (amount, weight, change) {
 		return {L: amount, S: change, x: weight};
