@@ -179,7 +179,7 @@ food2mL : Kind -> Maybe Float
 food2mL kind =
     case kind of
         Flour ->
-            Just (180 / 250)
+            Just (250 / 180)
 
         PineNut ->
             Just 0.55
@@ -230,7 +230,7 @@ food2mL kind =
             Just 1.13
 
         Sugar ->
-            Just (230 / 250)
+            Just (250 / 230)
 
         BrownSugar ->
             Just 0.61
@@ -239,16 +239,16 @@ food2mL kind =
             Just 0.5
 
         Rice ->
-            Just (200 / 250)
+            Just (250 / 200)
 
         Butter ->
-            Just (220 / 250)
+            Just (250 / 220)
 
         Salt ->
-            Just (340 / 250)
+            Just (250 / 340)
 
         GrattedCheese ->
-            Just (100 / 250)
+            Just (250 / 100)
 
         Liquid ->
             Just 1

@@ -1,3 +1,5 @@
+import math
+
 def change_making(coins, amount):
     """Calculate a matrix of all the amount from 0 to the expected one.
 
@@ -10,7 +12,6 @@ def change_making(coins, amount):
 
     Algoithm explainations: https://www.youtube.com/watch?v=jgiZlGzXMBw
     """
-
     min_coin = min(coins)
 
     amount_max = ((amount // min_coin) + 1) * min_coin
@@ -21,10 +22,13 @@ def change_making(coins, amount):
     else:
         amount = amount_min
 
-    new_coins = [coin // min_coin for coin in coins]
+    new_coins = [round(coin / min_coin) for coin in coins]
+
+    matrix_size = amount // min_coin + 1
+    max_weight = amount // min_coin + 1
     
-    matrix = [amount // min_coin + 1 for _ in range(0, amount // min_coin + 1)]
-    change = [[] for _ in range(0, amount // min_coin + 1)]
+    matrix = [max_weight for _ in range(0, matrix_size)]
+    change = [[] for _ in range(0, matrix_size)]
 
     for current_amount, current_weight in enumerate(matrix):
         if current_amount == 0:
@@ -44,4 +48,4 @@ def change_making(coins, amount):
 
     return matrix[-1], change[-1]
 
-print(change_making([ 5, 15, 60, 80, 125, 250 ], 300))
+print(change_making([ 5, 15, math.ceil(250/4), math.ceil(250/3), 125, 250 ], 365))

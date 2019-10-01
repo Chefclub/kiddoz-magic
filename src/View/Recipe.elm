@@ -102,10 +102,6 @@ showKiddozQuantity ingredient =
     in
     case maybeML of
         Just mL ->
-            let
-                _ =
-                    Debug.log "mL" mL
-            in
             List.concat
                 [ mL2cup mL
                 ]
@@ -137,10 +133,10 @@ mL2cup mL =
                     125 ->
                         img [ src "assets/images/0002-cochon.png" ] []
 
-                    80 ->
+                    85 ->
                         img [ src "assets/images/0003-chat.png" ] []
 
-                    60 ->
+                    65 ->
                         img [ src "assets/images/0004-souris.png" ] []
 
                     15 ->

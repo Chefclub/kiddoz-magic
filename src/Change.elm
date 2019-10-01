@@ -21,7 +21,7 @@ emptyChangeInfo maxWeight currentAmount =
 
 coinsList : List Int
 coinsList =
-    [ 250, 125, 80, 60, 15, 5 ]
+    [ 250, 125, 250 / 3 |> round, 250 / 4 |> round, 15, 5 ]
 
 
 giveChange : Int -> List Int -> List Int
@@ -46,9 +46,12 @@ giveChange initialAmount coins =
                     else
                         amount_max
 
+                _ =
+                    Debug.log "Amount" amount
+
                 new_coins =
                     coins
-                        |> List.map (\coin -> coin // min_coin)
+                        |> List.map (\coin -> toFloat coin / toFloat min_coin |> ceiling)
 
                 matrix =
                     -- Initialise the empty matrix to fill up
@@ -74,16 +77,6 @@ giveChange initialAmount coins =
 
 backTrackChange : Int -> List Int -> ChangeInfo -> Array ChangeInfo -> Array ChangeInfo
 backTrackChange min_coin coins currentInfo previousInfos =
-    let
-        a =
-            Debug.log "Amount" currentInfo
-
-        p =
-            Debug.log "previousInfo" previousInfos
-
-        c =
-            Debug.log "coins" coins
-    in
     if currentInfo.amount == 0 then
         -- The amount 0 needs no coins
         Array.set 0 { currentInfo | weight = 0 } previousInfos

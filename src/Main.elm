@@ -29,11 +29,6 @@ type Msg
 
 init : Flags -> ( Model, Cmd Msg )
 init flags =
-    let
-        change =
-            giveChange 300 coinsList
-                |> Debug.log "Give me change"
-    in
     ( { selectedIngredient =
             { emptyIngredient
                 | kind = Just Flour
@@ -123,6 +118,7 @@ view model =
                             [ input
                                 [ type_ "number"
                                 , Html.Attributes.min "0"
+                                , Html.Attributes.step "5"
                                 , placeholder "Quantité"
                                 , onInput SetQuantity
                                 ]
