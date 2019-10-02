@@ -5319,18 +5319,8 @@ var author$project$Data$Kiddoz$unitTomL = function (unit) {
 			return elm$core$Maybe$Nothing;
 	}
 };
-var elm$core$Basics$round = _Basics_round;
 var author$project$Change$coinsList = _List_fromArray(
-	[
-		250,
-		125,
-		elm$core$Basics$round(250 / 3),
-		80,
-		elm$core$Basics$round(250 / 4),
-		60,
-		15,
-		5
-	]);
+	[250, 245, 240, 125, 120, 85, 80, 65, 60, 15, 5]);
 var author$project$Change$ChangeInfo = F3(
 	function (amount, weight, change) {
 		return {L: amount, S: change, x: weight};
@@ -5688,6 +5678,7 @@ var author$project$Change$giveChange = F2(
 							elm$core$Array$toList(possible_things)))));
 		}
 	});
+var elm$core$Basics$round = _Basics_round;
 var elm$core$Basics$identity = function (x) {
 	return x;
 };
@@ -5740,7 +5731,31 @@ var author$project$View$Recipe$mL2cup = function (mL) {
 								elm$html$Html$Attributes$src('assets/images/0001-chef.png')
 							]),
 						_List_Nil);
+				case 245:
+					return A2(
+						elm$html$Html$img,
+						_List_fromArray(
+							[
+								elm$html$Html$Attributes$src('assets/images/0001-chef.png')
+							]),
+						_List_Nil);
+				case 240:
+					return A2(
+						elm$html$Html$img,
+						_List_fromArray(
+							[
+								elm$html$Html$Attributes$src('assets/images/0001-chef.png')
+							]),
+						_List_Nil);
 				case 125:
+					return A2(
+						elm$html$Html$img,
+						_List_fromArray(
+							[
+								elm$html$Html$Attributes$src('assets/images/0002-cochon.png')
+							]),
+						_List_Nil);
+				case 120:
 					return A2(
 						elm$html$Html$img,
 						_List_fromArray(
@@ -6058,7 +6073,7 @@ var author$project$Main$view = function (model) {
 															[
 																elm$html$Html$Attributes$type_('number'),
 																elm$html$Html$Attributes$min('0'),
-																elm$html$Html$Attributes$step('5'),
+																elm$html$Html$Attributes$step('1'),
 																elm$html$Html$Attributes$placeholder('Quantité'),
 																elm$html$Html$Events$onInput(author$project$Main$SetQuantity)
 															]),
