@@ -130,13 +130,28 @@ mL2cup mL =
                     250 ->
                         img [ src "assets/images/0001-chef.png" ] []
 
+                    245 ->
+                        img [ src "assets/images/0001-chef.png" ] []
+
+                    240 ->
+                        img [ src "assets/images/0001-chef.png" ] []
+
                     125 ->
+                        img [ src "assets/images/0002-cochon.png" ] []
+
+                    120 ->
                         img [ src "assets/images/0002-cochon.png" ] []
 
                     85 ->
                         img [ src "assets/images/0003-chat.png" ] []
 
+                    80 ->
+                        img [ src "assets/images/0003-chat.png" ] []
+
                     65 ->
+                        img [ src "assets/images/0004-souris.png" ] []
+
+                    60 ->
                         img [ src "assets/images/0004-souris.png" ] []
 
                     15 ->

@@ -21,7 +21,7 @@ emptyChangeInfo maxWeight currentAmount =
 
 coinsList : List Int
 coinsList =
-    [ 250, 125, 250 / 3 |> round, 250 / 4 |> round, 15, 5 ]
+    [ 250, 245, 240, 125, 120, 85, 80, 65, 60, 15, 5 ]
 
 
 giveChange : Int -> List Int -> List Int
@@ -45,9 +45,6 @@ giveChange initialAmount coins =
 
                     else
                         amount_max
-
-                _ =
-                    Debug.log "Amount" amount
 
                 new_coins =
                     coins

@@ -118,7 +118,7 @@ view model =
                             [ input
                                 [ type_ "number"
                                 , Html.Attributes.min "0"
-                                , Html.Attributes.step "5"
+                                , Html.Attributes.step "1"
                                 , placeholder "Quantité"
                                 , onInput SetQuantity
                                 ]
