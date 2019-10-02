@@ -19,7 +19,8 @@ img.logo {
 }
 
 form {
-	background: url("./images/desktop-banner-2308-back-cups.477de766.png") center;
+  background: linear-gradient(0deg,rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url("./images/desktop-banner-2308-back-cups.477de766.png");
+  background-size: cover;
 }
 
 form > div {
