@@ -784,11 +784,11 @@ function _Debug_crash_UNUSED(identifier, fact1, fact2, fact3, fact4)
 
 function _Debug_regionToString(region)
 {
-	if (region.Y.H === region.af.H)
+	if (region.W.F === region.ad.F)
 	{
-		return 'on line ' + region.Y.H;
+		return 'on line ' + region.W.F;
 	}
-	return 'on lines ' + region.Y.H + ' through ' + region.af.H;
+	return 'on lines ' + region.W.F + ' through ' + region.ad.F;
 }
 
 
@@ -1857,9 +1857,9 @@ var _Platform_worker = F4(function(impl, flagDecoder, debugMetadata, args)
 	return _Platform_initialize(
 		flagDecoder,
 		args,
-		impl.a2,
-		impl.bh,
-		impl.be,
+		impl.a1,
+		impl.bi,
+		impl.bf,
 		function() { return function() {} }
 	);
 });
@@ -2659,9 +2659,9 @@ var _VirtualDom_mapEventTuple = F2(function(func, tuple)
 var _VirtualDom_mapEventRecord = F2(function(func, record)
 {
 	return {
-		q: func(record.q),
-		Z: record.Z,
-		W: record.W
+		o: func(record.o),
+		X: record.X,
+		U: record.U
 	}
 });
 
@@ -2929,11 +2929,11 @@ function _VirtualDom_makeCallback(eventNode, initialHandler)
 		// 3 = Custom
 
 		var value = result.a;
-		var message = !tag ? value : tag < 3 ? value.a : value.q;
-		var stopPropagation = tag == 1 ? value.b : tag == 3 && value.Z;
+		var message = !tag ? value : tag < 3 ? value.a : value.o;
+		var stopPropagation = tag == 1 ? value.b : tag == 3 && value.X;
 		var currentEventNode = (
 			stopPropagation && event.stopPropagation(),
-			(tag == 2 ? value.b : tag == 3 && value.W) && event.preventDefault(),
+			(tag == 2 ? value.b : tag == 3 && value.U) && event.preventDefault(),
 			eventNode
 		);
 		var tagger;
@@ -3883,11 +3883,11 @@ var _Browser_element = _Debugger_element || F4(function(impl, flagDecoder, debug
 	return _Platform_initialize(
 		flagDecoder,
 		args,
-		impl.a2,
-		impl.bh,
-		impl.be,
+		impl.a1,
+		impl.bi,
+		impl.bf,
 		function(sendToApp, initialModel) {
-			var view = impl.bi;
+			var view = impl.bj;
 			/**/
 			var domNode = args['node'];
 			//*/
@@ -3919,12 +3919,12 @@ var _Browser_document = _Debugger_document || F4(function(impl, flagDecoder, deb
 	return _Platform_initialize(
 		flagDecoder,
 		args,
-		impl.a2,
-		impl.bh,
-		impl.be,
+		impl.a1,
+		impl.bi,
+		impl.bf,
 		function(sendToApp, initialModel) {
-			var divertHrefToApp = impl.X && impl.X(sendToApp)
-			var view = impl.bi;
+			var divertHrefToApp = impl.V && impl.V(sendToApp)
+			var view = impl.bj;
 			var title = _VirtualDom_doc.title;
 			var bodyNode = _VirtualDom_doc.body;
 			var currNode = _VirtualDom_virtualize(bodyNode);
@@ -3932,12 +3932,12 @@ var _Browser_document = _Debugger_document || F4(function(impl, flagDecoder, deb
 			{
 				_VirtualDom_divertHrefToApp = divertHrefToApp;
 				var doc = view(model);
-				var nextNode = _VirtualDom_node('body')(_List_Nil)(doc.aX);
+				var nextNode = _VirtualDom_node('body')(_List_Nil)(doc.aV);
 				var patches = _VirtualDom_diff(currNode, nextNode);
 				bodyNode = _VirtualDom_applyPatches(bodyNode, currNode, patches, sendToApp);
 				currNode = nextNode;
 				_VirtualDom_divertHrefToApp = 0;
-				(title !== doc.bg) && (_VirtualDom_doc.title = title = doc.bg);
+				(title !== doc.bh) && (_VirtualDom_doc.title = title = doc.bh);
 			});
 		}
 	);
@@ -3993,12 +3993,12 @@ function _Browser_makeAnimator(model, draw)
 
 function _Browser_application(impl)
 {
-	var onUrlChange = impl.a5;
-	var onUrlRequest = impl.a6;
+	var onUrlChange = impl.a4;
+	var onUrlRequest = impl.a5;
 	var key = function() { key.a(onUrlChange(_Browser_getUrl())); };
 
 	return _Browser_document({
-		X: function(sendToApp)
+		V: function(sendToApp)
 		{
 			key.a = sendToApp;
 			_Browser_window.addEventListener('popstate', key);
@@ -4014,9 +4014,9 @@ function _Browser_application(impl)
 					var next = $elm$url$Url$fromString(href).a;
 					sendToApp(onUrlRequest(
 						(next
-							&& curr.aB === next.aB
-							&& curr.am === next.am
-							&& curr.ax.a === next.ax.a
+							&& curr.az === next.az
+							&& curr.ak === next.ak
+							&& curr.av.a === next.av.a
 						)
 							? $elm$browser$Browser$Internal(next)
 							: $elm$browser$Browser$External(href)
@@ -4024,13 +4024,13 @@ function _Browser_application(impl)
 				}
 			});
 		},
-		a2: function(flags)
+		a1: function(flags)
 		{
-			return A3(impl.a2, flags, _Browser_getUrl(), key);
+			return A3(impl.a1, flags, _Browser_getUrl(), key);
 		},
+		bj: impl.bj,
 		bi: impl.bi,
-		bh: impl.bh,
-		be: impl.be
+		bf: impl.bf
 	});
 }
 
@@ -4096,17 +4096,17 @@ var _Browser_decodeEvent = F2(function(decoder, event)
 function _Browser_visibilityInfo()
 {
 	return (typeof _VirtualDom_doc.hidden !== 'undefined')
-		? { a$: 'hidden', M: 'visibilitychange' }
+		? { a_: 'hidden', K: 'visibilitychange' }
 		:
 	(typeof _VirtualDom_doc.mozHidden !== 'undefined')
-		? { a$: 'mozHidden', M: 'mozvisibilitychange' }
+		? { a_: 'mozHidden', K: 'mozvisibilitychange' }
 		:
 	(typeof _VirtualDom_doc.msHidden !== 'undefined')
-		? { a$: 'msHidden', M: 'msvisibilitychange' }
+		? { a_: 'msHidden', K: 'msvisibilitychange' }
 		:
 	(typeof _VirtualDom_doc.webkitHidden !== 'undefined')
-		? { a$: 'webkitHidden', M: 'webkitvisibilitychange' }
-		: { a$: 'hidden', M: 'visibilitychange' };
+		? { a_: 'webkitHidden', K: 'webkitvisibilitychange' }
+		: { a_: 'hidden', K: 'visibilitychange' };
 }
 
 
@@ -4187,12 +4187,12 @@ var _Browser_call = F2(function(functionName, id)
 function _Browser_getViewport()
 {
 	return {
-		aK: _Browser_getScene(),
-		aT: {
-			R: _Browser_window.pageXOffset,
-			S: _Browser_window.pageYOffset,
-			E: _Browser_doc.documentElement.clientWidth,
-			z: _Browser_doc.documentElement.clientHeight
+		aI: _Browser_getScene(),
+		aR: {
+			P: _Browser_window.pageXOffset,
+			Q: _Browser_window.pageYOffset,
+			C: _Browser_doc.documentElement.clientWidth,
+			x: _Browser_doc.documentElement.clientHeight
 		}
 	};
 }
@@ -4202,8 +4202,8 @@ function _Browser_getScene()
 	var body = _Browser_doc.body;
 	var elem = _Browser_doc.documentElement;
 	return {
-		E: Math.max(body.scrollWidth, body.offsetWidth, elem.scrollWidth, elem.offsetWidth, elem.clientWidth),
-		z: Math.max(body.scrollHeight, body.offsetHeight, elem.scrollHeight, elem.offsetHeight, elem.clientHeight)
+		C: Math.max(body.scrollWidth, body.offsetWidth, elem.scrollWidth, elem.offsetWidth, elem.clientWidth),
+		x: Math.max(body.scrollHeight, body.offsetHeight, elem.scrollHeight, elem.offsetHeight, elem.clientHeight)
 	};
 }
 
@@ -4226,15 +4226,15 @@ function _Browser_getViewportOf(id)
 	return _Browser_withNode(id, function(node)
 	{
 		return {
-			aK: {
-				E: node.scrollWidth,
-				z: node.scrollHeight
+			aI: {
+				C: node.scrollWidth,
+				x: node.scrollHeight
 			},
-			aT: {
-				R: node.scrollLeft,
-				S: node.scrollTop,
-				E: node.clientWidth,
-				z: node.clientHeight
+			aR: {
+				P: node.scrollLeft,
+				Q: node.scrollTop,
+				C: node.clientWidth,
+				x: node.clientHeight
 			}
 		};
 	});
@@ -4264,18 +4264,18 @@ function _Browser_getElement(id)
 		var x = _Browser_window.pageXOffset;
 		var y = _Browser_window.pageYOffset;
 		return {
-			aK: _Browser_getScene(),
-			aT: {
-				R: x,
-				S: y,
-				E: _Browser_doc.documentElement.clientWidth,
-				z: _Browser_doc.documentElement.clientHeight
+			aI: _Browser_getScene(),
+			aR: {
+				P: x,
+				Q: y,
+				C: _Browser_doc.documentElement.clientWidth,
+				x: _Browser_doc.documentElement.clientHeight
 			},
-			aZ: {
-				R: x + rect.left,
-				S: y + rect.top,
-				E: rect.width,
-				z: rect.height
+			aY: {
+				P: x + rect.left,
+				Q: y + rect.top,
+				C: rect.width,
+				x: rect.height
 			}
 		};
 	});
@@ -4851,7 +4851,7 @@ var $elm$url$Url$Http = 0;
 var $elm$url$Url$Https = 1;
 var $elm$url$Url$Url = F6(
 	function (protocol, host, port_, path, query, fragment) {
-		return {aj: fragment, am: host, av: path, ax: port_, aB: protocol, aD: query};
+		return {ah: fragment, ak: host, at: path, av: port_, az: protocol, aB: query};
 	});
 var $elm$core$String$contains = _String_contains;
 var $elm$core$String$length = _String_length;
@@ -5135,18 +5135,20 @@ var $author$project$Data$Kiddoz$Flour = 0;
 var $author$project$Data$Kiddoz$Grams = 0;
 var $author$project$Data$Kiddoz$Ingredient = F4(
 	function (name, kind, quantity, unit) {
-		return {ar: kind, at: name, aC: quantity, aS: unit};
+		return {ap: kind, ar: name, aA: quantity, aQ: unit};
 	});
+var $author$project$Data$Types$NoEdition = {$: 0};
 var $author$project$Data$Kiddoz$Sugar = 11;
 var $author$project$Data$Kiddoz$Unit = 10;
-var $author$project$Data$Kiddoz$emptyIngredient = {ar: $elm$core$Maybe$Nothing, at: '', aC: 1, aS: 10};
+var $author$project$Data$Kiddoz$emptyIngredient = {ap: $elm$core$Maybe$Nothing, ar: '', aA: 1, aQ: 10};
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
 var $author$project$Main$init = function (flags) {
 	return _Utils_Tuple2(
 		{
-			n: {
-				a1: _List_fromArray(
+			aX: $author$project$Data$Types$NoEdition,
+			a8: {
+				a0: _List_fromArray(
 					[
 						A4($author$project$Data$Kiddoz$Ingredient, 'Citrons', $elm$core$Maybe$Nothing, 2, 10),
 						A4(
@@ -5163,15 +5165,15 @@ var $author$project$Main$init = function (flags) {
 						120,
 						0)
 					]),
-				bd: _List_fromArray(
+				be: _List_fromArray(
 					['Dans une casserole, presser le jus des citrons et le mélanger avec le beurre.', 'Les faire fondre à feu doux.', 'Dans un bol, blanchir les oeufs avec le sucre en fouettant vigoureusement', 'Verser le beurre fondu et le jus de citron dessus.', 'Verser l\'appareil sur la pâte cuite et enfourner 20 à 30 minutes.']),
-				bg: 'Tarte aux citrons'
+				bh: 'Tarte aux citrons'
 			},
-			j: _Utils_update(
+			ba: _Utils_update(
 				$author$project$Data$Kiddoz$emptyIngredient,
 				{
-					ar: $elm$core$Maybe$Just(0),
-					aS: 0
+					ap: $elm$core$Maybe$Just(0),
+					aQ: 0
 				})
 		},
 		$elm$core$Platform$Cmd$none);
@@ -5181,6 +5183,30 @@ var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
 var $author$project$Main$subscriptions = function (model) {
 	return $elm$core$Platform$Sub$none;
 };
+var $author$project$Data$Types$NoOp = {$: 8};
+var $elm$core$Basics$composeL = F3(
+	function (g, f, x) {
+		return g(
+			f(x));
+	});
+var $elm$core$Task$onError = _Scheduler_onError;
+var $elm$core$Task$attempt = F2(
+	function (resultToMessage, task) {
+		return $elm$core$Task$command(
+			A2(
+				$elm$core$Task$onError,
+				A2(
+					$elm$core$Basics$composeL,
+					A2($elm$core$Basics$composeL, $elm$core$Task$succeed, resultToMessage),
+					$elm$core$Result$Err),
+				A2(
+					$elm$core$Task$andThen,
+					A2(
+						$elm$core$Basics$composeL,
+						A2($elm$core$Basics$composeL, $elm$core$Task$succeed, resultToMessage),
+						$elm$core$Result$Ok),
+					task)));
+	});
 var $elm$core$List$filter = F2(
 	function (isGood, list) {
 		return A3(
@@ -5192,6 +5218,7 @@ var $elm$core$List$filter = F2(
 			_List_Nil,
 			list);
 	});
+var $elm$browser$Browser$Dom$focus = _Browser_call('focus');
 var $author$project$Data$Kiddoz$Bicarbonate = 5;
 var $author$project$Data$Kiddoz$Breadcrumbs = 23;
 var $author$project$Data$Kiddoz$BrownSugar = 9;
@@ -5426,55 +5453,79 @@ var $elm$core$Maybe$withDefault = F2(
 	});
 var $author$project$Main$update = F2(
 	function (msg, model) {
-		var selectedIngredient = model.j;
-		var recipe = model.n;
+		var selectedIngredient = model.ba;
+		var recipe = model.a8;
 		switch (msg.$) {
+			case 4:
+				var editing = msg.a;
+				var idForEdit = function () {
+					switch (editing.$) {
+						case 1:
+							return 'title';
+						case 2:
+							return 'new_step';
+						case 3:
+							return 'edit_step';
+						default:
+							return '';
+					}
+				}();
+				return _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{aX: editing}),
+					A2(
+						$elm$core$Task$attempt,
+						function (_v1) {
+							return $author$project$Data$Types$NoOp;
+						},
+						$elm$browser$Browser$Dom$focus(idForEdit)));
 			case 3:
 				var name = msg.a;
 				var nameCandidate = A2(
 					$elm$core$Maybe$withDefault,
 					'',
-					A2($elm$core$Maybe$map, $author$project$Data$Kiddoz$kindToString, selectedIngredient.ar));
-				var newName = ((selectedIngredient.at === '') || _Utils_eq(selectedIngredient.at, nameCandidate)) ? name : selectedIngredient.at;
+					A2($elm$core$Maybe$map, $author$project$Data$Kiddoz$kindToString, selectedIngredient.ap));
+				var newName = ((selectedIngredient.ar === '') || _Utils_eq(selectedIngredient.ar, nameCandidate)) ? name : selectedIngredient.ar;
 				var ingredient = _Utils_update(
 					selectedIngredient,
 					{
-						ar: $author$project$Data$Kiddoz$kindFromName(name),
-						at: newName
+						ap: $author$project$Data$Kiddoz$kindFromName(name),
+						ar: newName
 					});
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{j: ingredient}),
+						{ba: ingredient}),
 					$elm$core$Platform$Cmd$none);
 			case 1:
 				var name = msg.a;
 				var ingredient = _Utils_update(
 					selectedIngredient,
-					{at: name});
+					{ar: name});
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{j: ingredient}),
+						{ba: ingredient}),
 					$elm$core$Platform$Cmd$none);
 			case 2:
 				var unit = msg.a;
 				var ingredient = _Utils_update(
 					selectedIngredient,
 					{
-						aS: $author$project$Data$Kiddoz$unitFromName(unit)
+						aQ: $author$project$Data$Kiddoz$unitFromName(unit)
 					});
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{j: ingredient}),
+						{ba: ingredient}),
 					$elm$core$Platform$Cmd$none);
 			case 0:
 				var quantity = msg.a;
 				var ingredient = _Utils_update(
 					selectedIngredient,
 					{
-						aC: A2(
+						aA: A2(
 							$elm$core$Maybe$withDefault,
 							0,
 							$elm$core$String$toInt(quantity))
@@ -5482,9 +5533,9 @@ var $author$project$Main$update = F2(
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{j: ingredient}),
+						{ba: ingredient}),
 					$elm$core$Platform$Cmd$none);
-			case 4:
+			case 6:
 				var newIngredients = $elm$core$List$reverse(
 					A2(
 						$elm$core$List$cons,
@@ -5492,49 +5543,105 @@ var $author$project$Main$update = F2(
 						A2(
 							$elm$core$List$filter,
 							function (x) {
-								return !_Utils_eq(x.at, selectedIngredient.at);
+								return !_Utils_eq(x.ar, selectedIngredient.ar);
 							},
-							$elm$core$List$reverse(model.n.a1))));
+							$elm$core$List$reverse(model.a8.a0))));
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
 						{
-							n: _Utils_update(
+							a8: _Utils_update(
 								recipe,
-								{a1: newIngredients}),
-							j: $author$project$Data$Kiddoz$emptyIngredient
+								{a0: newIngredients}),
+							ba: $author$project$Data$Kiddoz$emptyIngredient
 						}),
 					$elm$core$Platform$Cmd$none);
-			default:
+			case 7:
 				var ingredientName = msg.a;
 				var newIngredients = A2(
 					$elm$core$List$filter,
 					function (x) {
-						return !_Utils_eq(x.at, ingredientName);
+						return !_Utils_eq(x.ar, ingredientName);
 					},
-					model.n.a1);
+					model.a8.a0);
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
 						{
-							n: _Utils_update(
+							a8: _Utils_update(
 								recipe,
-								{a1: newIngredients})
+								{a0: newIngredients})
 						}),
 					$elm$core$Platform$Cmd$none);
+			case 5:
+				var title = msg.a;
+				return _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{
+							a8: _Utils_update(
+								recipe,
+								{bh: title})
+						}),
+					$elm$core$Platform$Cmd$none);
+			case 9:
+				var current_step = msg.a;
+				return _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{
+							aX: $author$project$Data$Types$NoEdition,
+							a8: _Utils_update(
+								recipe,
+								{
+									be: $elm$core$List$reverse(
+										A2(
+											$elm$core$List$cons,
+											current_step,
+											$elm$core$List$reverse(recipe.be)))
+								})
+						}),
+					$elm$core$Platform$Cmd$none);
+			case 10:
+				var previous_step = msg.a;
+				var next_step = msg.b;
+				return _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{
+							aX: $author$project$Data$Types$NoEdition,
+							a8: _Utils_update(
+								recipe,
+								{
+									be: A2(
+										$elm$core$List$filter,
+										function (x) {
+											return x !== '';
+										},
+										A2(
+											$elm$core$List$map,
+											function (x) {
+												return _Utils_eq(x, previous_step) ? next_step : x;
+											},
+											recipe.be))
+								})
+						}),
+					$elm$core$Platform$Cmd$none);
+			default:
+				return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
 		}
 	});
-var $author$project$Main$AddIngredient = {$: 4};
-var $author$project$Main$SetKind = function (a) {
+var $author$project$Data$Types$AddIngredient = {$: 6};
+var $author$project$Data$Types$SetKind = function (a) {
 	return {$: 3, a: a};
 };
-var $author$project$Main$SetName = function (a) {
+var $author$project$Data$Types$SetName = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$Main$SetQuantity = function (a) {
+var $author$project$Data$Types$SetQuantity = function (a) {
 	return {$: 0, a: a};
 };
-var $author$project$Main$SetUnit = function (a) {
+var $author$project$Data$Types$SetUnit = function (a) {
 	return {$: 2, a: a};
 };
 var $elm$json$Json$Encode$string = _Json_wrap;
@@ -5638,8 +5745,8 @@ var $elm$html$Html$Attributes$boolProperty = F2(
 			$elm$json$Json$Encode$bool(bool));
 	});
 var $elm$html$Html$Attributes$selected = $elm$html$Html$Attributes$boolProperty('selected');
-var $author$project$Main$Remove = function (a) {
-	return {$: 5, a: a};
+var $author$project$Data$Types$Remove = function (a) {
+	return {$: 7, a: a};
 };
 var $elm$html$Html$li = _VirtualDom_node('li');
 var $elm$virtual_dom$VirtualDom$Normal = function (a) {
@@ -5666,7 +5773,7 @@ var $author$project$Main$showIngredientList = function (ingredient) {
 		_List_Nil,
 		_List_fromArray(
 			[
-				$elm$html$Html$text(ingredient.at),
+				$elm$html$Html$text(ingredient.ar),
 				$elm$html$Html$text(' '),
 				A2(
 				$elm$html$Html$button,
@@ -5674,7 +5781,7 @@ var $author$project$Main$showIngredientList = function (ingredient) {
 					[
 						$elm$html$Html$Attributes$class('remove'),
 						$elm$html$Html$Events$onClick(
-						$author$project$Main$Remove(ingredient.at))
+						$author$project$Data$Types$Remove(ingredient.ar))
 					]),
 				_List_fromArray(
 					[
@@ -5758,7 +5865,7 @@ var $author$project$Change$coinsList = _List_fromArray(
 	[250, 245, 240, 125, 120, 85, 80, 65, 60, 15, 5]);
 var $author$project$Change$ChangeInfo = F3(
 	function (amount, weight, change) {
-		return {G: amount, M: change, t: weight};
+		return {E: amount, K: change, r: weight};
 	});
 var $author$project$Change$emptyChangeInfo = F2(
 	function (maxWeight, currentAmount) {
@@ -5874,29 +5981,29 @@ var $elm$core$Array$set = F3(
 	});
 var $author$project$Change$backTrackChange = F4(
 	function (min_coin, coins, currentInfo, previousInfos) {
-		if (!currentInfo.G) {
+		if (!currentInfo.E) {
 			return A3(
 				$elm$core$Array$set,
 				0,
 				_Utils_update(
 					currentInfo,
-					{t: 0}),
+					{r: 0}),
 				previousInfos);
 		} else {
 			var candidates = A2(
 				$elm$core$List$map,
 				function (coin) {
-					if (_Utils_cmp(currentInfo.G, coin) > -1) {
-						var previousMap = currentInfo.G - coin;
+					if (_Utils_cmp(currentInfo.E, coin) > -1) {
+						var previousMap = currentInfo.E - coin;
 						var previousInfo = A2(
 							$elm$core$Maybe$withDefault,
 							A2($author$project$Change$emptyChangeInfo, 10000, previousMap),
 							A2($elm$core$Array$get, previousMap, previousInfos));
-						return (_Utils_cmp(previousInfo.t + 1, currentInfo.t) < 0) ? _Utils_update(
+						return (_Utils_cmp(previousInfo.r + 1, currentInfo.r) < 0) ? _Utils_update(
 							currentInfo,
 							{
-								M: A2($elm$core$List$cons, coin * min_coin, previousInfo.M),
-								t: previousInfo.t + 1
+								K: A2($elm$core$List$cons, coin * min_coin, previousInfo.K),
+								r: previousInfo.r + 1
 							}) : currentInfo;
 					} else {
 						return currentInfo;
@@ -5910,21 +6017,21 @@ var $author$project$Change$backTrackChange = F4(
 					A2(
 						$elm$core$List$map,
 						function ($) {
-							return $.t;
+							return $.r;
 						},
 						candidates)));
 			var lowerCandidate = $elm$core$List$head(
 				A2(
 					$elm$core$List$filter,
 					function (changeInfo) {
-						return _Utils_eq(changeInfo.t, minimum);
+						return _Utils_eq(changeInfo.r, minimum);
 					},
 					candidates));
 			if (lowerCandidate.$ === 1) {
 				return previousInfos;
 			} else {
 				var candidate = lowerCandidate.a;
-				return A3($elm$core$Array$set, currentInfo.G, candidate, previousInfos);
+				return A3($elm$core$Array$set, currentInfo.E, candidate, previousInfos);
 			}
 		}
 	});
@@ -6016,7 +6123,7 @@ var $author$project$Change$giveChange = F2(
 				A2(
 					$elm$core$Maybe$map,
 					function ($) {
-						return $.M;
+						return $.K;
 					},
 					$elm$core$List$head(
 						$elm$core$List$reverse(
@@ -6163,19 +6270,19 @@ var $author$project$Data$Kiddoz$unitTomL = function (unit) {
 };
 var $author$project$View$Recipe$showKiddozQuantity = function (ingredient) {
 	var maybeMLFactor = function () {
-		var _v1 = _Utils_Tuple2(ingredient.aS, ingredient.ar);
+		var _v1 = _Utils_Tuple2(ingredient.aQ, ingredient.ap);
 		if ((!_v1.a) && (!_v1.b.$)) {
 			var _v2 = _v1.a;
 			var kind = _v1.b.a;
 			return $author$project$Data$Kiddoz$food2mL(kind);
 		} else {
-			return $author$project$Data$Kiddoz$unitTomL(ingredient.aS);
+			return $author$project$Data$Kiddoz$unitTomL(ingredient.aQ);
 		}
 	}();
 	var maybeML = A2(
 		$elm$core$Maybe$map,
 		function (mLFactor) {
-			return ingredient.aC * mLFactor;
+			return ingredient.aA * mLFactor;
 		},
 		maybeMLFactor);
 	if (!maybeML.$) {
@@ -6194,15 +6301,34 @@ var $author$project$View$Recipe$showKiddozQuantity = function (ingredient) {
 				_List_fromArray(
 					[
 						$elm$html$Html$text(
-						$elm$core$String$fromInt(ingredient.aC))
+						$elm$core$String$fromInt(ingredient.aA))
 					])),
 				$elm$html$Html$text(' '),
-				$elm$html$Html$text(ingredient.at)
+				$elm$html$Html$text(ingredient.ar)
 			]);
 	}
 };
+var $author$project$Data$Types$AddNewStep = function (a) {
+	return {$: 9, a: a};
+};
+var $author$project$Data$Types$SetEditing = function (a) {
+	return {$: 4, a: a};
+};
+var $author$project$Data$Types$SetTitle = function (a) {
+	return {$: 5, a: a};
+};
+var $author$project$Data$Types$StepAdd = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$Data$Types$Title = {$: 1};
 var $elm$html$Html$aside = _VirtualDom_node('aside');
 var $elm$html$Html$ol = _VirtualDom_node('ol');
+var $elm$html$Html$Events$onBlur = function (msg) {
+	return A2(
+		$elm$html$Html$Events$on,
+		'blur',
+		$elm$json$Json$Decode$succeed(msg));
+};
 var $elm$html$Html$section = _VirtualDom_node('section');
 var $author$project$View$Recipe$unitToString = function (unit) {
 	switch (unit) {
@@ -6231,7 +6357,7 @@ var $author$project$View$Recipe$unitToString = function (unit) {
 	}
 };
 var $author$project$View$Recipe$showIngredientQuantity = function (ingredient) {
-	return $elm$core$String$fromInt(ingredient.aC) + (' ' + $author$project$View$Recipe$unitToString(ingredient.aS));
+	return $elm$core$String$fromInt(ingredient.aA) + (' ' + $author$project$View$Recipe$unitToString(ingredient.aQ));
 };
 var $author$project$View$Recipe$showIngredient = function (ingredient) {
 	return A2(
@@ -6248,7 +6374,7 @@ var $author$project$View$Recipe$showIngredient = function (ingredient) {
 						$author$project$View$Recipe$showIngredientQuantity(ingredient))
 					])),
 				$elm$html$Html$text(' '),
-				$elm$html$Html$text(ingredient.at)
+				$elm$html$Html$text(ingredient.ar)
 			]));
 };
 var $elm$html$Html$Attributes$title = $elm$html$Html$Attributes$stringProperty('title');
@@ -6258,21 +6384,78 @@ var $author$project$View$Recipe$showKiddoz = function (ingredient) {
 		_List_fromArray(
 			[
 				$elm$html$Html$Attributes$title(
-				$author$project$View$Recipe$showIngredientQuantity(ingredient) + (' ' + ingredient.at))
+				$author$project$View$Recipe$showIngredientQuantity(ingredient) + (' ' + ingredient.ar))
 			]),
 		$author$project$View$Recipe$showKiddozQuantity(ingredient));
 };
-var $author$project$View$Recipe$showStep = function (step) {
-	return A2(
-		$elm$html$Html$li,
-		_List_Nil,
-		_List_fromArray(
-			[
-				$elm$html$Html$text(step)
-			]));
-};
+var $author$project$Data$Types$EditStep = F2(
+	function (a, b) {
+		return {$: 10, a: a, b: b};
+	});
+var $author$project$Data$Types$StepEdit = F2(
+	function (a, b) {
+		return {$: 3, a: a, b: b};
+	});
+var $elm$virtual_dom$VirtualDom$style = _VirtualDom_style;
+var $elm$html$Html$Attributes$style = $elm$virtual_dom$VirtualDom$style;
+var $elm$html$Html$Attributes$value = $elm$html$Html$Attributes$stringProperty('value');
+var $author$project$View$Recipe$showStep = F2(
+	function (model, step) {
+		var display = A2(
+			$elm$html$Html$li,
+			_List_fromArray(
+				[
+					$elm$html$Html$Events$onClick(
+					$author$project$Data$Types$SetEditing(
+						A2($author$project$Data$Types$StepEdit, step, step)))
+				]),
+			_List_fromArray(
+				[
+					$elm$html$Html$text(step)
+				]));
+		var _v0 = model.aX;
+		if (_v0.$ === 3) {
+			var previous_value = _v0.a;
+			var current_value = _v0.b;
+			return _Utils_eq(previous_value, step) ? A2(
+				$elm$html$Html$li,
+				_List_Nil,
+				_List_fromArray(
+					[
+						A2(
+						$elm$html$Html$form,
+						_List_fromArray(
+							[
+								$elm$html$Html$Events$onSubmit(
+								A2($author$project$Data$Types$EditStep, previous_value, current_value))
+							]),
+						_List_fromArray(
+							[
+								A2(
+								$elm$html$Html$input,
+								_List_fromArray(
+									[
+										A2($elm$html$Html$Attributes$style, 'width', '100%'),
+										$elm$html$Html$Attributes$id('edit_step'),
+										$elm$html$Html$Events$onBlur(
+										A2($author$project$Data$Types$EditStep, previous_value, current_value)),
+										$elm$html$Html$Events$onInput(
+										A2(
+											$elm$core$Basics$composeL,
+											$author$project$Data$Types$SetEditing,
+											$author$project$Data$Types$StepEdit(previous_value))),
+										$elm$html$Html$Attributes$value(current_value)
+									]),
+								_List_Nil)
+							]))
+					])) : display;
+		} else {
+			return display;
+		}
+	});
 var $elm$html$Html$ul = _VirtualDom_node('ul');
-var $author$project$View$Recipe$showRecipe = function (recipe) {
+var $author$project$View$Recipe$showRecipe = function (model) {
+	var recipe = model.a8;
 	return A2(
 		$elm$html$Html$div,
 		_List_fromArray(
@@ -6297,12 +6480,37 @@ var $author$project$View$Recipe$showRecipe = function (recipe) {
 							]),
 						_List_fromArray(
 							[
-								A2(
+								(!_Utils_eq(model.aX, $author$project$Data$Types$Title)) ? A2(
 								$elm$html$Html$h2,
-								_List_Nil,
 								_List_fromArray(
 									[
-										$elm$html$Html$text(recipe.bg)
+										$elm$html$Html$Events$onClick(
+										$author$project$Data$Types$SetEditing($author$project$Data$Types$Title))
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text(recipe.bh)
+									])) : A2(
+								$elm$html$Html$form,
+								_List_fromArray(
+									[
+										$elm$html$Html$Events$onSubmit(
+										$author$project$Data$Types$SetEditing($author$project$Data$Types$NoEdition))
+									]),
+								_List_fromArray(
+									[
+										A2(
+										$elm$html$Html$input,
+										_List_fromArray(
+											[
+												$elm$html$Html$Events$onBlur(
+												$author$project$Data$Types$SetEditing($author$project$Data$Types$NoEdition)),
+												A2($elm$html$Html$Attributes$style, 'width', '100%'),
+												$elm$html$Html$Events$onInput($author$project$Data$Types$SetTitle),
+												$elm$html$Html$Attributes$value(recipe.bh),
+												$elm$html$Html$Attributes$id('title')
+											]),
+										_List_Nil)
 									]))
 							]))
 					])),
@@ -6322,11 +6530,11 @@ var $author$project$View$Recipe$showRecipe = function (recipe) {
 								A2(
 								$elm$html$Html$ul,
 								_List_Nil,
-								A2($elm$core$List$map, $author$project$View$Recipe$showIngredient, recipe.a1)),
+								A2($elm$core$List$map, $author$project$View$Recipe$showIngredient, recipe.a0)),
 								A2(
 								$elm$html$Html$ul,
 								_List_Nil,
-								A2($elm$core$List$map, $author$project$View$Recipe$showKiddoz, recipe.a1))
+								A2($elm$core$List$map, $author$project$View$Recipe$showKiddoz, recipe.a0))
 							])),
 						A2(
 						$elm$html$Html$section,
@@ -6336,7 +6544,52 @@ var $author$project$View$Recipe$showRecipe = function (recipe) {
 								A2(
 								$elm$html$Html$ol,
 								_List_Nil,
-								A2($elm$core$List$map, $author$project$View$Recipe$showStep, recipe.bd))
+								A2(
+									$elm$core$List$map,
+									$author$project$View$Recipe$showStep(model),
+									recipe.be)),
+								function () {
+								var _v0 = model.aX;
+								if (_v0.$ === 2) {
+									var current_step = _v0.a;
+									return A2(
+										$elm$html$Html$form,
+										_List_fromArray(
+											[
+												$elm$html$Html$Events$onSubmit(
+												$author$project$Data$Types$AddNewStep(current_step))
+											]),
+										_List_fromArray(
+											[
+												A2(
+												$elm$html$Html$input,
+												_List_fromArray(
+													[
+														$elm$html$Html$Attributes$id('new_step'),
+														A2($elm$html$Html$Attributes$style, 'width', '100%'),
+														$elm$html$Html$Attributes$value(current_step),
+														$elm$html$Html$Events$onInput(
+														A2($elm$core$Basics$composeL, $author$project$Data$Types$SetEditing, $author$project$Data$Types$StepAdd)),
+														$elm$html$Html$Events$onBlur(
+														$author$project$Data$Types$AddNewStep(current_step))
+													]),
+												_List_Nil)
+											]));
+								} else {
+									return A2(
+										$elm$html$Html$button,
+										_List_fromArray(
+											[
+												$elm$html$Html$Events$onClick(
+												$author$project$Data$Types$SetEditing(
+													$author$project$Data$Types$StepAdd('')))
+											]),
+										_List_fromArray(
+											[
+												$elm$html$Html$text('+')
+											]));
+								}
+							}()
 							]))
 					]))
 			]));
@@ -6381,13 +6634,12 @@ var $author$project$Data$Kiddoz$unitToString = function (unit) {
 			return 'piece';
 	}
 };
-var $elm$html$Html$Attributes$value = $elm$html$Html$Attributes$stringProperty('value');
 var $author$project$Main$view = function (model) {
-	var currentUnit = $author$project$Data$Kiddoz$unitToString(model.j.aS);
+	var currentUnit = $author$project$Data$Kiddoz$unitToString(model.ba.aQ);
 	var currentKind = A2(
 		$elm$core$Maybe$withDefault,
 		'--',
-		A2($elm$core$Maybe$map, $author$project$Data$Kiddoz$kindToString, model.j.ar));
+		A2($elm$core$Maybe$map, $author$project$Data$Kiddoz$kindToString, model.ba.ap));
 	var buildOption = F2(
 		function (current, ingredient) {
 			return A2(
@@ -6431,7 +6683,7 @@ var $author$project$Main$view = function (model) {
 				$elm$html$Html$form,
 				_List_fromArray(
 					[
-						$elm$html$Html$Events$onSubmit($author$project$Main$AddIngredient)
+						$elm$html$Html$Events$onSubmit($author$project$Data$Types$AddIngredient)
 					]),
 				_List_fromArray(
 					[
@@ -6499,7 +6751,7 @@ var $author$project$Main$view = function (model) {
 														$elm$html$Html$select,
 														_List_fromArray(
 															[
-																$elm$html$Html$Events$onInput($author$project$Main$SetKind)
+																$elm$html$Html$Events$onInput($author$project$Data$Types$SetKind)
 															]),
 														$elm$core$List$concat(
 															_List_fromArray(
@@ -6525,8 +6777,8 @@ var $author$project$Main$view = function (model) {
 														_List_fromArray(
 															[
 																$elm$html$Html$Attributes$placeholder('Name'),
-																$elm$html$Html$Events$onInput($author$project$Main$SetName),
-																$elm$html$Html$Attributes$value(model.j.at)
+																$elm$html$Html$Events$onInput($author$project$Data$Types$SetName),
+																$elm$html$Html$Attributes$value(model.ba.ar)
 															]),
 														_List_Nil)
 													])),
@@ -6543,9 +6795,9 @@ var $author$project$Main$view = function (model) {
 																$elm$html$Html$Attributes$min('0'),
 																$elm$html$Html$Attributes$step('1'),
 																$elm$html$Html$Attributes$placeholder('Quantité'),
-																$elm$html$Html$Events$onInput($author$project$Main$SetQuantity),
+																$elm$html$Html$Events$onInput($author$project$Data$Types$SetQuantity),
 																$elm$html$Html$Attributes$value(
-																$elm$core$String$fromInt(model.j.aC))
+																$elm$core$String$fromInt(model.ba.aA))
 															]),
 														_List_Nil)
 													])),
@@ -6558,7 +6810,7 @@ var $author$project$Main$view = function (model) {
 														$elm$html$Html$select,
 														_List_fromArray(
 															[
-																$elm$html$Html$Events$onInput($author$project$Main$SetUnit)
+																$elm$html$Html$Events$onInput($author$project$Data$Types$SetUnit)
 															]),
 														$elm$core$List$concat(
 															_List_fromArray(
@@ -6579,7 +6831,7 @@ var $author$project$Main$view = function (model) {
 						A2(
 						$elm$html$Html$div,
 						_List_Nil,
-						$author$project$View$Recipe$showKiddozQuantity(model.j)),
+						$author$project$View$Recipe$showKiddozQuantity(model.ba)),
 						A2(
 						$elm$html$Html$div,
 						_List_Nil,
@@ -6597,11 +6849,11 @@ var $author$project$Main$view = function (model) {
 				A2(
 				$elm$html$Html$ul,
 				_List_Nil,
-				A2($elm$core$List$map, $author$project$Main$showIngredientList, model.n.a1)),
-				$author$project$View$Recipe$showRecipe(model.n)
+				A2($elm$core$List$map, $author$project$Main$showIngredientList, model.a8.a0)),
+				$author$project$View$Recipe$showRecipe(model)
 			]));
 };
 var $author$project$Main$main = $elm$browser$Browser$element(
-	{a2: $author$project$Main$init, be: $author$project$Main$subscriptions, bh: $author$project$Main$update, bi: $author$project$Main$view});
+	{a1: $author$project$Main$init, bf: $author$project$Main$subscriptions, bi: $author$project$Main$update, bj: $author$project$Main$view});
 _Platform_export({'Main':{'init':$author$project$Main$main(
 	$elm$json$Json$Decode$succeed(0))(0)}});}(this));
