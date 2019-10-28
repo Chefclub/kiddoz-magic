@@ -2,12 +2,10 @@ module Data.Kiddoz exposing
     ( Ingredient
     , Kind(..)
     , Recipe
-    , Section
     , Step
     , Unit(..)
     , emptyIngredient
     , emptyRecipe
-    , emptySection
     , emptyStep
     , existingIngredients
     , existingUnits
@@ -22,27 +20,14 @@ module Data.Kiddoz exposing
 
 type alias Recipe =
     { title : String
-    , number_of_people : Int
-    , preparation_minutes : Int
-    , sections : List Section
-    }
-
-
-emptyRecipe : Recipe
-emptyRecipe =
-    Recipe "" 6 20 []
-
-
-type alias Section =
-    { title : String
     , ingredients : List Ingredient
     , steps : List Step
     }
 
 
-emptySection : Section
-emptySection =
-    Section "" [] []
+emptyRecipe : Recipe
+emptyRecipe =
+    Recipe "" [] []
 
 
 type alias Ingredient =
