@@ -29,7 +29,7 @@ view model =
                 , div [] [ button [ type_ "button", onClick AddIngredient ] [ text "+" ] ]
                 , div [] [ button [ type_ "button", onClick <| RemoveIngredient -1 ] [ text "-" ] ]
                 ]
-            , div [] [ button [] [ text "Convertir" ] ]
+            , div [] [ button [ type_ "submit" ] [ text "Convertir" ] ]
             , div [] [ button [ type_ "button", onClick Reinit ] [ text "Recommencer" ] ]
             ]
         , showRecipe model
@@ -83,7 +83,12 @@ showIngredientList index ingredient =
                 |> select [ onInput <| SetUnit index ]
             ]
         , td []
-            [ button [ class "remove", onClick <| RemoveIngredient index ] [ text "X" ]
+            [ button
+                [ type_ "button"
+                , class "remove"
+                , onClick <| RemoveIngredient index
+                ]
+                [ text "X" ]
             ]
         ]
 
@@ -93,7 +98,7 @@ showRecipe model =
     div [ id "recipe_content" ]
         [ aside []
             [ model.ingredients
-                |> List.map showKiddoz
+                |> List.map (showKiddoz model.static)
                 |> ul []
             ]
         ]
@@ -121,9 +126,9 @@ showIngredient ingredient =
         ]
 
 
-showKiddoz : Ingredient -> Html Msg
-showKiddoz ingredient =
-    showKiddozQuantity ingredient
+showKiddoz : String -> Ingredient -> Html Msg
+showKiddoz imagePrefix ingredient =
+    showKiddozQuantity imagePrefix ingredient
         |> li
             [ showIngredientQuantity ingredient
                 ++ " de "
@@ -132,8 +137,8 @@ showKiddoz ingredient =
             ]
 
 
-showKiddozQuantity : Ingredient -> List (Html Msg)
-showKiddozQuantity ingredient =
+showKiddozQuantity : String -> Ingredient -> List (Html Msg)
+showKiddozQuantity imagePrefix ingredient =
     let
         maybeMLFactor =
             case ( ingredient.unit, ingredient.kind ) of
@@ -149,7 +154,7 @@ showKiddozQuantity ingredient =
     case maybeML of
         Just mL ->
             List.concat
-                [ mL2cup mL
+                [ mL2cup imagePrefix mL
                     |> List.intersperse (text " + ")
                 , [ text " de "
                   , text ingredient.name
@@ -167,8 +172,8 @@ showKiddozQuantity ingredient =
             ]
 
 
-mL2cup : Float -> List (Html Msg)
-mL2cup mL =
+mL2cup : String -> Float -> List (Html Msg)
+mL2cup imagePrefix mL =
     let
         change =
             giveChange (mL |> round) coinsList
@@ -178,37 +183,37 @@ mL2cup mL =
             (\value ->
                 case value of
                     250 ->
-                        img [ src "assets/images/0001-chef.png" ] []
+                        img [ src <| imagePrefix ++ "images/0001-chef.png" ] []
 
                     245 ->
-                        img [ src "assets/images/0001-chef.png" ] []
+                        img [ src <| imagePrefix ++ "images/0001-chef.png" ] []
 
                     240 ->
-                        img [ src "assets/images/0001-chef.png" ] []
+                        img [ src <| imagePrefix ++ "images/0001-chef.png" ] []
 
                     125 ->
-                        img [ src "assets/images/0002-cochon.png" ] []
+                        img [ src <| imagePrefix ++ "images/0002-cochon.png" ] []
 
                     120 ->
-                        img [ src "assets/images/0002-cochon.png" ] []
+                        img [ src <| imagePrefix ++ "images/0002-cochon.png" ] []
 
                     85 ->
-                        img [ src "assets/images/0003-chat.png" ] []
+                        img [ src <| imagePrefix ++ "images/0003-chat.png" ] []
 
                     80 ->
-                        img [ src "assets/images/0003-chat.png" ] []
+                        img [ src <| imagePrefix ++ "images/0003-chat.png" ] []
 
                     65 ->
-                        img [ src "assets/images/0004-souris.png" ] []
+                        img [ src <| imagePrefix ++ "images/0004-souris.png" ] []
 
                     60 ->
-                        img [ src "assets/images/0004-souris.png" ] []
+                        img [ src <| imagePrefix ++ "images/0004-souris.png" ] []
 
                     15 ->
-                        img [ src "assets/images/0005-poule.png" ] []
+                        img [ src <| imagePrefix ++ "images/0005-poule.png" ] []
 
                     5 ->
-                        img [ src "assets/images/0006-poussin.png" ] []
+                        img [ src <| imagePrefix ++ "images/0006-poussin.png" ] []
 
                     _ ->
                         text <| String.fromInt value

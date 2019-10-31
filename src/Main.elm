@@ -17,7 +17,15 @@ import Yaml.Decode
 
 init : Flags -> ( Model, Cmd Msg )
 init flags =
-    ( emptyModel
+    let
+        locale =
+            flags.locale
+                |> localeFromString
+    in
+    ( { emptyModel
+        | locale = locale
+        , static = flags.static
+      }
     , Cmd.none
     )
 

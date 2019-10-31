@@ -479,10 +479,10 @@ kindFromName kind =
         "Bicarbonate" ->
             Just Bicarbonate
 
-        "Blanc d'œufs" ->
+        "Blancs d'œufs" ->
             Just EggWhite
 
-        "Jaune d'œufs" ->
+        "Jaunes d'œufs" ->
             Just EggYellow
 
         "Sucre en poudre" ->
