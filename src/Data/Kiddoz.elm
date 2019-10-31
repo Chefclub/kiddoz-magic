@@ -81,7 +81,6 @@ type Kind
     | GroundCoffee
     | Cinnamon
     | Breadcrumbs
-    | Oil
     | Honey
     | Mustard
     | Spread
@@ -118,7 +117,6 @@ existingIngredients =
     , GroundCoffee
     , Cinnamon
     , Breadcrumbs
-    , Oil
     , Honey
     , Mustard
     , Spread
@@ -240,9 +238,6 @@ food2mL kind =
 
         Jam ->
             Just 1.37
-
-        Oil ->
-            Just 0.9
 
         Honey ->
             Just 1.4
@@ -426,10 +421,10 @@ kindToString kind =
             "Bicarbonate"
 
         EggWhite ->
-            "Blanc d'œufs"
+            "Blancs d'œufs"
 
         EggYellow ->
-            "Jaune d'œufs"
+            "Jaunes d'œufs"
 
         Sugar ->
             "Sucre en poudre"
@@ -457,9 +452,6 @@ kindToString kind =
 
         Jam ->
             "Confiture"
-
-        Oil ->
-            "Huile"
 
         Honey ->
             "Miel"
@@ -563,9 +555,6 @@ kindFromName kind =
 
         "Confiture" ->
             Just Jam
-
-        "Huile" ->
-            Just Oil
 
         "Miel" ->
             Just Honey
