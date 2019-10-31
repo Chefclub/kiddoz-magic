@@ -1,63 +1,100 @@
-module View.Recipe exposing (showKiddozQuantity, showRecipe)
+module View exposing (view)
 
+import Array
 import Change exposing (coinsList, giveChange)
-import Data.Kiddoz exposing (..)
-import Data.Types exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
+import Kiddoz exposing (..)
+import Types exposing (..)
+
+
+view model =
+    div [ id "content" ]
+        [ img [ src "assets/images/Logo-KIDDOZ-01.svg", alt "Kiddoz logo", class "logo" ] []
+        , h2 [] [ text "Convertisseur de recettes" ]
+        , Html.form [ onSubmit ConvertIngredients ]
+            [ table []
+                [ thead []
+                    [ tr []
+                        [ th [] [ text "Ingrédient" ]
+                        , th [] [ text "Quantité" ]
+                        , th [] [ text "Unité" ]
+                        ]
+                    ]
+                , model.editingIngredients
+                    |> Array.indexedMap showIngredientList
+                    |> Array.toList
+                    |> tbody []
+                , div [] [ button [ type_ "button", onClick AddIngredient ] [ text "+" ] ]
+                , div [] [ button [ type_ "button", onClick <| RemoveIngredient -1 ] [ text "-" ] ]
+                ]
+            , div [] [ button [] [ text "Convertir" ] ]
+            , div [] [ button [ type_ "button", onClick Reinit ] [ text "Recommencer" ] ]
+            ]
+        , showRecipe model
+        ]
+
+
+showIngredientList : Int -> Ingredient -> Html Msg
+showIngredientList index ingredient =
+    let
+        currentKind =
+            ingredient.kind
+                |> Maybe.map kindToString
+                |> Maybe.withDefault "--"
+
+        currentUnit =
+            ingredient.unit |> unitToString
+
+        buildOption current candidate =
+            option [ value candidate, selected (candidate == current) ] [ text candidate ]
+    in
+    tr []
+        [ td []
+            [ [ [ buildOption currentKind "--" ]
+              , existingIngredients
+                    |> List.map kindToString
+                    |> List.sort
+                    |> List.map (buildOption currentKind)
+              ]
+                |> List.concat
+                |> select [ onInput <| SetKind index ]
+            ]
+        , td []
+            [ input
+                [ type_ "number"
+                , Html.Attributes.min "0"
+                , Html.Attributes.step "1"
+                , placeholder "Quantité"
+                , onInput <| SetQuantity index
+                , ingredient.quantity |> String.fromInt |> value
+                ]
+                []
+            ]
+        , td []
+            [ [ [ buildOption currentUnit "--"
+                ]
+              , existingUnits
+                    |> List.map unitToString
+                    |> List.map (buildOption currentUnit)
+              ]
+                |> List.concat
+                |> select [ onInput <| SetUnit index ]
+            ]
+        , td []
+            [ button [ class "remove", onClick <| RemoveIngredient index ] [ text "X" ]
+            ]
+        ]
 
 
 showRecipe : Model -> Html Msg
-showRecipe ({ recipe } as model) =
+showRecipe model =
     div [ id "recipe_content" ]
-        [ div [ id "recipe_info" ]
-            [ div [ id "recipe_title" ]
-                [ if model.editing /= Title then
-                    h2 [ onClick <| SetEditing Title ] [ text recipe.title ]
-
-                  else
-                    Html.form [ onSubmit <| SetEditing NoEdition ]
-                        [ input
-                            [ onBlur <| SetEditing NoEdition
-                            , style "width" "100%"
-                            , onInput <| SetTitle
-                            , value recipe.title
-                            , id "title"
-                            ]
-                            []
-                        ]
-                ]
-            ]
-        , div [ class "recipe_section" ]
-            [ aside []
-                [ recipe.ingredients
-                    |> List.map showIngredient
-                    |> ul []
-                , recipe.ingredients
-                    |> List.map showKiddoz
-                    |> ul []
-                ]
-            , Html.section []
-                [ recipe.steps
-                    |> List.map (showStep model)
-                    |> ol []
-                , case model.editing of
-                    StepAdd current_step ->
-                        Html.form [ onSubmit <| AddNewStep current_step ]
-                            [ input
-                                [ id "new_step"
-                                , style "width" "100%"
-                                , value current_step
-                                , onInput <| SetEditing << StepAdd
-                                , onBlur <| AddNewStep current_step
-                                ]
-                                []
-                            ]
-
-                    _ ->
-                        button [ onClick <| SetEditing <| StepAdd "" ] [ text "+" ]
-                ]
+        [ aside []
+            [ model.ingredients
+                |> List.map showKiddoz
+                |> ul []
             ]
         ]
 
@@ -89,39 +126,10 @@ showKiddoz ingredient =
     showKiddozQuantity ingredient
         |> li
             [ showIngredientQuantity ingredient
-                ++ " "
+                ++ " de "
                 ++ ingredient.name
                 |> title
             ]
-
-
-showStep : Model -> Step -> Html Msg
-showStep model step =
-    let
-        display =
-            li [ onClick <| SetEditing <| StepEdit step step ] [ text step ]
-    in
-    case model.editing of
-        StepEdit previous_value current_value ->
-            if previous_value == step then
-                li []
-                    [ Html.form [ onSubmit <| EditStep previous_value current_value ]
-                        [ input
-                            [ style "width" "100%"
-                            , id "edit_step"
-                            , onBlur <| EditStep previous_value current_value
-                            , onInput <| SetEditing << StepEdit previous_value
-                            , value current_value
-                            ]
-                            []
-                        ]
-                    ]
-
-            else
-                display
-
-        _ ->
-            display
 
 
 showKiddozQuantity : Ingredient -> List (Html Msg)
@@ -142,6 +150,10 @@ showKiddozQuantity ingredient =
         Just mL ->
             List.concat
                 [ mL2cup mL
+                    |> List.intersperse (text " + ")
+                , [ text " de "
+                  , text ingredient.name
+                  ]
                 ]
 
         Nothing ->
@@ -150,7 +162,7 @@ showKiddozQuantity ingredient =
                     |> String.fromInt
                     |> text
                 ]
-            , text " "
+            , text " de "
             , text ingredient.name
             ]
 

@@ -1,12 +1,6 @@
-module Data.Kiddoz exposing
-    ( Ingredient
-    , Kind(..)
-    , Recipe
-    , Step
+module Kiddoz exposing
+    ( Kind(..)
     , Unit(..)
-    , emptyIngredient
-    , emptyRecipe
-    , emptyStep
     , existingIngredients
     , existingUnits
     , food2mL
@@ -16,44 +10,6 @@ module Data.Kiddoz exposing
     , unitToString
     , unitTomL
     )
-
-
-type alias Recipe =
-    { title : String
-    , ingredients : List Ingredient
-    , steps : List Step
-    }
-
-
-emptyRecipe : Recipe
-emptyRecipe =
-    Recipe "" [] []
-
-
-type alias Ingredient =
-    { name : String
-    , kind : Maybe Kind
-    , quantity : Int
-    , unit : Unit
-    }
-
-
-emptyIngredient : Ingredient
-emptyIngredient =
-    { name = ""
-    , kind = Nothing
-    , quantity = 1
-    , unit = Unit
-    }
-
-
-type alias Step =
-    String
-
-
-emptyStep : Step
-emptyStep =
-    ""
 
 
 type Kind

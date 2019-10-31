@@ -1,271 +1,116 @@
 module Main exposing (main)
 
+import Array
 import Browser
 import Browser.Dom as Dom
 import Change exposing (coinsList, giveChange)
-import Data.Kiddoz exposing (..)
-import Data.Types exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Http
+import Kiddoz exposing (..)
 import Task
-import View.Recipe exposing (showKiddozQuantity, showRecipe)
+import Types exposing (..)
+import View exposing (view)
 import Yaml.Decode
 
 
 init : Flags -> ( Model, Cmd Msg )
 init flags =
-    ( { selectedIngredient =
-            { emptyIngredient
-                | kind = Just Flour
-                , unit = Grams
-            }
-      , recipe =
-            { title = "Tarte aux citrons"
-            , ingredients =
-                [ Ingredient "Citrons" Nothing 2 Unit
-                , Ingredient "Sucre" (Just Sugar) 150 Grams
-                , Ingredient "Œufs" Nothing 3 Unit
-                , Ingredient "Beurre" (Just Butter) 120 Grams
-                ]
-            , steps =
-                [ "Dans une casserole, presser le jus des citrons et le mélanger avec le beurre."
-                , "Les faire fondre à feu doux."
-                , "Dans un bol, blanchir les oeufs avec le sucre en fouettant vigoureusement"
-                , "Verser le beurre fondu et le jus de citron dessus."
-                , "Verser l'appareil sur la pâte cuite et enfourner 20 à 30 minutes."
-                ]
-            }
-      , editing = NoEdition
-      }
+    ( emptyModel
     , Cmd.none
     )
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
-update msg ({ selectedIngredient, recipe } as model) =
+update msg ({ editingIngredients, ingredients } as model) =
     case msg of
-        SetEditing editing ->
-            let
-                idForEdit =
-                    case editing of
-                        Title ->
-                            "title"
-
-                        StepAdd _ ->
-                            "new_step"
-
-                        StepEdit _ _ ->
-                            "edit_step"
-
-                        NoEdition ->
-                            ""
-            in
-            ( { model | editing = editing }
-            , Task.attempt (\_ -> NoOp) (Dom.focus idForEdit)
-            )
-
-        SetKind name ->
-            let
-                nameCandidate =
-                    selectedIngredient.kind
-                        |> Maybe.map kindToString
-                        |> Maybe.withDefault ""
-
-                newName =
-                    if selectedIngredient.name == "" || selectedIngredient.name == nameCandidate then
-                        name
-
-                    else
-                        selectedIngredient.name
-
-                ingredient =
-                    { selectedIngredient | name = newName, kind = kindFromName name }
-            in
-            ( { model | selectedIngredient = ingredient }, Cmd.none )
-
-        SetName name ->
+        SetKind index name ->
             let
                 ingredient =
-                    { selectedIngredient | name = name }
-            in
-            ( { model | selectedIngredient = ingredient }, Cmd.none )
+                    Array.get index editingIngredients
+                        |> Maybe.withDefault emptyIngredient
 
-        SetUnit unit ->
+                newIngredient =
+                    { ingredient
+                        | name = name
+                        , kind = kindFromName name
+                    }
+
+                newIngredients =
+                    editingIngredients
+                        |> Array.set index newIngredient
+            in
+            ( { model | editingIngredients = newIngredients }, Cmd.none )
+
+        SetUnit index unit ->
             let
                 ingredient =
-                    { selectedIngredient | unit = unitFromName unit }
-            in
-            ( { model | selectedIngredient = ingredient }, Cmd.none )
+                    Array.get index editingIngredients
+                        |> Maybe.withDefault emptyIngredient
 
-        SetQuantity quantity ->
+                newIngredient =
+                    { ingredient
+                        | unit = unitFromName unit
+                    }
+
+                newIngredients =
+                    editingIngredients
+                        |> Array.set index newIngredient
+            in
+            ( { model | editingIngredients = newIngredients }, Cmd.none )
+
+        SetQuantity index quantity ->
             let
                 ingredient =
-                    { selectedIngredient
+                    Array.get index editingIngredients
+                        |> Maybe.withDefault emptyIngredient
+
+                newIngredient =
+                    { ingredient
                         | quantity =
                             String.toInt quantity
                                 |> Maybe.withDefault 0
                     }
+
+                newIngredients =
+                    editingIngredients
+                        |> Array.set index newIngredient
             in
-            ( { model | selectedIngredient = ingredient }, Cmd.none )
+            ( { model | editingIngredients = newIngredients }, Cmd.none )
 
         AddIngredient ->
             let
                 newIngredients =
-                    model.recipe.ingredients
-                        |> List.reverse
-                        |> List.filter (\x -> x.name /= selectedIngredient.name)
-                        |> (::) selectedIngredient
-                        |> List.reverse
+                    editingIngredients
+                        |> Array.push emptyIngredient
             in
             ( { model
-                | recipe = { recipe | ingredients = newIngredients }
-                , selectedIngredient = emptyIngredient
+                | editingIngredients = newIngredients
               }
             , Cmd.none
             )
 
-        Remove ingredientName ->
-            let
-                newIngredients =
-                    model.recipe.ingredients
-                        |> List.filter (\x -> x.name /= ingredientName)
-            in
-            ( { model | recipe = { recipe | ingredients = newIngredients } }, Cmd.none )
+        RemoveIngredient index ->
+            if index < 0 then
+                ( { model | editingIngredients = Array.slice 0 -1 editingIngredients }, Cmd.none )
 
-        SetTitle title ->
-            ( { model
-                | recipe = { recipe | title = title }
-              }
-            , Cmd.none
-            )
+            else
+                let
+                    newIngredients =
+                        editingIngredients
+                            |> Array.toIndexedList
+                            |> List.filter (\( i, x ) -> i /= index)
+                            |> List.map Tuple.second
+                            |> Array.fromList
+                in
+                ( { model | editingIngredients = newIngredients }, Cmd.none )
 
-        AddNewStep current_step ->
-            ( { model
-                | recipe =
-                    { recipe
-                        | steps =
-                            recipe.steps
-                                |> List.reverse
-                                |> (::) current_step
-                                |> List.reverse
-                    }
-                , editing = NoEdition
-              }
-            , Cmd.none
-            )
+        ConvertIngredients ->
+            ( { model | ingredients = Array.toList editingIngredients }, Cmd.none )
 
-        EditStep previous_step next_step ->
-            ( { model
-                | recipe =
-                    { recipe
-                        | steps =
-                            recipe.steps
-                                |> List.map
-                                    (\x ->
-                                        if x == previous_step then
-                                            next_step
-
-                                        else
-                                            x
-                                    )
-                                |> List.filter (\x -> x /= "")
-                    }
-                , editing = NoEdition
-              }
-            , Cmd.none
-            )
-
-        NoOp ->
-            ( model, Cmd.none )
-
-
-view model =
-    let
-        currentKind =
-            model.selectedIngredient.kind
-                |> Maybe.map kindToString
-                |> Maybe.withDefault "--"
-
-        currentUnit =
-            model.selectedIngredient.unit |> unitToString
-
-        buildOption current ingredient =
-            option [ value ingredient, selected (ingredient == current) ] [ text ingredient ]
-    in
-    div [ id "content" ]
-        [ img [ src "assets/images/Logo-KIDDOZ-01.svg", alt "Kiddoz logo", class "logo" ] []
-        , h2 [] [ text "Convertisseur de recettes" ]
-        , Html.form [ onSubmit AddIngredient ]
-            [ table []
-                [ thead []
-                    [ tr []
-                        [ th [] [ text "Ingrédient" ]
-                        , th [] [ text "Name" ]
-                        , th [] [ text "Quantité" ]
-                        , th [] [ text "Unité" ]
-                        ]
-                    ]
-                , tbody []
-                    [ tr []
-                        [ td []
-                            [ [ [ buildOption currentKind "--" ]
-                              , existingIngredients
-                                    |> List.map kindToString
-                                    |> List.sort
-                                    |> List.map (buildOption currentKind)
-                              ]
-                                |> List.concat
-                                |> select [ onInput SetKind ]
-                            ]
-                        , td []
-                            [ input
-                                [ placeholder "Name"
-                                , onInput SetName
-                                , value model.selectedIngredient.name
-                                ]
-                                []
-                            ]
-                        , td []
-                            [ input
-                                [ type_ "number"
-                                , Html.Attributes.min "0"
-                                , Html.Attributes.step "1"
-                                , placeholder "Quantité"
-                                , onInput SetQuantity
-                                , model.selectedIngredient.quantity |> String.fromInt |> value
-                                ]
-                                []
-                            ]
-                        , td []
-                            [ [ [ buildOption currentUnit "--"
-                                ]
-                              , existingUnits
-                                    |> List.map unitToString
-                                    |> List.map (buildOption currentUnit)
-                              ]
-                                |> List.concat
-                                |> select [ onInput SetUnit ]
-                            ]
-                        ]
-                    ]
-                ]
-            , showKiddozQuantity model.selectedIngredient |> div []
-            , div [] [ button [] [ text "Ajouter à la recette" ] ]
-            ]
-        , List.map showIngredientList model.recipe.ingredients |> ul []
-        , showRecipe model
-        ]
-
-
-showIngredientList : Ingredient -> Html Msg
-showIngredientList ingredient =
-    li []
-        [ text ingredient.name
-        , text " "
-        , button [ class "remove", onClick <| Remove ingredient.name ] [ text "X" ]
-        ]
+        Reinit ->
+            ( emptyModel, Cmd.none )
 
 
 subscriptions : Model -> Sub Msg
