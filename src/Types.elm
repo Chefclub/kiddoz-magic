@@ -10,7 +10,7 @@ module Types exposing
     )
 
 import Array exposing (Array)
-import Kiddoz exposing (..)
+import Kiddoz exposing (Kind(..), Unit(..))
 
 
 type alias Flags =
@@ -49,10 +49,10 @@ localeFromString l =
         locale =
             String.toLower l
     in
-    if String.startsWith "de" l then
+    if String.startsWith "de" locale then
         DE
 
-    else if String.startsWith "en" l then
+    else if String.startsWith "en" locale then
         EN
 
     else

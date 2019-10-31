@@ -7,7 +7,7 @@ module Kiddoz exposing
     , kindFromName
     , kindToString
     , unitFromName
-    , unitToString
+    , unitToSelectString
     , unitTomL
     )
 
@@ -48,6 +48,7 @@ type Kind
     | TomatoSauce
 
 
+existingIngredients : List Kind
 existingIngredients =
     [ Flour
     , GroundAlmonds
@@ -99,6 +100,7 @@ type Unit
     | Unit
 
 
+existingUnits : List Unit
 existingUnits =
     [ Grams
     , Centiliters
@@ -217,8 +219,8 @@ food2mL kind =
             Just 0.91
 
 
-unitToString : Unit -> String
-unitToString unit =
+unitToSelectString : Unit -> String
+unitToSelectString unit =
     case unit of
         Grams ->
             "grams"

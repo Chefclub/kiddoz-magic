@@ -2,17 +2,22 @@ module Main exposing (main)
 
 import Array
 import Browser
-import Browser.Dom as Dom
-import Change exposing (coinsList, giveChange)
-import Html exposing (..)
-import Html.Attributes exposing (..)
-import Html.Events exposing (..)
-import Http
-import Kiddoz exposing (..)
-import Task
-import Types exposing (..)
+import Kiddoz
+    exposing
+        ( kindFromName
+        , unitFromName
+        )
+import L10n
+import Types
+    exposing
+        ( Flags
+        , Model
+        , Msg(..)
+        , emptyIngredient
+        , emptyModel
+        , localeFromString
+        )
 import View exposing (view)
-import Yaml.Decode
 
 
 init : Flags -> ( Model, Cmd Msg )
@@ -31,17 +36,20 @@ init flags =
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
-update msg ({ editingIngredients, ingredients } as model) =
+update msg ({ editingIngredients } as model) =
     case msg of
         SetKind index name ->
             let
+                t =
+                    L10n.t model.locale
+
                 ingredient =
                     Array.get index editingIngredients
                         |> Maybe.withDefault emptyIngredient
 
                 newIngredient =
                     { ingredient
-                        | name = name
+                        | name = t name
                         , kind = kindFromName name
                     }
 
@@ -108,7 +116,7 @@ update msg ({ editingIngredients, ingredients } as model) =
                     newIngredients =
                         editingIngredients
                             |> Array.toIndexedList
-                            |> List.filter (\( i, x ) -> i /= index)
+                            |> List.filter (\( i, _ ) -> i /= index)
                             |> List.map Tuple.second
                             |> Array.fromList
                 in
@@ -122,7 +130,7 @@ update msg ({ editingIngredients, ingredients } as model) =
 
 
 subscriptions : Model -> Sub Msg
-subscriptions model =
+subscriptions _ =
     Sub.none
 
 

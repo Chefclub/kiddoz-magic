@@ -4,51 +4,68 @@ import Array
 import Change exposing (coinsList, giveChange)
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Html.Events exposing (..)
-import Kiddoz exposing (..)
+import Html.Events exposing (onClick, onInput, onSubmit)
+import Kiddoz
+    exposing
+        ( Kind(..)
+        , Unit(..)
+        , existingIngredients
+        , existingUnits
+        , food2mL
+        , kindToString
+        , unitToSelectString
+        , unitTomL
+        )
+import L10n
 import Types exposing (..)
 
 
+view : Model -> Html Msg
 view model =
+    let
+        t =
+            L10n.t model.locale
+    in
     div [ id "content" ]
         [ img [ src "assets/images/Logo-KIDDOZ-01.svg", alt "Kiddoz logo", class "logo" ] []
-        , h2 [] [ text "Convertisseur de recettes" ]
+        , h2 [] [ text <| t "Convertisseur de recettes" ]
         , Html.form [ onSubmit ConvertIngredients ]
             [ table []
                 [ thead []
                     [ tr []
-                        [ th [] [ text "Ingrédient" ]
-                        , th [] [ text "Quantité" ]
-                        , th [] [ text "Unité" ]
+                        [ th [] [ text <| t "Ingrédient" ]
+                        , th [] [ text <| t "Quantité" ]
+                        , th [] [ text <| t "Unité" ]
                         ]
                     ]
                 , model.editingIngredients
-                    |> Array.indexedMap showIngredientList
+                    |> Array.indexedMap (showIngredientList t)
                     |> Array.toList
                     |> tbody []
                 , div [] [ button [ type_ "button", onClick AddIngredient ] [ text "+" ] ]
                 , div [] [ button [ type_ "button", onClick <| RemoveIngredient -1 ] [ text "-" ] ]
                 ]
-            , div [] [ button [ type_ "submit" ] [ text "Convertir" ] ]
-            , div [] [ button [ type_ "button", onClick Reinit ] [ text "Recommencer" ] ]
+            , div [] [ button [ type_ "submit" ] [ text <| t "Convertir" ] ]
+            , div [] [ button [ type_ "button", onClick Reinit ] [ text <| t "Recommencer" ] ]
             ]
-        , showRecipe model
+        , showRecipe t model
         ]
 
 
-showIngredientList : Int -> Ingredient -> Html Msg
-showIngredientList index ingredient =
+showIngredientList : (String -> String) -> Int -> Ingredient -> Html Msg
+showIngredientList t index ingredient =
     let
         currentKind =
             ingredient.kind
                 |> Maybe.map kindToString
+                |> Maybe.map t
                 |> Maybe.withDefault "--"
 
         currentUnit =
-            ingredient.unit |> unitToString
+            ingredient.unit |> unitToSelectString |> t
 
         buildOption current candidate =
-            option [ value candidate, selected (candidate == current) ] [ text candidate ]
+            option [ value candidate, selected (candidate == current) ] [ text <| t candidate ]
     in
     tr []
         [ td []
@@ -66,7 +83,7 @@ showIngredientList index ingredient =
                 [ type_ "number"
                 , Html.Attributes.min "0"
                 , Html.Attributes.step "1"
-                , placeholder "Quantité"
+                , placeholder <| t "Quantité"
                 , onInput <| SetQuantity index
                 , ingredient.quantity |> String.fromInt |> value
                 ]
@@ -76,7 +93,7 @@ showIngredientList index ingredient =
             [ [ [ buildOption currentUnit "--"
                 ]
               , existingUnits
-                    |> List.map unitToString
+                    |> List.map unitToSelectString
                     |> List.map (buildOption currentUnit)
               ]
                 |> List.concat
@@ -93,52 +110,53 @@ showIngredientList index ingredient =
         ]
 
 
-showRecipe : Model -> Html Msg
-showRecipe model =
+showRecipe : (String -> String) -> Model -> Html Msg
+showRecipe t model =
     div [ id "recipe_content" ]
         [ aside []
             [ model.ingredients
-                |> List.map (showKiddoz model.static)
+                |> List.map (showKiddoz t model.static)
                 |> ul []
             ]
         ]
 
 
-showIngredientQuantity : Ingredient -> String
-showIngredientQuantity ingredient =
+showIngredientQuantity : (String -> String) -> Ingredient -> String
+showIngredientQuantity t ingredient =
     (ingredient.quantity
         |> String.fromInt
     )
         ++ " "
         ++ (ingredient.unit
-                |> unitToString
+                |> unitToString t
            )
 
 
-showIngredient : Ingredient -> Html Msg
-showIngredient ingredient =
-    li []
-        [ strong []
-            [ showIngredientQuantity ingredient |> text
-            ]
-        , text " "
-        , text ingredient.name
-        ]
+
+-- showIngredient : (String -> String) -> Ingredient -> Html Msg
+-- showIngredient t ingredient =
+--     li []
+--         [ strong []
+--             [ showIngredientQuantity t ingredient |> text
+--             ]
+--         , text " "
+--         , text ingredient.name
+--         ]
 
 
-showKiddoz : String -> Ingredient -> Html Msg
-showKiddoz imagePrefix ingredient =
-    showKiddozQuantity imagePrefix ingredient
+showKiddoz : (String -> String) -> String -> Ingredient -> Html Msg
+showKiddoz t imagePrefix ingredient =
+    showKiddozQuantity t imagePrefix ingredient
         |> li
-            [ showIngredientQuantity ingredient
-                ++ " de "
+            [ showIngredientQuantity t ingredient
+                ++ t " de "
                 ++ ingredient.name
                 |> title
             ]
 
 
-showKiddozQuantity : String -> Ingredient -> List (Html Msg)
-showKiddozQuantity imagePrefix ingredient =
+showKiddozQuantity : (String -> String) -> String -> Ingredient -> List (Html Msg)
+showKiddozQuantity t imagePrefix ingredient =
     let
         maybeMLFactor =
             case ( ingredient.unit, ingredient.kind ) of
@@ -156,7 +174,7 @@ showKiddozQuantity imagePrefix ingredient =
             List.concat
                 [ mL2cup imagePrefix mL
                     |> List.intersperse (text " + ")
-                , [ text " de "
+                , [ text <| t " de "
                   , text ingredient.name
                   ]
                 ]
@@ -167,7 +185,7 @@ showKiddozQuantity imagePrefix ingredient =
                     |> String.fromInt
                     |> text
                 ]
-            , text " de "
+            , text <| t " de "
             , text ingredient.name
             ]
 
@@ -220,38 +238,38 @@ mL2cup imagePrefix mL =
             )
 
 
-unitToString : Unit -> String
-unitToString unit =
+unitToString : (String -> String) -> Unit -> String
+unitToString t unit =
     case unit of
         Grams ->
-            "g"
+            t "g"
 
         Centiliters ->
-            "cL"
+            t "cL"
 
         Milliliters ->
-            "mL"
+            t "mL"
 
         Cup ->
-            "cup"
+            t "cup"
 
         HalfCup ->
-            "1/2 cup"
+            t "1/2 cup"
 
         ThirdCup ->
-            "1/3 cup"
+            t "1/3 cup"
 
         QuarterCup ->
-            "1/4 cup"
+            t "1/4 cup"
 
         Tablespoon ->
-            "tbsp"
+            t "tbsp"
 
         Teaspoon ->
-            "tsp"
+            t "tsp"
 
         Oz ->
-            "oz"
+            t "oz"
 
         Unit ->
-            ""
+            t ""
