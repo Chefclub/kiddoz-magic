@@ -26,7 +26,7 @@ view model =
         t =
             L10n.t model.locale
     in
-    div [ id "content", class "container" ]
+    div [ id "kiddoz-magik", class "container" ]
         [ div [ class "row" ]
             [ div [ class "col-12" ]
                 [ img [ src "assets/images/Logo-KIDDOZ-01.svg", alt "Kiddoz logo", class "logo" ] []

@@ -1,38 +1,28 @@
-html, body {
-	background-color: #9fdfe8;
-	font-family: 'Roboto Regular', sans-serif;
-}
-
-img.logo {
-	display: block;
-	margin: 20px auto;
-}
-
-h1, h2 {
+#kiddoz-magik h1, #kiddoz-magik h2 {
 	font-family: 'FuturaLT Bold';
 	color: white;
 	text-transform: uppercase;
 	text-align: center;
 }
 
-h1 {
+#kiddoz-magik h1 {
 	font-size: 30px;
 	letter-spacing: 1.5px;
 }
 
-h2 {
+#kiddoz-magik h2 {
 	font-size: 20px;
 	letter-spacing: 1px;
 }
 
-.card {
+#kiddoz-magik .card {
 	margin-top: 13px;
 	border-radius: 4px;
 	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.15);
 	background-color: #ffffff;
 	overflow: hidden;
 }
-.card h2 {
+#kiddoz-magik .card h2 {
 	height: 58px;
 	margin: 0;
 	background: #6252a7;
@@ -40,15 +30,15 @@ h2 {
 	justify-content: center;
 	align-items: center;
 }
-.card h2.orange {
+#kiddoz-magik .card h2.orange {
 	background: #ff671d;
 }
-.card .card-content {
+#kiddoz-magik .card .card-content {
 	padding: 32px 15px;
 }
 
 
-button.btn {
+#kiddoz-magik button.btn {
 	cursor: pointer;
 	background: #6252a7;
 	color: white;
@@ -62,11 +52,11 @@ button.btn {
 	transition: background 250ms;
 }
 
-button.btn:hover {
+#kiddoz-magik button.btn:hover {
 	background: #49398E;
 }
 
-button.add, button.remove {
+#kiddoz-magik button.add, button.remove {
 	width: 37px;
 	height: 37px;
 	border: none;
@@ -79,25 +69,25 @@ button.add, button.remove {
 	flex-shrink: 0;
 	flex-grow: 0;
 }
-button.add {
+#kiddoz-magik button.add {
 	background-image: url('./images/btn-add.svg');
 }
-button.remove {
+#kiddoz-magik button.remove {
 	background-image: url('./images/btn-remove.svg');
 }
 
-button.btn.transparent {
+#kiddoz-magik button.btn.transparent {
 	background: none;
 	color: #6252a7;
 	border: solid 1px #6252a7;
 }
 
-button.btn.transparent:hover {
+#kiddoz-magik button.btn.transparent:hover {
 	color: #49398E;
 	background: rgba(0, 0, 0, 0.1);
 }
 
-input[type="text"], input[type="number"], select {
+#kiddoz-magik input[type="text"], input[type="number"], select {
 	background: #f6f5fa;
 	border: none;
 	border-radius: 5px;
@@ -111,11 +101,11 @@ input[type="text"], input[type="number"], select {
 	height: 51px;
 	display: inline-block;
 }
-input[type="number"] {
+#kiddoz-magik input[type="number"] {
 	padding: 0 5px;
 	width: 70px;
 }
-select {
+#kiddoz-magik select {
 	padding-right: 30px;
 	position: relative;
 	appearance: none;
@@ -125,34 +115,34 @@ select {
 	background-position: center right 8px;
 	background-size: 14px;
 }
-select.flex-grow {
+#kiddoz-magik select.flex-grow {
 	flex-grow: 1;
 }
-select:-moz-focusring {
+#kiddoz-magik select:-moz-focusring {
     color: transparent;
     text-shadow: 0 0 0 #000;
 }
 
-.ingredientList {
+#kiddoz-magik .ingredientList {
 	margin-bottom: 16px;
 	display: flex;
 	justify-content: center;
 }
 
-.ingredientList .ingredientList-button {
+#kiddoz-magik .ingredientList .ingredientList-button {
 	margin-right: 10px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
-.ingredientList .ingredientList-form {
+#kiddoz-magik .ingredientList .ingredientList-form {
 	justify-content: center;
 	width: 100%;
 	max-width: 360px;
 }
 
-.ingredientList.actions {
+#kiddoz-magik .ingredientList.actions {
 	display: flex;
 	margin: auto;
 	justify-content: flex-start;
@@ -160,23 +150,23 @@ select:-moz-focusring {
 	max-width: 437px;
 }
 
-.ingredientList.actions button.remove { display: none; }
+#kiddoz-magik .ingredientList.actions button.remove { display: none; }
 
 @media screen and (max-width: 768px ) {
-	.ingredientList .ingredientList-button { display: none; }
-	.ingredientList.actions { margin: auto; justify-content: flex-end; max-width: 380px; }
-	.ingredientList.actions button.remove { display: block; }
+	#kiddoz-magik .ingredientList .ingredientList-button { display: none; }
+	#kiddoz-magik .ingredientList.actions { margin: auto; justify-content: flex-end; max-width: 380px; }
+	#kiddoz-magik .ingredientList.actions button.remove { display: block; }
 }
-#recipe_content {
+#kiddoz-magik #recipe_content {
 	padding: 18px 32px 0px;
 }
-#recipe_content ul {
+#kiddoz-magik #recipe_content ul {
 	list-style: none;
 }
-#recipe_content ul li {
+#kiddoz-magik #recipe_content ul li {
 	padding-bottom: 19px;
 }
-#recipe_content ul li img {
+#kiddoz-magik #recipe_content ul li img {
 	max-height: 32px;
 	margin-right: 6px;
 	margin-left: 6px;
