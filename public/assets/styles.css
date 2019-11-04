@@ -74,12 +74,13 @@
 	color: #49398E;
 	background: rgba(0, 0, 0, 0.1);
 }
-#kiddoz-magik input[type="text"], input[type="number"], select {
+#kiddoz-magik input[type="text"], #kiddoz-magik input[type="number"], #kiddoz-magik select {
 	background: #f6f5fa;
 	border: none;
 	border-radius: 5px;
 	padding: 0 14px;
 	font-size: 14px;
+	margin: 2px;
 	font-family: "Roboto Regular";
 	color: #282828;
 	border: solid 0.5px #6252a7;
@@ -87,10 +88,10 @@
 	flex-shrink: 1;
 	height: 51px;
 	display: inline-block;
+	width: 100%;
 }
 #kiddoz-magik input[type="number"] {
 	padding: 0 5px;
-	width: 70px;
 }
 #kiddoz-magik select {
 	padding-right: 30px;
@@ -121,21 +122,20 @@
 	align-items: center;
 }
 #kiddoz-magik .ingredientList .ingredientList-form {
-	justify-content: center;
 	width: 100%;
-	max-width: 360px;
 }
+#kiddoz-magik .ingredientList-form.row.no-gutters .col-12,
+#kiddoz-magik .ingredientList-form.row.no-gutters .col-6 { padding: 2px; }
 #kiddoz-magik .ingredientList.ingredientListActions {
 	display: flex;
 	margin: auto;
 	justify-content: flex-start;
 	width: 100%;
-	max-width: 437px;
 }
 #kiddoz-magik .ingredientListActions button.remove { display: none; }
 @media screen and (max-width: 768px ) {
 	#kiddoz-magik .ingredientList .ingredientList-button { display: none !important; }
-	#kiddoz-magik .ingredientList.ingredientListActions { margin: auto; justify-content: flex-end; max-width: 380px; }
+	#kiddoz-magik .ingredientList.ingredientListActions { margin: auto; justify-content: flex-end; }
 	#kiddoz-magik .ingredientList.ingredientListActions button.remove { display: block; }
 }
 #kiddoz-magik #recipe_content {

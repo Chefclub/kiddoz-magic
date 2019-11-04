@@ -84,32 +84,38 @@ showIngredientList t index ingredient =
                 ]
                 [ text "X" ]
             ]
-        , div [ class "ingredientList-form" ]
-            [ [ [ buildOption currentKind "--" ]
-              , existingIngredients
-                    |> List.map kindToString
-                    |> List.sort
-                    |> List.map (buildOption currentKind)
-              ]
-                |> List.concat
-                |> select [ onInput <| SetKind index ]
-            , input
-                [ type_ "number"
-                , Html.Attributes.min "0"
-                , Html.Attributes.step "1"
-                , placeholder <| t "Quantité"
-                , onInput <| SetQuantity index
-                , ingredient.quantity |> String.fromInt |> value
+        , div [ class "ingredientList-form row  no-gutters" ]
+            [ div [ class "col-12 col-sm-12 col-md-6" ]
+                [ [ [ buildOption currentKind "--" ]
+                  , existingIngredients
+                        |> List.map kindToString
+                        |> List.sort
+                        |> List.map (buildOption currentKind)
+                  ]
+                    |> List.concat
+                    |> select [ onInput <| SetKind index ]
                 ]
-                []
-            , [ [ buildOption currentUnit "--"
+            , div [ class "col-6 col-sm-6 col-md-3" ]
+                [ input
+                    [ type_ "number"
+                    , Html.Attributes.min "0"
+                    , Html.Attributes.step "1"
+                    , placeholder <| t "Quantité"
+                    , onInput <| SetQuantity index
+                    , ingredient.quantity |> String.fromInt |> value
+                    ]
+                    []
                 ]
-              , existingUnits
-                    |> List.map unitToSelectString
-                    |> List.map (buildOption currentUnit)
-              ]
-                |> List.concat
-                |> select [ onInput <| SetUnit index ]
+            , div [ class "col-6 col-sm-6 col-md-3" ]
+                [ [ [ buildOption currentUnit "--"
+                    ]
+                  , existingUnits
+                        |> List.map unitToSelectString
+                        |> List.map (buildOption currentUnit)
+                  ]
+                    |> List.concat
+                    |> select [ onInput <| SetUnit index ]
+                ]
             ]
         ]
 
