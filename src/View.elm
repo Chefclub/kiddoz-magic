@@ -30,7 +30,7 @@ view model =
         [ div [ class "row" ]
             [ Html.form [ onSubmit ConvertIngredients, class "col-sm-12 col-md-12 col-lg-6 offset-lg-1" ]
                 [ div [ class "card" ]
-                    [ h2 [] [ text <| t "Your recipe" ]
+                    [ h2 [] [ text <| t "Ta recette" ]
                     , div [ class "card-content container" ]
                         [ div [ class "row" ]
                             [ model.editingIngredients
@@ -54,7 +54,7 @@ view model =
                     ]
                 ]
             , div [ class "col-sm-12 col-md-12 col-lg-4" ]
-                [ div [ class "card" ] [ h2 [ class "orange" ] [ text <| t "Your kiddoz recipe" ], showRecipe t model ]
+                [ div [ class "card" ] [ h2 [ class "orange" ] [ text <| t "Ta recette Kiddoz" ], showRecipe t model ]
                 ]
             ]
         ]

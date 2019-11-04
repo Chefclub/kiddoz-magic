@@ -57,5 +57,11 @@ translateEN key =
         "Farine" ->
             "Flour"
 
+        "Ta recette" ->
+            "Your recipe"
+
+        "Ta recette Kiddoz" ->
+            "Your Kiddoz recipe"
+
         _ ->
             key
