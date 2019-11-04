@@ -26,29 +26,45 @@ view model =
         t =
             L10n.t model.locale
     in
-    div [ id "content" ]
-        [ img [ src "assets/images/Logo-KIDDOZ-01.svg", alt "Kiddoz logo", class "logo" ] []
-        , h2 [] [ text <| t "Convertisseur de recettes" ]
-        , Html.form [ onSubmit ConvertIngredients ]
-            [ table []
-                [ thead []
-                    [ tr []
-                        [ th [] [ text <| t "Ingrédient" ]
-                        , th [] [ text <| t "Quantité" ]
-                        , th [] [ text <| t "Unité" ]
+    div [ id "content", class "container" ]
+        [ div [ class "row" ]
+            [ div [ class "col-12" ]
+                [ img [ src "assets/images/Logo-KIDDOZ-01.svg", alt "Kiddoz logo", class "logo" ] []
+                ]
+            , div [ class "col-12" ]
+                [ h1 [] [ text <| t "Convertisseur de recettes" ]
+                ]
+            ]
+        , div [ class "row" ]
+            [ Html.form [ onSubmit ConvertIngredients, class "col-sm-12 col-md-12 col-lg-6 offset-lg-1" ]
+                [ div [ class "card" ]
+                    [ h2 [] [ text <| t "Your recipe" ]
+                    , div [ class "card-content container" ]
+                        [ div [ class "row" ]
+                            [ model.editingIngredients
+                                |> Array.indexedMap (showIngredientList t)
+                                |> Array.toList
+                                |> div [ class "col-12" ]
+                            , div [ class "col-12 ingredientList actions" ]
+                                [ button [ type_ "button", class "remove", onClick <| RemoveIngredient -1 ] [ text "-" ]
+                                , button [ type_ "button", class "add", onClick AddIngredient ] [ text "+" ]
+                                ]
+                            ]
                         ]
                     ]
-                , model.editingIngredients
-                    |> Array.indexedMap (showIngredientList t)
-                    |> Array.toList
-                    |> tbody []
-                , div [] [ button [ type_ "button", onClick AddIngredient ] [ text "+" ] ]
-                , div [] [ button [ type_ "button", onClick <| RemoveIngredient -1 ] [ text "-" ] ]
+                , div [ class "row" ]
+                    [ div [ class "col-12 col-sm-6" ]
+                        [ div [] [ button [ type_ "button", class "btn transparent", onClick Reinit ] [ text <| t "Recommencer" ] ]
+                        ]
+                    , div [ class "col-12 col-sm-6" ]
+                        [ div [] [ button [ type_ "submit", class "btn" ] [ text <| t "Convertir" ] ]
+                        ]
+                    ]
                 ]
-            , div [] [ button [ type_ "submit" ] [ text <| t "Convertir" ] ]
-            , div [] [ button [ type_ "button", onClick Reinit ] [ text <| t "Recommencer" ] ]
+            , div [ class "col-sm-12 col-md-12 col-lg-4" ]
+                [ div [ class "card" ] [ h2 [ class "orange" ] [ text <| t "Your kiddoz recipe" ], showRecipe t model ]
+                ]
             ]
-        , showRecipe t model
         ]
 
 
@@ -67,8 +83,16 @@ showIngredientList t index ingredient =
         buildOption current candidate =
             option [ value candidate, selected (candidate == current) ] [ text <| t candidate ]
     in
-    tr []
-        [ td []
+    div [ class "ingredientList" ]
+        [ div [ class "ingredientList-button" ]
+            [ button
+                [ type_ "button"
+                , class "remove"
+                , onClick <| RemoveIngredient index
+                ]
+                [ text "X" ]
+            ]
+        , div [ class "ingredientList-form" ]
             [ [ [ buildOption currentKind "--" ]
               , existingIngredients
                     |> List.map kindToString
@@ -77,9 +101,7 @@ showIngredientList t index ingredient =
               ]
                 |> List.concat
                 |> select [ onInput <| SetKind index ]
-            ]
-        , td []
-            [ input
+            , input
                 [ type_ "number"
                 , Html.Attributes.min "0"
                 , Html.Attributes.step "1"
@@ -88,9 +110,7 @@ showIngredientList t index ingredient =
                 , ingredient.quantity |> String.fromInt |> value
                 ]
                 []
-            ]
-        , td []
-            [ [ [ buildOption currentUnit "--"
+            , [ [ buildOption currentUnit "--"
                 ]
               , existingUnits
                     |> List.map unitToSelectString
@@ -98,14 +118,6 @@ showIngredientList t index ingredient =
               ]
                 |> List.concat
                 |> select [ onInput <| SetUnit index ]
-            ]
-        , td []
-            [ button
-                [ type_ "button"
-                , class "remove"
-                , onClick <| RemoveIngredient index
-                ]
-                [ text "X" ]
             ]
         ]
 
