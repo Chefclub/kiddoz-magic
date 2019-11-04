@@ -1,20 +1,11 @@
-#kiddoz-magik h1, #kiddoz-magik h2 {
+#kiddoz-magik h2 {
 	font-family: 'FuturaLT Bold';
 	color: white;
 	text-transform: uppercase;
 	text-align: center;
-}
-
-#kiddoz-magik h1 {
-	font-size: 30px;
-	letter-spacing: 1.5px;
-}
-
-#kiddoz-magik h2 {
 	font-size: 20px;
 	letter-spacing: 1px;
 }
-
 #kiddoz-magik .card {
 	margin-top: 13px;
 	border-radius: 4px;
@@ -36,8 +27,6 @@
 #kiddoz-magik .card .card-content {
 	padding: 32px 15px;
 }
-
-
 #kiddoz-magik button.btn {
 	cursor: pointer;
 	background: #6252a7;
@@ -46,16 +35,15 @@
 	height: 51px;
 	width: 100%;
 	font-size: 16px;
+	padding: 0;
 	border: none;
 	margin-top: 13px;
 	font-family: 'Roboto Bold', sans-serif;
 	transition: background 250ms;
 }
-
 #kiddoz-magik button.btn:hover {
 	background: #49398E;
 }
-
 #kiddoz-magik button.add, button.remove {
 	width: 37px;
 	height: 37px;
@@ -75,18 +63,15 @@
 #kiddoz-magik button.remove {
 	background-image: url('./images/btn-remove.svg');
 }
-
 #kiddoz-magik button.btn.transparent {
 	background: none;
 	color: #6252a7;
 	border: solid 1px #6252a7;
 }
-
 #kiddoz-magik button.btn.transparent:hover {
 	color: #49398E;
 	background: rgba(0, 0, 0, 0.1);
 }
-
 #kiddoz-magik input[type="text"], input[type="number"], select {
 	background: #f6f5fa;
 	border: none;
@@ -122,40 +107,34 @@
     color: transparent;
     text-shadow: 0 0 0 #000;
 }
-
 #kiddoz-magik .ingredientList {
 	margin-bottom: 16px;
 	display: flex;
 	justify-content: center;
 }
-
 #kiddoz-magik .ingredientList .ingredientList-button {
 	margin-right: 10px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
-
 #kiddoz-magik .ingredientList .ingredientList-form {
 	justify-content: center;
 	width: 100%;
 	max-width: 360px;
 }
-
-#kiddoz-magik .ingredientList.actions {
+#kiddoz-magik .ingredientList.ingredientListActions {
 	display: flex;
 	margin: auto;
 	justify-content: flex-start;
 	width: 100%;
 	max-width: 437px;
 }
-
 #kiddoz-magik .ingredientList.actions button.remove { display: none; }
-
 @media screen and (max-width: 768px ) {
 	#kiddoz-magik .ingredientList .ingredientList-button { display: none; }
-	#kiddoz-magik .ingredientList.actions { margin: auto; justify-content: flex-end; max-width: 380px; }
-	#kiddoz-magik .ingredientList.actions button.remove { display: block; }
+	#kiddoz-magik .ingredientList.ingredientListActions { margin: auto; justify-content: flex-end; max-width: 380px; }
+	#kiddoz-magik .ingredientList.ingredientListActions button.remove { display: block; }
 }
 #kiddoz-magik #recipe_content {
 	padding: 18px 32px 0px;

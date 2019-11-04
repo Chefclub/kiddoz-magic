@@ -28,14 +28,6 @@ view model =
     in
     div [ id "kiddoz-magik", class "container" ]
         [ div [ class "row" ]
-            [ div [ class "col-12" ]
-                [ img [ src "assets/images/Logo-KIDDOZ-01.svg", alt "Kiddoz logo", class "logo" ] []
-                ]
-            , div [ class "col-12" ]
-                [ h1 [] [ text <| t "Convertisseur de recettes" ]
-                ]
-            ]
-        , div [ class "row" ]
             [ Html.form [ onSubmit ConvertIngredients, class "col-sm-12 col-md-12 col-lg-6 offset-lg-1" ]
                 [ div [ class "card" ]
                     [ h2 [] [ text <| t "Your recipe" ]
@@ -45,7 +37,7 @@ view model =
                                 |> Array.indexedMap (showIngredientList t)
                                 |> Array.toList
                                 |> div [ class "col-12" ]
-                            , div [ class "col-12 ingredientList actions" ]
+                            , div [ class "col-12 ingredientList ingredientListActions" ]
                                 [ button [ type_ "button", class "remove", onClick <| RemoveIngredient -1 ] [ text "-" ]
                                 , button [ type_ "button", class "add", onClick AddIngredient ] [ text "+" ]
                                 ]

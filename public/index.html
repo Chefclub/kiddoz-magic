@@ -15,6 +15,15 @@
       font-family: 'Roboto Regular', sans-serif;
     }
 
+    h1 {
+      font-family: 'FuturaLT Bold';
+      color: white;
+      text-transform: uppercase;
+      text-align: center;
+      font-size: 30px;
+      letter-spacing: 1.5px;
+    }
+
     img.logo {
       display: block;
       margin: 20px auto;
@@ -22,9 +31,20 @@
   </style>
 </head>
 <body>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <img src="assets/images/Logo-KIDDOZ-01.svg" alt="Kiddoz logo" class="logo" />
+      </div>
+      <div class="col-12">
+        <h1>Convertisseur de recettes</h1>
+      </div>
+    </div>
+  </div>
+  <div id="app"></div>
   <script src="app.js"></script>
   <script>
-    const app = Elm.Main.init({node: document.body, flags: {static: "assets/", locale: "en"}});
+    const app = Elm.Main.init({node: document.getElementById('app'), flags: {static: "assets/", locale: "en"}});
   </script>
 </body>
 </html>
