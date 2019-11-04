@@ -126,7 +126,12 @@ update msg ({ editingIngredients } as model) =
             ( { model | ingredients = Array.toList editingIngredients }, Cmd.none )
 
         Reinit ->
-            ( emptyModel, Cmd.none )
+            ( { emptyModel
+                | locale = model.locale
+                , static = model.static
+              }
+            , Cmd.none
+            )
 
 
 subscriptions : Model -> Sub Msg
