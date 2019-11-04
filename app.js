@@ -4189,8 +4189,8 @@ function _Browser_getViewport()
 	return {
 		az: _Browser_getScene(),
 		aF: {
-			M: _Browser_window.pageXOffset,
-			N: _Browser_window.pageYOffset,
+			N: _Browser_window.pageXOffset,
+			O: _Browser_window.pageYOffset,
 			D: _Browser_doc.documentElement.clientWidth,
 			y: _Browser_doc.documentElement.clientHeight
 		}
@@ -4231,8 +4231,8 @@ function _Browser_getViewportOf(id)
 				y: node.scrollHeight
 			},
 			aF: {
-				M: node.scrollLeft,
-				N: node.scrollTop,
+				N: node.scrollLeft,
+				O: node.scrollTop,
 				D: node.clientWidth,
 				y: node.clientHeight
 			}
@@ -4266,14 +4266,14 @@ function _Browser_getElement(id)
 		return {
 			az: _Browser_getScene(),
 			aF: {
-				M: x,
-				N: y,
+				N: x,
+				O: y,
 				D: _Browser_doc.documentElement.clientWidth,
 				y: _Browser_doc.documentElement.clientHeight
 			},
 			aK: {
-				M: x + rect.left,
-				N: y + rect.top,
+				N: x + rect.left,
+				O: y + rect.top,
 				D: rect.width,
 				y: rect.height
 			}
@@ -5181,7 +5181,7 @@ var $author$project$Types$emptyModel = {
 		_List_fromArray(
 			[$author$project$Types$emptyIngredient])),
 	aO: _List_Nil,
-	O: 0,
+	M: 0,
 	U: 'assets/'
 };
 var $author$project$Types$DE = 1;
@@ -5194,11 +5194,11 @@ var $author$project$Types$localeFromString = function (l) {
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
 var $author$project$Main$init = function (flags) {
-	var locale = $author$project$Types$localeFromString(flags.O);
+	var locale = $author$project$Types$localeFromString(flags.M);
 	return _Utils_Tuple2(
 		_Utils_update(
 			$author$project$Types$emptyModel,
-			{O: locale, U: flags.U}),
+			{M: locale, U: flags.U}),
 		$elm$core$Platform$Cmd$none);
 };
 var $elm$json$Json$Decode$string = _Json_decodeString;
@@ -5716,6 +5716,44 @@ var $elm$core$Array$slice = F3(
 			correctFrom,
 			A2($elm$core$Array$sliceRight, correctTo, array));
 	});
+var $author$project$L10n$translateDE = function (key) {
+	return key;
+};
+var $author$project$L10n$translateEN = function (key) {
+	switch (key) {
+		case 'Convertisseur de recettes':
+			return 'Recipe\'s converter';
+		case 'Ingrédient':
+			return 'Ingredient';
+		case 'Quantité':
+			return 'Quantity';
+		case 'Unité':
+			return 'Unit';
+		case 'Convertir':
+			return 'Convert';
+		case 'Recommencer':
+			return 'Reinit';
+		case ' de ':
+			return ' of ';
+		case 'Farine':
+			return 'Flour';
+		default:
+			return key;
+	}
+};
+var $author$project$L10n$translateFR = function (key) {
+	return key;
+};
+var $author$project$L10n$t = function (locale) {
+	switch (locale) {
+		case 0:
+			return $author$project$L10n$translateFR;
+		case 2:
+			return $author$project$L10n$translateEN;
+		default:
+			return $author$project$L10n$translateDE;
+	}
+};
 var $elm$core$Array$toIndexedList = function (array) {
 	var len = array.a;
 	var helper = F2(
@@ -5787,6 +5825,7 @@ var $author$project$Main$update = F2(
 			case 2:
 				var index = msg.a;
 				var name = msg.b;
+				var t = $author$project$L10n$t(model.M);
 				var ingredient = A2(
 					$elm$core$Maybe$withDefault,
 					$author$project$Types$emptyIngredient,
@@ -5795,7 +5834,7 @@ var $author$project$Main$update = F2(
 					ingredient,
 					{
 						aR: $author$project$Kiddoz$kindFromName(name),
-						aS: name
+						aS: t(name)
 					});
 				var newIngredients = A3($elm$core$Array$set, index, newIngredient, editingIngredients);
 				return _Utils_Tuple2(
@@ -5908,6 +5947,7 @@ var $elm$html$Html$button = _VirtualDom_node('button');
 var $elm$html$Html$Attributes$class = $elm$html$Html$Attributes$stringProperty('className');
 var $elm$html$Html$div = _VirtualDom_node('div');
 var $elm$html$Html$form = _VirtualDom_node('form');
+var $elm$html$Html$h1 = _VirtualDom_node('h1');
 var $elm$html$Html$h2 = _VirtualDom_node('h2');
 var $elm$html$Html$Attributes$id = $elm$html$Html$Attributes$stringProperty('id');
 var $elm$html$Html$img = _VirtualDom_node('img');
@@ -6147,11 +6187,160 @@ var $elm$core$List$sort = function (xs) {
 var $elm$html$Html$Attributes$step = function (n) {
 	return A2($elm$html$Html$Attributes$stringProperty, 'step', n);
 };
-var $elm$html$Html$td = _VirtualDom_node('td');
 var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
 var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
-var $elm$html$Html$tr = _VirtualDom_node('tr');
 var $elm$html$Html$Attributes$type_ = $elm$html$Html$Attributes$stringProperty('type');
+var $author$project$Kiddoz$unitToSelectString = function (unit) {
+	switch (unit) {
+		case 0:
+			return 'grams';
+		case 1:
+			return 'centiliters';
+		case 2:
+			return 'milliliters';
+		case 3:
+			return 'cup';
+		case 4:
+			return '½ cup';
+		case 5:
+			return '⅓ cup';
+		case 6:
+			return '¼ cup';
+		case 7:
+			return 'tbsp';
+		case 8:
+			return 'tsp';
+		case 9:
+			return 'oz';
+		default:
+			return 'piece';
+	}
+};
+var $elm$html$Html$Attributes$value = $elm$html$Html$Attributes$stringProperty('value');
+var $author$project$View$showIngredientList = F3(
+	function (t, index, ingredient) {
+		var currentUnit = t(
+			$author$project$Kiddoz$unitToSelectString(ingredient.a_));
+		var currentKind = A2(
+			$elm$core$Maybe$withDefault,
+			'--',
+			A2(
+				$elm$core$Maybe$map,
+				t,
+				A2($elm$core$Maybe$map, $author$project$Kiddoz$kindToString, ingredient.aR)));
+		var buildOption = F2(
+			function (current, candidate) {
+				return A2(
+					$elm$html$Html$option,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$value(candidate),
+							$elm$html$Html$Attributes$selected(
+							_Utils_eq(candidate, current))
+						]),
+					_List_fromArray(
+						[
+							$elm$html$Html$text(
+							t(candidate))
+						]));
+			});
+		return A2(
+			$elm$html$Html$div,
+			_List_fromArray(
+				[
+					$elm$html$Html$Attributes$class('ingredientList')
+				]),
+			_List_fromArray(
+				[
+					A2(
+					$elm$html$Html$div,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('ingredientList-button')
+						]),
+					_List_fromArray(
+						[
+							A2(
+							$elm$html$Html$button,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$type_('button'),
+									$elm$html$Html$Attributes$class('remove'),
+									$elm$html$Html$Events$onClick(
+									$author$project$Types$RemoveIngredient(index))
+								]),
+							_List_fromArray(
+								[
+									$elm$html$Html$text('X')
+								]))
+						])),
+					A2(
+					$elm$html$Html$div,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('ingredientList-form')
+						]),
+					_List_fromArray(
+						[
+							A2(
+							$elm$html$Html$select,
+							_List_fromArray(
+								[
+									$elm$html$Html$Events$onInput(
+									$author$project$Types$SetKind(index))
+								]),
+							$elm$core$List$concat(
+								_List_fromArray(
+									[
+										_List_fromArray(
+										[
+											A2(buildOption, currentKind, '--')
+										]),
+										A2(
+										$elm$core$List$map,
+										buildOption(currentKind),
+										$elm$core$List$sort(
+											A2($elm$core$List$map, $author$project$Kiddoz$kindToString, $author$project$Kiddoz$existingIngredients)))
+									]))),
+							A2(
+							$elm$html$Html$input,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$type_('number'),
+									$elm$html$Html$Attributes$min('0'),
+									$elm$html$Html$Attributes$step('1'),
+									$elm$html$Html$Attributes$placeholder(
+									t('Quantité')),
+									$elm$html$Html$Events$onInput(
+									$author$project$Types$SetQuantity(index)),
+									$elm$html$Html$Attributes$value(
+									$elm$core$String$fromInt(ingredient.aW))
+								]),
+							_List_Nil),
+							A2(
+							$elm$html$Html$select,
+							_List_fromArray(
+								[
+									$elm$html$Html$Events$onInput(
+									$author$project$Types$SetUnit(index))
+								]),
+							$elm$core$List$concat(
+								_List_fromArray(
+									[
+										_List_fromArray(
+										[
+											A2(buildOption, currentUnit, '--')
+										]),
+										A2(
+										$elm$core$List$map,
+										buildOption(currentUnit),
+										A2($elm$core$List$map, $author$project$Kiddoz$unitToSelectString, $author$project$Kiddoz$existingUnits))
+									])))
+						]))
+				]));
+	});
+var $elm$html$Html$aside = _VirtualDom_node('aside');
+var $elm$html$Html$li = _VirtualDom_node('li');
 var $author$project$View$unitToString = F2(
 	function (t, unit) {
 		switch (unit) {
@@ -6179,132 +6368,6 @@ var $author$project$View$unitToString = F2(
 				return t('');
 		}
 	});
-var $elm$html$Html$Attributes$value = $elm$html$Html$Attributes$stringProperty('value');
-var $author$project$View$showIngredientList = F3(
-	function (t, index, ingredient) {
-		var currentUnit = A2($author$project$View$unitToString, t, ingredient.a_);
-		var currentKind = A2(
-			$elm$core$Maybe$withDefault,
-			'--',
-			A2($elm$core$Maybe$map, $author$project$Kiddoz$kindToString, ingredient.aR));
-		var buildOption = F2(
-			function (current, candidate) {
-				return A2(
-					$elm$html$Html$option,
-					_List_fromArray(
-						[
-							$elm$html$Html$Attributes$value(candidate),
-							$elm$html$Html$Attributes$selected(
-							_Utils_eq(candidate, current))
-						]),
-					_List_fromArray(
-						[
-							$elm$html$Html$text(candidate)
-						]));
-			});
-		return A2(
-			$elm$html$Html$tr,
-			_List_Nil,
-			_List_fromArray(
-				[
-					A2(
-					$elm$html$Html$td,
-					_List_Nil,
-					_List_fromArray(
-						[
-							A2(
-							$elm$html$Html$select,
-							_List_fromArray(
-								[
-									$elm$html$Html$Events$onInput(
-									$author$project$Types$SetKind(index))
-								]),
-							$elm$core$List$concat(
-								_List_fromArray(
-									[
-										_List_fromArray(
-										[
-											A2(buildOption, currentKind, '--')
-										]),
-										A2(
-										$elm$core$List$map,
-										buildOption(currentKind),
-										$elm$core$List$sort(
-											A2($elm$core$List$map, $author$project$Kiddoz$kindToString, $author$project$Kiddoz$existingIngredients)))
-									])))
-						])),
-					A2(
-					$elm$html$Html$td,
-					_List_Nil,
-					_List_fromArray(
-						[
-							A2(
-							$elm$html$Html$input,
-							_List_fromArray(
-								[
-									$elm$html$Html$Attributes$type_('number'),
-									$elm$html$Html$Attributes$min('0'),
-									$elm$html$Html$Attributes$step('1'),
-									$elm$html$Html$Attributes$placeholder(
-									t('Quantité')),
-									$elm$html$Html$Events$onInput(
-									$author$project$Types$SetQuantity(index)),
-									$elm$html$Html$Attributes$value(
-									$elm$core$String$fromInt(ingredient.aW))
-								]),
-							_List_Nil)
-						])),
-					A2(
-					$elm$html$Html$td,
-					_List_Nil,
-					_List_fromArray(
-						[
-							A2(
-							$elm$html$Html$select,
-							_List_fromArray(
-								[
-									$elm$html$Html$Events$onInput(
-									$author$project$Types$SetUnit(index))
-								]),
-							$elm$core$List$concat(
-								_List_fromArray(
-									[
-										_List_fromArray(
-										[
-											A2(buildOption, currentUnit, '--')
-										]),
-										A2(
-										$elm$core$List$map,
-										buildOption(currentUnit),
-										A2(
-											$elm$core$List$map,
-											$author$project$View$unitToString(t),
-											$author$project$Kiddoz$existingUnits))
-									])))
-						])),
-					A2(
-					$elm$html$Html$td,
-					_List_Nil,
-					_List_fromArray(
-						[
-							A2(
-							$elm$html$Html$button,
-							_List_fromArray(
-								[
-									$elm$html$Html$Attributes$type_('button'),
-									$elm$html$Html$Attributes$class('remove'),
-									$elm$html$Html$Events$onClick(
-									$author$project$Types$RemoveIngredient(index))
-								]),
-							_List_fromArray(
-								[
-									$elm$html$Html$text('X')
-								]))
-						]))
-				]));
-	});
-var $elm$html$Html$aside = _VirtualDom_node('aside');
-var $elm$html$Html$li = _VirtualDom_node('li');
 var $author$project$View$showIngredientQuantity = F2(
 	function (t, ingredient) {
 		return $elm$core$String$fromInt(ingredient.aW) + (' ' + A2($author$project$View$unitToString, t, ingredient.a_));
@@ -6684,8 +6747,8 @@ var $author$project$Kiddoz$unitTomL = function (unit) {
 			return $elm$core$Maybe$Nothing;
 	}
 };
-var $author$project$View$showKiddozQuantity = F2(
-	function (imagePrefix, ingredient) {
+var $author$project$View$showKiddozQuantity = F3(
+	function (t, imagePrefix, ingredient) {
 		var maybeMLFactor = function () {
 			var _v1 = _Utils_Tuple2(ingredient.a_, ingredient.aR);
 			if ((!_v1.a) && (!_v1.b.$)) {
@@ -6713,7 +6776,8 @@ var $author$project$View$showKiddozQuantity = F2(
 						A2($author$project$View$mL2cup, imagePrefix, mL)),
 						_List_fromArray(
 						[
-							$elm$html$Html$text(' de '),
+							$elm$html$Html$text(
+							t(' de ')),
 							$elm$html$Html$text(ingredient.aS)
 						])
 					]));
@@ -6728,7 +6792,8 @@ var $author$project$View$showKiddozQuantity = F2(
 							$elm$html$Html$text(
 							$elm$core$String$fromInt(ingredient.aW))
 						])),
-					$elm$html$Html$text(' de '),
+					$elm$html$Html$text(
+					t(' de ')),
 					$elm$html$Html$text(ingredient.aS)
 				]);
 		}
@@ -6747,7 +6812,7 @@ var $author$project$View$showKiddoz = F3(
 							t(' de '),
 							ingredient.aS)))
 				]),
-			A2($author$project$View$showKiddozQuantity, imagePrefix, ingredient));
+			A3($author$project$View$showKiddozQuantity, t, imagePrefix, ingredient));
 	});
 var $elm$html$Html$ul = _VirtualDom_node('ul');
 var $author$project$View$showRecipe = F2(
@@ -6775,203 +6840,254 @@ var $author$project$View$showRecipe = F2(
 						]))
 				]));
 	});
-var $author$project$L10n$translateDE = function (key) {
-	return key;
-};
-var $author$project$L10n$translateEN = function (key) {
-	switch (key) {
-		case 'Convertisseur de recettes':
-			return 'Recipe\'s converter';
-		case 'Ingrédients':
-			return 'Ingredients';
-		case 'Quantité':
-			return 'Quantity';
-		case 'Unité':
-			return 'Unit';
-		case 'Convertir':
-			return 'Convert';
-		case 'Recommencer':
-			return 'Reinit';
-		case ' de ':
-			return ' of ';
-		default:
-			return key;
-	}
-};
-var $author$project$L10n$translateFR = function (key) {
-	return key;
-};
-var $author$project$L10n$t = function (locale) {
-	switch (locale) {
-		case 0:
-			return $author$project$L10n$translateFR;
-		case 2:
-			return $author$project$L10n$translateEN;
-		default:
-			return $author$project$L10n$translateDE;
-	}
-};
-var $elm$html$Html$table = _VirtualDom_node('table');
-var $elm$html$Html$tbody = _VirtualDom_node('tbody');
-var $elm$html$Html$th = _VirtualDom_node('th');
-var $elm$html$Html$thead = _VirtualDom_node('thead');
 var $author$project$View$view = function (model) {
-	var t = $author$project$L10n$t(model.O);
+	var t = $author$project$L10n$t(model.M);
 	return A2(
 		$elm$html$Html$div,
 		_List_fromArray(
 			[
-				$elm$html$Html$Attributes$id('content')
+				$elm$html$Html$Attributes$id('content'),
+				$elm$html$Html$Attributes$class('container')
 			]),
 		_List_fromArray(
 			[
 				A2(
-				$elm$html$Html$img,
+				$elm$html$Html$div,
 				_List_fromArray(
 					[
-						$elm$html$Html$Attributes$src('assets/images/Logo-KIDDOZ-01.svg'),
-						$elm$html$Html$Attributes$alt('Kiddoz logo'),
-						$elm$html$Html$Attributes$class('logo')
-					]),
-				_List_Nil),
-				A2(
-				$elm$html$Html$h2,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$elm$html$Html$text(
-						t('Convertisseur de recettes'))
-					])),
-				A2(
-				$elm$html$Html$form,
-				_List_fromArray(
-					[
-						$elm$html$Html$Events$onSubmit($author$project$Types$ConvertIngredients)
+						$elm$html$Html$Attributes$class('row')
 					]),
 				_List_fromArray(
 					[
 						A2(
-						$elm$html$Html$table,
-						_List_Nil,
+						$elm$html$Html$div,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('col-12')
+							]),
 						_List_fromArray(
 							[
 								A2(
-								$elm$html$Html$thead,
+								$elm$html$Html$img,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$src('assets/images/Logo-KIDDOZ-01.svg'),
+										$elm$html$Html$Attributes$alt('Kiddoz logo'),
+										$elm$html$Html$Attributes$class('logo')
+									]),
+								_List_Nil)
+							])),
+						A2(
+						$elm$html$Html$div,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('col-12')
+							]),
+						_List_fromArray(
+							[
+								A2(
+								$elm$html$Html$h1,
 								_List_Nil,
 								_List_fromArray(
 									[
+										$elm$html$Html$text(
+										t('Convertisseur de recettes'))
+									]))
+							]))
+					])),
+				A2(
+				$elm$html$Html$div,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$class('row')
+					]),
+				_List_fromArray(
+					[
+						A2(
+						$elm$html$Html$form,
+						_List_fromArray(
+							[
+								$elm$html$Html$Events$onSubmit($author$project$Types$ConvertIngredients),
+								$elm$html$Html$Attributes$class('col-sm-12 col-md-12 col-lg-6 offset-lg-1')
+							]),
+						_List_fromArray(
+							[
+								A2(
+								$elm$html$Html$div,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$class('card')
+									]),
+								_List_fromArray(
+									[
 										A2(
-										$elm$html$Html$tr,
+										$elm$html$Html$h2,
 										_List_Nil,
 										_List_fromArray(
 											[
+												$elm$html$Html$text(
+												t('Your recipe'))
+											])),
+										A2(
+										$elm$html$Html$div,
+										_List_fromArray(
+											[
+												$elm$html$Html$Attributes$class('card-content container')
+											]),
+										_List_fromArray(
+											[
 												A2(
-												$elm$html$Html$th,
-												_List_Nil,
+												$elm$html$Html$div,
 												_List_fromArray(
 													[
-														$elm$html$Html$text(
-														t('Ingrédient'))
-													])),
-												A2(
-												$elm$html$Html$th,
-												_List_Nil,
+														$elm$html$Html$Attributes$class('row')
+													]),
 												_List_fromArray(
 													[
-														$elm$html$Html$text(
-														t('Quantité'))
-													])),
-												A2(
-												$elm$html$Html$th,
-												_List_Nil,
-												_List_fromArray(
-													[
-														$elm$html$Html$text(
-														t('Unité'))
+														A2(
+														$elm$html$Html$div,
+														_List_fromArray(
+															[
+																$elm$html$Html$Attributes$class('col-12')
+															]),
+														$elm$core$Array$toList(
+															A2(
+																$elm$core$Array$indexedMap,
+																$author$project$View$showIngredientList(t),
+																model.s))),
+														A2(
+														$elm$html$Html$div,
+														_List_fromArray(
+															[
+																$elm$html$Html$Attributes$class('col-12 ingredientList actions')
+															]),
+														_List_fromArray(
+															[
+																A2(
+																$elm$html$Html$button,
+																_List_fromArray(
+																	[
+																		$elm$html$Html$Attributes$type_('button'),
+																		$elm$html$Html$Attributes$class('remove'),
+																		$elm$html$Html$Events$onClick(
+																		$author$project$Types$RemoveIngredient(-1))
+																	]),
+																_List_fromArray(
+																	[
+																		$elm$html$Html$text('-')
+																	])),
+																A2(
+																$elm$html$Html$button,
+																_List_fromArray(
+																	[
+																		$elm$html$Html$Attributes$type_('button'),
+																		$elm$html$Html$Attributes$class('add'),
+																		$elm$html$Html$Events$onClick($author$project$Types$AddIngredient)
+																	]),
+																_List_fromArray(
+																	[
+																		$elm$html$Html$text('+')
+																	]))
+															]))
 													]))
 											]))
 									])),
 								A2(
-								$elm$html$Html$tbody,
-								_List_Nil,
-								$elm$core$Array$toList(
-									A2(
-										$elm$core$Array$indexedMap,
-										$author$project$View$showIngredientList(t),
-										model.s))),
-								A2(
 								$elm$html$Html$div,
-								_List_Nil,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$class('row')
+									]),
 								_List_fromArray(
 									[
 										A2(
-										$elm$html$Html$button,
+										$elm$html$Html$div,
 										_List_fromArray(
 											[
-												$elm$html$Html$Attributes$type_('button'),
-												$elm$html$Html$Events$onClick($author$project$Types$AddIngredient)
+												$elm$html$Html$Attributes$class('col-12 col-sm-6')
 											]),
 										_List_fromArray(
 											[
-												$elm$html$Html$text('+')
-											]))
-									])),
-								A2(
-								$elm$html$Html$div,
-								_List_Nil,
-								_List_fromArray(
-									[
+												A2(
+												$elm$html$Html$div,
+												_List_Nil,
+												_List_fromArray(
+													[
+														A2(
+														$elm$html$Html$button,
+														_List_fromArray(
+															[
+																$elm$html$Html$Attributes$type_('button'),
+																$elm$html$Html$Attributes$class('btn transparent'),
+																$elm$html$Html$Events$onClick($author$project$Types$Reinit)
+															]),
+														_List_fromArray(
+															[
+																$elm$html$Html$text(
+																t('Recommencer'))
+															]))
+													]))
+											])),
 										A2(
-										$elm$html$Html$button,
+										$elm$html$Html$div,
 										_List_fromArray(
 											[
-												$elm$html$Html$Attributes$type_('button'),
-												$elm$html$Html$Events$onClick(
-												$author$project$Types$RemoveIngredient(-1))
+												$elm$html$Html$Attributes$class('col-12 col-sm-6')
 											]),
 										_List_fromArray(
 											[
-												$elm$html$Html$text('-')
+												A2(
+												$elm$html$Html$div,
+												_List_Nil,
+												_List_fromArray(
+													[
+														A2(
+														$elm$html$Html$button,
+														_List_fromArray(
+															[
+																$elm$html$Html$Attributes$type_('submit'),
+																$elm$html$Html$Attributes$class('btn')
+															]),
+														_List_fromArray(
+															[
+																$elm$html$Html$text(
+																t('Convertir'))
+															]))
+													]))
 											]))
 									]))
 							])),
 						A2(
 						$elm$html$Html$div,
-						_List_Nil,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('col-sm-12 col-md-12 col-lg-4')
+							]),
 						_List_fromArray(
 							[
 								A2(
-								$elm$html$Html$button,
+								$elm$html$Html$div,
 								_List_fromArray(
 									[
-										$elm$html$Html$Attributes$type_('submit')
+										$elm$html$Html$Attributes$class('card')
 									]),
 								_List_fromArray(
 									[
-										$elm$html$Html$text(
-										t('Convertir'))
-									]))
-							])),
-						A2(
-						$elm$html$Html$div,
-						_List_Nil,
-						_List_fromArray(
-							[
-								A2(
-								$elm$html$Html$button,
-								_List_fromArray(
-									[
-										$elm$html$Html$Attributes$type_('button'),
-										$elm$html$Html$Events$onClick($author$project$Types$Reinit)
-									]),
-								_List_fromArray(
-									[
-										$elm$html$Html$text(
-										t('Recommencer'))
+										A2(
+										$elm$html$Html$h2,
+										_List_fromArray(
+											[
+												$elm$html$Html$Attributes$class('orange')
+											]),
+										_List_fromArray(
+											[
+												$elm$html$Html$text(
+												t('Your kiddoz recipe'))
+											])),
+										A2($author$project$View$showRecipe, t, model)
 									]))
 							]))
-					])),
-				A2($author$project$View$showRecipe, t, model)
+					]))
 			]));
 };
 var $author$project$Main$main = $elm$browser$Browser$element(
@@ -6984,7 +7100,7 @@ _Platform_export({'Main':{'init':$author$project$Main$main(
 				$elm$json$Json$Decode$andThen,
 				function (locale) {
 					return $elm$json$Json$Decode$succeed(
-						{O: locale, U: _static});
+						{M: locale, U: _static});
 				},
 				A2($elm$json$Json$Decode$field, 'locale', $elm$json$Json$Decode$string));
 		},

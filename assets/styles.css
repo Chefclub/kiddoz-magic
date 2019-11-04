@@ -1,16 +1,6 @@
 html, body {
-	background-color: rgba(161, 225, 234, 0.5);
-	font-family: Roboto, sans-serif;
-}
-
-div#content {
-	width: 800px;
-	margin: auto;
-}
-
-h2 {
-	text-align: center;
-	font-weight: 900;
+	background-color: #9fdfe8;
+	font-family: 'Roboto Regular', sans-serif;
 }
 
 img.logo {
@@ -18,32 +8,177 @@ img.logo {
 	margin: 20px auto;
 }
 
-form {
-  background: linear-gradient(0deg,rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url("./images/desktop-banner-2308-back-cups.477de766.png");
-  background-size: cover;
-}
-
-form > div {
+h1, h2 {
+	font-family: 'FuturaLT Bold';
+	color: white;
+	text-transform: uppercase;
 	text-align: center;
-	padding: 10px;
 }
 
-form table {
+h1 {
+	font-size: 30px;
+	letter-spacing: 1.5px;
+}
+
+h2 {
+	font-size: 20px;
+	letter-spacing: 1px;
+}
+
+.card {
+	margin-top: 13px;
+	border-radius: 4px;
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.15);
+	background-color: #ffffff;
+	overflow: hidden;
+}
+.card h2 {
+	height: 58px;
+	margin: 0;
+	background: #6252a7;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.card h2.orange {
+	background: #ff671d;
+}
+.card .card-content {
+	padding: 32px 15px;
+}
+
+
+button.btn {
+	cursor: pointer;
+	background: #6252a7;
+	color: white;
+	border-radius: 8px;
+	height: 51px;
 	width: 100%;
+	font-size: 16px;
+	border: none;
+	margin-top: 13px;
+	font-family: 'Roboto Bold', sans-serif;
+	transition: background 250ms;
 }
 
-form th {
-	background-color: rgba(161, 225, 224, 0.7);
-
+button.btn:hover {
+	background: #49398E;
 }
 
-form input {
-	display: block;
-	margin: 10px auto;
+button.add, button.remove {
+	width: 37px;
+	height: 37px;
+	border: none;
+	background-color: transparent;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: contain;
+	color: transparent;
+	cursor: pointer;
+	flex-shrink: 0;
+	flex-grow: 0;
+}
+button.add {
+	background-image: url('./images/btn-add.svg');
+}
+button.remove {
+	background-image: url('./images/btn-remove.svg');
 }
 
-ol {
+button.btn.transparent {
+	background: none;
+	color: #6252a7;
+	border: solid 1px #6252a7;
+}
+
+button.btn.transparent:hover {
+	color: #49398E;
+	background: rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"], input[type="number"], select {
+	background: #f6f5fa;
+	border: none;
+	border-radius: 5px;
+	padding: 0 14px;
+	font-size: 14px;
+	font-family: "Roboto Regular";
+	color: #282828;
+	border: solid 0.5px #6252a7;
+	flex-grow: 1;
+	flex-shrink: 1;
+	height: 51px;
+	display: inline-block;
+}
+input[type="number"] {
+	padding: 0 5px;
+	width: 70px;
+}
+select {
+	padding-right: 30px;
+	position: relative;
+	appearance: none;
+	-webkit-appearance: none;
+	background: url('./images/select_appearance.svg');
+	background-repeat: no-repeat;
+	background-position: center right 8px;
+	background-size: 14px;
+}
+select.flex-grow {
+	flex-grow: 1;
+}
+select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+}
+
+.ingredientList {
+	margin-bottom: 16px;
+	display: flex;
+	justify-content: center;
+}
+
+.ingredientList .ingredientList-button {
+	margin-right: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.ingredientList .ingredientList-form {
+	justify-content: center;
+	width: 100%;
+	max-width: 360px;
+}
+
+.ingredientList.actions {
+	display: flex;
+	margin: auto;
+	justify-content: flex-start;
+	width: 100%;
+	max-width: 437px;
+}
+
+.ingredientList.actions button.remove { display: none; }
+
+@media screen and (max-width: 768px ) {
+	.ingredientList .ingredientList-button { display: none; }
+	.ingredientList.actions { margin: auto; justify-content: flex-end; max-width: 380px; }
+	.ingredientList.actions button.remove { display: block; }
+}
+#recipe_content {
+	padding: 18px 32px 0px;
+}
+#recipe_content ul {
 	list-style: none;
-	padding: 0 0 0 30px;
-	margin-top: 0;
+}
+#recipe_content ul li {
+	padding-bottom: 19px;
+}
+#recipe_content ul li img {
+	max-height: 32px;
+	margin-right: 6px;
+	margin-left: 6px;
+	vertical-align: middle;
 }
