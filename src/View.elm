@@ -27,7 +27,8 @@ view model =
             L10n.t model.locale
     in
     div [ id "kiddoz-magik", class "container" ]
-        [ div [ class "row" ]
+        [ h2 [ class "center uppercase" ] [ text <| t "Convertisseur de recettes" ]
+        , div [ class "row" ]
             [ Html.form [ onSubmit ConvertIngredients, class "col-sm-12 col-md-12 col-lg-6 offset-lg-1" ]
                 [ div [ class "card" ]
                     [ h2 [] [ text <| t "Ta recette" ]
