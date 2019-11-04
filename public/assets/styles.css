@@ -40,6 +40,8 @@
 	margin-top: 13px;
 	font-family: 'Roboto Bold', sans-serif;
 	transition: background 250ms;
+	text-transform: unset;
+	letter-spacing: unset;
 }
 #kiddoz-magik button.btn:hover {
 	background: #49398E;
@@ -130,9 +132,9 @@
 	width: 100%;
 	max-width: 437px;
 }
-#kiddoz-magik .ingredientList.actions button.remove { display: none; }
+#kiddoz-magik .ingredientListActions button.remove { display: none; }
 @media screen and (max-width: 768px ) {
-	#kiddoz-magik .ingredientList .ingredientList-button { display: none; }
+	#kiddoz-magik .ingredientList .ingredientList-button { display: none !important; }
 	#kiddoz-magik .ingredientList.ingredientListActions { margin: auto; justify-content: flex-end; max-width: 380px; }
 	#kiddoz-magik .ingredientList.ingredientListActions button.remove { display: block; }
 }
