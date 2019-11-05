@@ -45,7 +45,7 @@ update msg ({ editingIngredients } as model) =
 
                 ingredient =
                     Array.get index editingIngredients
-                        |> Maybe.withDefault emptyIngredient
+                        |> Maybe.withDefault (emptyIngredient "")
 
                 newIngredient =
                     { ingredient
@@ -63,7 +63,7 @@ update msg ({ editingIngredients } as model) =
             let
                 ingredient =
                     Array.get index editingIngredients
-                        |> Maybe.withDefault emptyIngredient
+                        |> Maybe.withDefault (emptyIngredient "")
 
                 newIngredient =
                     { ingredient
@@ -80,7 +80,7 @@ update msg ({ editingIngredients } as model) =
             let
                 ingredient =
                     Array.get index editingIngredients
-                        |> Maybe.withDefault emptyIngredient
+                        |> Maybe.withDefault (emptyIngredient "")
 
                 newIngredient =
                     { ingredient
@@ -97,9 +97,12 @@ update msg ({ editingIngredients } as model) =
 
         AddIngredient ->
             let
+                t =
+                    L10n.t model.locale
+
                 newIngredients =
                     editingIngredients
-                        |> Array.push emptyIngredient
+                        |> Array.push (emptyIngredient <| t "Farine")
             in
             ( { model
                 | editingIngredients = newIngredients

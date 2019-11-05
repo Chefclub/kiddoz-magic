@@ -38,10 +38,14 @@
       </div>
     </div>
   </div>
-  <div id="app"></div>
+  <div id="appFR"></div>
+  <div id="appDE"></div>
+  <div id="appUS"></div>
   <script src="app.js"></script>
   <script>
-    const app = Elm.Main.init({node: document.getElementById('app'), flags: {static: "assets/", locale: "en"}});
+      Elm.Main.init({node: document.getElementById('appFR'), flags: {static: "assets/", locale: "fr"}});
+      Elm.Main.init({node: document.getElementById('appDE'), flags: {static: "assets/", locale: "de"}});
+      Elm.Main.init({node: document.getElementById('appUS'), flags: {static: "assets/", locale: "en"}});
   </script>
 </body>
 </html>

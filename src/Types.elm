@@ -61,7 +61,7 @@ localeFromString l =
 
 emptyModel : Model
 emptyModel =
-    { editingIngredients = Array.fromList [ emptyIngredient ]
+    { editingIngredients = Array.fromList [ emptyIngredient "" ]
     , ingredients = []
     , locale = FR
     , static = "assets/"
@@ -76,9 +76,9 @@ type alias Ingredient =
     }
 
 
-emptyIngredient : Ingredient
-emptyIngredient =
-    { name = "Farine"
+emptyIngredient : String -> Ingredient
+emptyIngredient name =
+    { name = name
     , kind = Just Flour
     , quantity = 1
     , unit = Grams
