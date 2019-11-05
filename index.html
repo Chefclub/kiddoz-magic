@@ -9,11 +9,43 @@
   <link media="all" rel="stylesheet" href="assets/fonts.css" />
   <link media="all" rel="stylesheet" href="assets/bootstrap-grid.min.css" />
   <link media="all" rel="stylesheet" href="assets/styles.css" />
+  <style>
+    html, body {
+      background-color: #9fdfe8;
+      font-family: 'Roboto Regular', sans-serif;
+    }
+
+    h1 {
+      font-family: 'FuturaLT Bold';
+      color: white;
+      text-transform: uppercase;
+      text-align: center;
+      font-size: 30px;
+      letter-spacing: 1.5px;
+    }
+
+    img.logo {
+      display: block;
+      margin: 20px auto;
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <img src="assets/images/Logo-KIDDOZ-01.svg" alt="Kiddoz logo" class="logo" />
+      </div>
+    </div>
+  </div>
+  <div id="appFR"></div>
+  <div id="appDE"></div>
+  <div id="appUS"></div>
   <script src="app.js"></script>
   <script>
-    const app = Elm.Main.init({node: document.body, flags: {static: "assets/", locale: "en"}});
+      Elm.Main.init({node: document.getElementById('appFR'), flags: {static: "assets/", locale: "fr"}});
+      Elm.Main.init({node: document.getElementById('appDE'), flags: {static: "assets/", locale: "de"}});
+      Elm.Main.init({node: document.getElementById('appUS'), flags: {static: "assets/", locale: "en"}});
   </script>
 </body>
 </html>

@@ -519,11 +519,11 @@ function _Debug_crash_UNUSED(identifier, fact1, fact2, fact3, fact4)
 
 function _Debug_regionToString(region)
 {
-	if (region.T.G === region.aa.G)
+	if (region.U.H === region.aa.H)
 	{
-		return 'on line ' + region.T.G;
+		return 'on line ' + region.U.H;
 	}
-	return 'on lines ' + region.T.G + ' through ' + region.aa.G;
+	return 'on lines ' + region.U.H + ' through ' + region.aa.H;
 }
 
 
@@ -2661,7 +2661,7 @@ var _VirtualDom_mapEventRecord = F2(function(func, record)
 	return {
 		o: func(record.o),
 		V: record.V,
-		R: record.R
+		S: record.S
 	}
 });
 
@@ -2933,7 +2933,7 @@ function _VirtualDom_makeCallback(eventNode, initialHandler)
 		var stopPropagation = tag == 1 ? value.b : tag == 3 && value.V;
 		var currentEventNode = (
 			stopPropagation && event.stopPropagation(),
-			(tag == 2 ? value.b : tag == 3 && value.R) && event.preventDefault(),
+			(tag == 2 ? value.b : tag == 3 && value.S) && event.preventDefault(),
 			eventNode
 		);
 		var tagger;
@@ -3923,7 +3923,7 @@ var _Browser_document = _Debugger_document || F4(function(impl, flagDecoder, deb
 		impl.a$,
 		impl.aY,
 		function(sendToApp, initialModel) {
-			var divertHrefToApp = impl.S && impl.S(sendToApp)
+			var divertHrefToApp = impl.T && impl.T(sendToApp)
 			var view = impl.a0;
 			var title = _VirtualDom_doc.title;
 			var bodyNode = _VirtualDom_doc.body;
@@ -3998,7 +3998,7 @@ function _Browser_application(impl)
 	var key = function() { key.a(onUrlChange(_Browser_getUrl())); };
 
 	return _Browser_document({
-		S: function(sendToApp)
+		T: function(sendToApp)
 		{
 			key.a = sendToApp;
 			_Browser_window.addEventListener('popstate', key);
@@ -4096,17 +4096,17 @@ var _Browser_decodeEvent = F2(function(decoder, event)
 function _Browser_visibilityInfo()
 {
 	return (typeof _VirtualDom_doc.hidden !== 'undefined')
-		? { aM: 'hidden', L: 'visibilitychange' }
+		? { aM: 'hidden', N: 'visibilitychange' }
 		:
 	(typeof _VirtualDom_doc.mozHidden !== 'undefined')
-		? { aM: 'mozHidden', L: 'mozvisibilitychange' }
+		? { aM: 'mozHidden', N: 'mozvisibilitychange' }
 		:
 	(typeof _VirtualDom_doc.msHidden !== 'undefined')
-		? { aM: 'msHidden', L: 'msvisibilitychange' }
+		? { aM: 'msHidden', N: 'msvisibilitychange' }
 		:
 	(typeof _VirtualDom_doc.webkitHidden !== 'undefined')
-		? { aM: 'webkitHidden', L: 'webkitvisibilitychange' }
-		: { aM: 'hidden', L: 'visibilitychange' };
+		? { aM: 'webkitHidden', N: 'webkitvisibilitychange' }
+		: { aM: 'hidden', N: 'visibilitychange' };
 }
 
 
@@ -4189,10 +4189,10 @@ function _Browser_getViewport()
 	return {
 		az: _Browser_getScene(),
 		aF: {
-			N: _Browser_window.pageXOffset,
-			O: _Browser_window.pageYOffset,
-			D: _Browser_doc.documentElement.clientWidth,
-			y: _Browser_doc.documentElement.clientHeight
+			O: _Browser_window.pageXOffset,
+			P: _Browser_window.pageYOffset,
+			E: _Browser_doc.documentElement.clientWidth,
+			z: _Browser_doc.documentElement.clientHeight
 		}
 	};
 }
@@ -4202,8 +4202,8 @@ function _Browser_getScene()
 	var body = _Browser_doc.body;
 	var elem = _Browser_doc.documentElement;
 	return {
-		D: Math.max(body.scrollWidth, body.offsetWidth, elem.scrollWidth, elem.offsetWidth, elem.clientWidth),
-		y: Math.max(body.scrollHeight, body.offsetHeight, elem.scrollHeight, elem.offsetHeight, elem.clientHeight)
+		E: Math.max(body.scrollWidth, body.offsetWidth, elem.scrollWidth, elem.offsetWidth, elem.clientWidth),
+		z: Math.max(body.scrollHeight, body.offsetHeight, elem.scrollHeight, elem.offsetHeight, elem.clientHeight)
 	};
 }
 
@@ -4227,14 +4227,14 @@ function _Browser_getViewportOf(id)
 	{
 		return {
 			az: {
-				D: node.scrollWidth,
-				y: node.scrollHeight
+				E: node.scrollWidth,
+				z: node.scrollHeight
 			},
 			aF: {
-				N: node.scrollLeft,
-				O: node.scrollTop,
-				D: node.clientWidth,
-				y: node.clientHeight
+				O: node.scrollLeft,
+				P: node.scrollTop,
+				E: node.clientWidth,
+				z: node.clientHeight
 			}
 		};
 	});
@@ -4266,16 +4266,16 @@ function _Browser_getElement(id)
 		return {
 			az: _Browser_getScene(),
 			aF: {
-				N: x,
-				O: y,
-				D: _Browser_doc.documentElement.clientWidth,
-				y: _Browser_doc.documentElement.clientHeight
+				O: x,
+				P: y,
+				E: _Browser_doc.documentElement.clientWidth,
+				z: _Browser_doc.documentElement.clientHeight
 			},
 			aK: {
-				N: x + rect.left,
-				O: y + rect.top,
-				D: rect.width,
-				y: rect.height
+				O: x + rect.left,
+				P: y + rect.top,
+				E: rect.width,
+				z: rect.height
 			}
 		};
 	});
@@ -5135,11 +5135,13 @@ var $elm$json$Json$Decode$field = _Json_decodeField;
 var $author$project$Types$FR = 0;
 var $author$project$Kiddoz$Flour = 0;
 var $author$project$Kiddoz$Grams = 0;
-var $author$project$Types$emptyIngredient = {
-	aR: $elm$core$Maybe$Just(0),
-	aS: 'Farine',
-	aW: 1,
-	a_: 0
+var $author$project$Types$emptyIngredient = function (name) {
+	return {
+		aR: $elm$core$Maybe$Just(0),
+		aS: name,
+		aW: 1,
+		a_: 0
+	};
 };
 var $elm$core$Array$fromListHelp = F3(
 	function (list, nodeList, nodeListSize) {
@@ -5179,10 +5181,12 @@ var $elm$core$Array$fromList = function (list) {
 var $author$project$Types$emptyModel = {
 	s: $elm$core$Array$fromList(
 		_List_fromArray(
-			[$author$project$Types$emptyIngredient])),
+			[
+				$author$project$Types$emptyIngredient('')
+			])),
 	aO: _List_Nil,
-	M: 0,
-	U: 'assets/'
+	u: 0,
+	I: 'assets/'
 };
 var $author$project$Types$DE = 1;
 var $author$project$Types$EN = 2;
@@ -5194,11 +5198,11 @@ var $author$project$Types$localeFromString = function (l) {
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
 var $author$project$Main$init = function (flags) {
-	var locale = $author$project$Types$localeFromString(flags.M);
+	var locale = $author$project$Types$localeFromString(flags.u);
 	return _Utils_Tuple2(
 		_Utils_update(
 			$author$project$Types$emptyModel,
-			{M: locale, U: flags.U}),
+			{u: locale, I: flags.I}),
 		$elm$core$Platform$Cmd$none);
 };
 var $elm$json$Json$Decode$string = _Json_decodeString;
@@ -5717,7 +5721,11 @@ var $elm$core$Array$slice = F3(
 			A2($elm$core$Array$sliceRight, correctTo, array));
 	});
 var $author$project$L10n$translateDE = function (key) {
-	return key;
+	if (key === 'Convertisseur de recettes') {
+		return 'Rezept-Konverter';
+	} else {
+		return key;
+	}
 };
 var $author$project$L10n$translateEN = function (key) {
 	switch (key) {
@@ -5737,6 +5745,10 @@ var $author$project$L10n$translateEN = function (key) {
 			return ' of ';
 		case 'Farine':
 			return 'Flour';
+		case 'Ta recette':
+			return 'Your recipe';
+		case 'Ta recette Kiddoz':
+			return 'Your Kiddoz recipe';
 		default:
 			return key;
 	}
@@ -5825,10 +5837,10 @@ var $author$project$Main$update = F2(
 			case 2:
 				var index = msg.a;
 				var name = msg.b;
-				var t = $author$project$L10n$t(model.M);
+				var t = $author$project$L10n$t(model.u);
 				var ingredient = A2(
 					$elm$core$Maybe$withDefault,
-					$author$project$Types$emptyIngredient,
+					$author$project$Types$emptyIngredient(''),
 					A2($elm$core$Array$get, index, editingIngredients));
 				var newIngredient = _Utils_update(
 					ingredient,
@@ -5847,7 +5859,7 @@ var $author$project$Main$update = F2(
 				var unit = msg.b;
 				var ingredient = A2(
 					$elm$core$Maybe$withDefault,
-					$author$project$Types$emptyIngredient,
+					$author$project$Types$emptyIngredient(''),
 					A2($elm$core$Array$get, index, editingIngredients));
 				var newIngredient = _Utils_update(
 					ingredient,
@@ -5865,7 +5877,7 @@ var $author$project$Main$update = F2(
 				var quantity = msg.b;
 				var ingredient = A2(
 					$elm$core$Maybe$withDefault,
-					$author$project$Types$emptyIngredient,
+					$author$project$Types$emptyIngredient(''),
 					A2($elm$core$Array$get, index, editingIngredients));
 				var newIngredient = _Utils_update(
 					ingredient,
@@ -5882,7 +5894,12 @@ var $author$project$Main$update = F2(
 						{s: newIngredients}),
 					$elm$core$Platform$Cmd$none);
 			case 3:
-				var newIngredients = A2($elm$core$Array$push, $author$project$Types$emptyIngredient, editingIngredients);
+				var t = $author$project$L10n$t(model.u);
+				var newIngredients = A2(
+					$elm$core$Array$push,
+					$author$project$Types$emptyIngredient(
+						t('Farine')),
+					editingIngredients);
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
@@ -5925,7 +5942,11 @@ var $author$project$Main$update = F2(
 						}),
 					$elm$core$Platform$Cmd$none);
 			default:
-				return _Utils_Tuple2($author$project$Types$emptyModel, $elm$core$Platform$Cmd$none);
+				return _Utils_Tuple2(
+					_Utils_update(
+						$author$project$Types$emptyModel,
+						{u: model.u, I: model.I}),
+					$elm$core$Platform$Cmd$none);
 		}
 	});
 var $author$project$Types$AddIngredient = {$: 3};
@@ -5934,6 +5955,7 @@ var $author$project$Types$Reinit = {$: 6};
 var $author$project$Types$RemoveIngredient = function (a) {
 	return {$: 4, a: a};
 };
+var $elm$html$Html$button = _VirtualDom_node('button');
 var $elm$json$Json$Encode$string = _Json_wrap;
 var $elm$html$Html$Attributes$stringProperty = F2(
 	function (key, string) {
@@ -5942,15 +5964,11 @@ var $elm$html$Html$Attributes$stringProperty = F2(
 			key,
 			$elm$json$Json$Encode$string(string));
 	});
-var $elm$html$Html$Attributes$alt = $elm$html$Html$Attributes$stringProperty('alt');
-var $elm$html$Html$button = _VirtualDom_node('button');
 var $elm$html$Html$Attributes$class = $elm$html$Html$Attributes$stringProperty('className');
 var $elm$html$Html$div = _VirtualDom_node('div');
 var $elm$html$Html$form = _VirtualDom_node('form');
-var $elm$html$Html$h1 = _VirtualDom_node('h1');
 var $elm$html$Html$h2 = _VirtualDom_node('h2');
 var $elm$html$Html$Attributes$id = $elm$html$Html$Attributes$stringProperty('id');
-var $elm$html$Html$img = _VirtualDom_node('img');
 var $elm$core$Elm$JsArray$foldl = _JsArray_foldl;
 var $elm$core$Elm$JsArray$indexedMap = _JsArray_indexedMap;
 var $elm$core$Array$indexedMap = F2(
@@ -6278,64 +6296,91 @@ var $author$project$View$showIngredientList = F3(
 					$elm$html$Html$div,
 					_List_fromArray(
 						[
-							$elm$html$Html$Attributes$class('ingredientList-form')
+							$elm$html$Html$Attributes$class('ingredientList-form row  no-gutters')
 						]),
 					_List_fromArray(
 						[
 							A2(
-							$elm$html$Html$select,
+							$elm$html$Html$div,
 							_List_fromArray(
 								[
-									$elm$html$Html$Events$onInput(
-									$author$project$Types$SetKind(index))
+									$elm$html$Html$Attributes$class('col-12 col-sm-12 col-md-6')
 								]),
-							$elm$core$List$concat(
-								_List_fromArray(
-									[
-										_List_fromArray(
+							_List_fromArray(
+								[
+									A2(
+									$elm$html$Html$select,
+									_List_fromArray(
 										[
-											A2(buildOption, currentKind, '--')
+											$elm$html$Html$Events$onInput(
+											$author$project$Types$SetKind(index))
 										]),
-										A2(
-										$elm$core$List$map,
-										buildOption(currentKind),
-										$elm$core$List$sort(
-											A2($elm$core$List$map, $author$project$Kiddoz$kindToString, $author$project$Kiddoz$existingIngredients)))
-									]))),
-							A2(
-							$elm$html$Html$input,
-							_List_fromArray(
-								[
-									$elm$html$Html$Attributes$type_('number'),
-									$elm$html$Html$Attributes$min('0'),
-									$elm$html$Html$Attributes$step('1'),
-									$elm$html$Html$Attributes$placeholder(
-									t('Quantité')),
-									$elm$html$Html$Events$onInput(
-									$author$project$Types$SetQuantity(index)),
-									$elm$html$Html$Attributes$value(
-									$elm$core$String$fromInt(ingredient.aW))
-								]),
-							_List_Nil),
-							A2(
-							$elm$html$Html$select,
-							_List_fromArray(
-								[
-									$elm$html$Html$Events$onInput(
-									$author$project$Types$SetUnit(index))
-								]),
-							$elm$core$List$concat(
-								_List_fromArray(
-									[
+									$elm$core$List$concat(
 										_List_fromArray(
+											[
+												_List_fromArray(
+												[
+													A2(buildOption, currentKind, '--')
+												]),
+												A2(
+												$elm$core$List$map,
+												buildOption(currentKind),
+												$elm$core$List$sort(
+													A2($elm$core$List$map, $author$project$Kiddoz$kindToString, $author$project$Kiddoz$existingIngredients)))
+											])))
+								])),
+							A2(
+							$elm$html$Html$div,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('col-6 col-sm-6 col-md-3')
+								]),
+							_List_fromArray(
+								[
+									A2(
+									$elm$html$Html$input,
+									_List_fromArray(
 										[
-											A2(buildOption, currentUnit, '--')
+											$elm$html$Html$Attributes$type_('number'),
+											$elm$html$Html$Attributes$min('0'),
+											$elm$html$Html$Attributes$step('1'),
+											$elm$html$Html$Attributes$placeholder(
+											t('Quantité')),
+											$elm$html$Html$Events$onInput(
+											$author$project$Types$SetQuantity(index)),
+											$elm$html$Html$Attributes$value(
+											$elm$core$String$fromInt(ingredient.aW))
 										]),
-										A2(
-										$elm$core$List$map,
-										buildOption(currentUnit),
-										A2($elm$core$List$map, $author$project$Kiddoz$unitToSelectString, $author$project$Kiddoz$existingUnits))
-									])))
+									_List_Nil)
+								])),
+							A2(
+							$elm$html$Html$div,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('col-6 col-sm-6 col-md-3')
+								]),
+							_List_fromArray(
+								[
+									A2(
+									$elm$html$Html$select,
+									_List_fromArray(
+										[
+											$elm$html$Html$Events$onInput(
+											$author$project$Types$SetUnit(index))
+										]),
+									$elm$core$List$concat(
+										_List_fromArray(
+											[
+												_List_fromArray(
+												[
+													A2(buildOption, currentUnit, '--')
+												]),
+												A2(
+												$elm$core$List$map,
+												buildOption(currentUnit),
+												A2($elm$core$List$map, $author$project$Kiddoz$unitToSelectString, $author$project$Kiddoz$existingUnits))
+											])))
+								]))
 						]))
 				]));
 	});
@@ -6464,7 +6509,7 @@ var $author$project$Change$coinsList = _List_fromArray(
 	[250, 245, 240, 125, 120, 85, 80, 65, 60, 15, 5]);
 var $author$project$Change$ChangeInfo = F3(
 	function (amount, weight, change) {
-		return {F: amount, L: change, r: weight};
+		return {G: amount, N: change, r: weight};
 	});
 var $author$project$Change$emptyChangeInfo = F2(
 	function (maxWeight, currentAmount) {
@@ -6495,7 +6540,7 @@ var $elm$core$List$minimum = function (list) {
 };
 var $author$project$Change$backTrackChange = F4(
 	function (min_coin, coins, currentInfo, previousInfos) {
-		if (!currentInfo.F) {
+		if (!currentInfo.G) {
 			return A3(
 				$elm$core$Array$set,
 				0,
@@ -6507,8 +6552,8 @@ var $author$project$Change$backTrackChange = F4(
 			var candidates = A2(
 				$elm$core$List$map,
 				function (coin) {
-					if (_Utils_cmp(currentInfo.F, coin) > -1) {
-						var previousMap = currentInfo.F - coin;
+					if (_Utils_cmp(currentInfo.G, coin) > -1) {
+						var previousMap = currentInfo.G - coin;
 						var previousInfo = A2(
 							$elm$core$Maybe$withDefault,
 							A2($author$project$Change$emptyChangeInfo, 10000, previousMap),
@@ -6516,7 +6561,7 @@ var $author$project$Change$backTrackChange = F4(
 						return (_Utils_cmp(previousInfo.r + 1, currentInfo.r) < 0) ? _Utils_update(
 							currentInfo,
 							{
-								L: A2($elm$core$List$cons, coin * min_coin, previousInfo.L),
+								N: A2($elm$core$List$cons, coin * min_coin, previousInfo.N),
 								r: previousInfo.r + 1
 							}) : currentInfo;
 					} else {
@@ -6545,7 +6590,7 @@ var $author$project$Change$backTrackChange = F4(
 				return previousInfos;
 			} else {
 				var candidate = lowerCandidate.a;
-				return A3($elm$core$Array$set, currentInfo.F, candidate, previousInfos);
+				return A3($elm$core$Array$set, currentInfo.G, candidate, previousInfos);
 			}
 		}
 	});
@@ -6601,13 +6646,14 @@ var $author$project$Change$giveChange = F2(
 				A2(
 					$elm$core$Maybe$map,
 					function ($) {
-						return $.L;
+						return $.N;
 					},
 					$elm$core$List$head(
 						$elm$core$List$reverse(
 							$elm$core$Array$toList(possible_things)))));
 		}
 	});
+var $elm$html$Html$img = _VirtualDom_node('img');
 var $elm$core$Basics$round = _Basics_round;
 var $elm$html$Html$Attributes$src = function (url) {
 	return A2(
@@ -6835,65 +6881,32 @@ var $author$project$View$showRecipe = F2(
 							_List_Nil,
 							A2(
 								$elm$core$List$map,
-								A2($author$project$View$showKiddoz, t, model.U),
+								A2($author$project$View$showKiddoz, t, model.I),
 								model.aO))
 						]))
 				]));
 	});
 var $author$project$View$view = function (model) {
-	var t = $author$project$L10n$t(model.M);
+	var t = $author$project$L10n$t(model.u);
 	return A2(
 		$elm$html$Html$div,
 		_List_fromArray(
 			[
-				$elm$html$Html$Attributes$id('content'),
+				$elm$html$Html$Attributes$id('kiddoz-magik'),
 				$elm$html$Html$Attributes$class('container')
 			]),
 		_List_fromArray(
 			[
 				A2(
-				$elm$html$Html$div,
+				$elm$html$Html$h2,
 				_List_fromArray(
 					[
-						$elm$html$Html$Attributes$class('row')
+						$elm$html$Html$Attributes$class('center uppercase')
 					]),
 				_List_fromArray(
 					[
-						A2(
-						$elm$html$Html$div,
-						_List_fromArray(
-							[
-								$elm$html$Html$Attributes$class('col-12')
-							]),
-						_List_fromArray(
-							[
-								A2(
-								$elm$html$Html$img,
-								_List_fromArray(
-									[
-										$elm$html$Html$Attributes$src('assets/images/Logo-KIDDOZ-01.svg'),
-										$elm$html$Html$Attributes$alt('Kiddoz logo'),
-										$elm$html$Html$Attributes$class('logo')
-									]),
-								_List_Nil)
-							])),
-						A2(
-						$elm$html$Html$div,
-						_List_fromArray(
-							[
-								$elm$html$Html$Attributes$class('col-12')
-							]),
-						_List_fromArray(
-							[
-								A2(
-								$elm$html$Html$h1,
-								_List_Nil,
-								_List_fromArray(
-									[
-										$elm$html$Html$text(
-										t('Convertisseur de recettes'))
-									]))
-							]))
+						$elm$html$Html$text(
+						t('Convertisseur de recettes'))
 					])),
 				A2(
 				$elm$html$Html$div,
@@ -6926,7 +6939,7 @@ var $author$project$View$view = function (model) {
 										_List_fromArray(
 											[
 												$elm$html$Html$text(
-												t('Your recipe'))
+												t('Ta recette'))
 											])),
 										A2(
 										$elm$html$Html$div,
@@ -6959,7 +6972,7 @@ var $author$project$View$view = function (model) {
 														$elm$html$Html$div,
 														_List_fromArray(
 															[
-																$elm$html$Html$Attributes$class('col-12 ingredientList actions')
+																$elm$html$Html$Attributes$class('col-12 ingredientList ingredientListActions')
 															]),
 														_List_fromArray(
 															[
@@ -7082,7 +7095,7 @@ var $author$project$View$view = function (model) {
 										_List_fromArray(
 											[
 												$elm$html$Html$text(
-												t('Your kiddoz recipe'))
+												t('Ta recette Kiddoz'))
 											])),
 										A2($author$project$View$showRecipe, t, model)
 									]))
@@ -7100,7 +7113,7 @@ _Platform_export({'Main':{'init':$author$project$Main$main(
 				$elm$json$Json$Decode$andThen,
 				function (locale) {
 					return $elm$json$Json$Decode$succeed(
-						{M: locale, U: _static});
+						{u: locale, I: _static});
 				},
 				A2($elm$json$Json$Decode$field, 'locale', $elm$json$Json$Decode$string));
 		},
