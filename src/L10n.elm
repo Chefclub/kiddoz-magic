@@ -19,6 +19,39 @@ t locale =
 translateFR : String -> String
 translateFR key =
     case key of
+        "grams" ->
+            "grammes"
+
+        "centiliters" ->
+            "centilitres"
+
+        "milliliters" ->
+            "mililitres"
+
+        "cup" ->
+            "cup"
+
+        "½ cup" ->
+            "½ cup"
+
+        "⅓ cup" ->
+            "⅓ cup"
+
+        "¼ cup" ->
+            "¼ cup"
+
+        "tbsp" ->
+            "c. à s."
+
+        "tsp" ->
+            "c. à c."
+
+        "oz" ->
+            "oz"
+
+        "piece" ->
+            "unité"
+
         _ ->
             key
 
