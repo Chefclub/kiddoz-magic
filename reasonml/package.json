@@ -1,0 +1,18 @@
+{
+  "name": "kiddoz-algo",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "bsb -make-world && yarn execute",
+    "start": "bsb -make-world -w",
+    "clean": "bsb -clean-world",
+    "execute": "node index.js"
+  },
+  "keywords": [
+    "BuckleScript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "bs-platform": "^5.2.1"
+  }
+}
