@@ -1,18 +1,25 @@
-# Basic Reason Template
+# Kiddoz Algorithm in ReasonML
 
-Hello! This project allows you to quickly get started with Reason and BuckleScript. If you wanted a more sophisticated version, try the `react` template (`bsb -theme react -init .`).
+Hello! This project allows you to quickly work on the ReasonML implementation of the Kiddoz algorithm available in `KiddozAlgo.re`.
+
+# Install
+
+```
+yarn
+```
 
 # Build
-```
-npm run build
-```
-
-# Build + Watch
 
 ```
-npm run start
+yarn build
 ```
 
+# Run
+
+```
+yarn execute
+```
 
 # Editor
+
 If you use `vscode`, Press `Windows + Shift + B` it will build automatically
