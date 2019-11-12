@@ -67,11 +67,10 @@ showIngredientList t index ingredient =
         currentKind =
             ingredient.kind
                 |> Maybe.map kindToString
-                |> Maybe.map t
                 |> Maybe.withDefault "--"
 
         currentUnit =
-            ingredient.unit |> unitToSelectString |> t
+            ingredient.unit |> unitToSelectString
 
         buildOption current candidate =
             option [ value candidate, selected (candidate == current) ] [ text <| t candidate ]

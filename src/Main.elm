@@ -4,7 +4,9 @@ import Array
 import Browser
 import Kiddoz
     exposing
-        ( kindFromName
+        ( Kind(..)
+        , kindFromName
+        , kindToString
         , unitFromName
         )
 import L10n
@@ -26,10 +28,14 @@ init flags =
         locale =
             flags.locale
                 |> localeFromString
+
+        t =
+            L10n.t locale
     in
     ( { emptyModel
         | locale = locale
         , static = flags.static
+        , editingIngredients = Array.fromList [ emptyIngredient <| t <| kindToString Flour ]
       }
     , Cmd.none
     )
@@ -129,9 +135,14 @@ update msg ({ editingIngredients } as model) =
             ( { model | ingredients = Array.toList editingIngredients }, Cmd.none )
 
         Reinit ->
+            let
+                t =
+                    L10n.t model.locale
+            in
             ( { emptyModel
                 | locale = model.locale
                 , static = model.static
+                , editingIngredients = Array.fromList [ emptyIngredient <| t <| kindToString Flour ]
               }
             , Cmd.none
             )

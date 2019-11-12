@@ -80,6 +80,6 @@ emptyIngredient : String -> Ingredient
 emptyIngredient name =
     { name = name
     , kind = Just Flour
-    , quantity = 1
+    , quantity = 100
     , unit = Grams
     }
