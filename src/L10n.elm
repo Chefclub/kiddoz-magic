@@ -226,7 +226,7 @@ translateEN : String -> String
 translateEN key =
     case key of
         "Convertisseur de recettes" ->
-            "Recipe's converter"
+            "Recipe converter"
 
         "Ingrédient" ->
             "Ingredient"
@@ -241,7 +241,7 @@ translateEN key =
             "Convert"
 
         "Recommencer" ->
-            "Reinit"
+            "Start Over"
 
         " de " ->
             " of "
@@ -286,7 +286,7 @@ translateEN key =
             "piece"
 
         "Farine" ->
-            "Floor"
+            "Flour"
 
         "Pignons" ->
             "Pinenut"
@@ -310,31 +310,31 @@ translateEN key =
             "Ground coffee"
 
         "Coriandre" ->
-            "Cilendro"
+            "Cilantro"
 
         "Curry" ->
             "Curry"
 
         "Curcuma" ->
-            "Curcuma"
+            "Tumeric"
 
         "Graines de blé" ->
-            "Wheat seed"
+            "Wheat berries"
 
         "Amandes moulues" ->
             "Ground almonds"
 
         "Flocons d'avoine" ->
-            "Oat meal"
+            "Oatmeal"
 
         "Bicarbonate" ->
-            "Bicarbonate"
+            "Baking soda"
 
         "Blancs d'œufs" ->
             "Egg white"
 
         "Jaunes d'œufs" ->
-            "Egg yellow"
+            "Egg yolk"
 
         "Sucre en poudre" ->
             "Sugar"
@@ -343,7 +343,7 @@ translateEN key =
             "Brown sugar"
 
         "Sucre glace" ->
-            "Icing sugar"
+            "Powdered sugar"
 
         "Riz" ->
             "Rice"
@@ -355,7 +355,7 @@ translateEN key =
             "Salt"
 
         "Fromage râpé" ->
-            "Gratted cheese"
+            "Shredded cheese"
 
         "Liquides" ->
             "Liquids"
