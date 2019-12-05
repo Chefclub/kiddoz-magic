@@ -519,11 +519,11 @@ function _Debug_crash_UNUSED(identifier, fact1, fact2, fact3, fact4)
 
 function _Debug_regionToString(region)
 {
-	if (region.U.H === region.aa.H)
+	if (region.S.H === region.Z.H)
 	{
-		return 'on line ' + region.U.H;
+		return 'on line ' + region.S.H;
 	}
-	return 'on lines ' + region.U.H + ' through ' + region.aa.H;
+	return 'on lines ' + region.S.H + ' through ' + region.Z.H;
 }
 
 
@@ -1857,9 +1857,9 @@ var _Platform_worker = F4(function(impl, flagDecoder, debugMetadata, args)
 	return _Platform_initialize(
 		flagDecoder,
 		args,
-		impl.aP,
+		impl.aS,
+		impl.a2,
 		impl.a$,
-		impl.aY,
 		function() { return function() {} }
 	);
 });
@@ -2659,9 +2659,9 @@ var _VirtualDom_mapEventTuple = F2(function(func, tuple)
 var _VirtualDom_mapEventRecord = F2(function(func, record)
 {
 	return {
-		o: func(record.o),
-		V: record.V,
-		S: record.S
+		u: func(record.u),
+		T: record.T,
+		Q: record.Q
 	}
 });
 
@@ -2929,11 +2929,11 @@ function _VirtualDom_makeCallback(eventNode, initialHandler)
 		// 3 = Custom
 
 		var value = result.a;
-		var message = !tag ? value : tag < 3 ? value.a : value.o;
-		var stopPropagation = tag == 1 ? value.b : tag == 3 && value.V;
+		var message = !tag ? value : tag < 3 ? value.a : value.u;
+		var stopPropagation = tag == 1 ? value.b : tag == 3 && value.T;
 		var currentEventNode = (
 			stopPropagation && event.stopPropagation(),
-			(tag == 2 ? value.b : tag == 3 && value.S) && event.preventDefault(),
+			(tag == 2 ? value.b : tag == 3 && value.Q) && event.preventDefault(),
 			eventNode
 		);
 		var tagger;
@@ -3883,11 +3883,11 @@ var _Browser_element = _Debugger_element || F4(function(impl, flagDecoder, debug
 	return _Platform_initialize(
 		flagDecoder,
 		args,
-		impl.aP,
+		impl.aS,
+		impl.a2,
 		impl.a$,
-		impl.aY,
 		function(sendToApp, initialModel) {
-			var view = impl.a0;
+			var view = impl.a3;
 			/**/
 			var domNode = args['node'];
 			//*/
@@ -3919,12 +3919,12 @@ var _Browser_document = _Debugger_document || F4(function(impl, flagDecoder, deb
 	return _Platform_initialize(
 		flagDecoder,
 		args,
-		impl.aP,
+		impl.aS,
+		impl.a2,
 		impl.a$,
-		impl.aY,
 		function(sendToApp, initialModel) {
-			var divertHrefToApp = impl.T && impl.T(sendToApp)
-			var view = impl.a0;
+			var divertHrefToApp = impl.R && impl.R(sendToApp)
+			var view = impl.a3;
 			var title = _VirtualDom_doc.title;
 			var bodyNode = _VirtualDom_doc.body;
 			var currNode = _VirtualDom_virtualize(bodyNode);
@@ -3932,12 +3932,12 @@ var _Browser_document = _Debugger_document || F4(function(impl, flagDecoder, deb
 			{
 				_VirtualDom_divertHrefToApp = divertHrefToApp;
 				var doc = view(model);
-				var nextNode = _VirtualDom_node('body')(_List_Nil)(doc.aI);
+				var nextNode = _VirtualDom_node('body')(_List_Nil)(doc.aK);
 				var patches = _VirtualDom_diff(currNode, nextNode);
 				bodyNode = _VirtualDom_applyPatches(bodyNode, currNode, patches, sendToApp);
 				currNode = nextNode;
 				_VirtualDom_divertHrefToApp = 0;
-				(title !== doc.aZ) && (_VirtualDom_doc.title = title = doc.aZ);
+				(title !== doc.a0) && (_VirtualDom_doc.title = title = doc.a0);
 			});
 		}
 	);
@@ -3993,12 +3993,12 @@ function _Browser_makeAnimator(model, draw)
 
 function _Browser_application(impl)
 {
-	var onUrlChange = impl.aT;
-	var onUrlRequest = impl.aU;
+	var onUrlChange = impl.aW;
+	var onUrlRequest = impl.aX;
 	var key = function() { key.a(onUrlChange(_Browser_getUrl())); };
 
 	return _Browser_document({
-		T: function(sendToApp)
+		R: function(sendToApp)
 		{
 			key.a = sendToApp;
 			_Browser_window.addEventListener('popstate', key);
@@ -4014,9 +4014,9 @@ function _Browser_application(impl)
 					var next = $elm$url$Url$fromString(href).a;
 					sendToApp(onUrlRequest(
 						(next
-							&& curr.at === next.at
-							&& curr.ag === next.ag
-							&& curr.ap.a === next.ap.a
+							&& curr.as === next.as
+							&& curr.af === next.af
+							&& curr.ao.a === next.ao.a
 						)
 							? $elm$browser$Browser$Internal(next)
 							: $elm$browser$Browser$External(href)
@@ -4024,13 +4024,13 @@ function _Browser_application(impl)
 				}
 			});
 		},
-		aP: function(flags)
+		aS: function(flags)
 		{
-			return A3(impl.aP, flags, _Browser_getUrl(), key);
+			return A3(impl.aS, flags, _Browser_getUrl(), key);
 		},
-		a0: impl.a0,
-		a$: impl.a$,
-		aY: impl.aY
+		a3: impl.a3,
+		a2: impl.a2,
+		a$: impl.a$
 	});
 }
 
@@ -4096,17 +4096,17 @@ var _Browser_decodeEvent = F2(function(decoder, event)
 function _Browser_visibilityInfo()
 {
 	return (typeof _VirtualDom_doc.hidden !== 'undefined')
-		? { aM: 'hidden', N: 'visibilitychange' }
+		? { aP: 'hidden', N: 'visibilitychange' }
 		:
 	(typeof _VirtualDom_doc.mozHidden !== 'undefined')
-		? { aM: 'mozHidden', N: 'mozvisibilitychange' }
+		? { aP: 'mozHidden', N: 'mozvisibilitychange' }
 		:
 	(typeof _VirtualDom_doc.msHidden !== 'undefined')
-		? { aM: 'msHidden', N: 'msvisibilitychange' }
+		? { aP: 'msHidden', N: 'msvisibilitychange' }
 		:
 	(typeof _VirtualDom_doc.webkitHidden !== 'undefined')
-		? { aM: 'webkitHidden', N: 'webkitvisibilitychange' }
-		: { aM: 'hidden', N: 'visibilitychange' };
+		? { aP: 'webkitHidden', N: 'webkitvisibilitychange' }
+		: { aP: 'hidden', N: 'visibilitychange' };
 }
 
 
@@ -4187,12 +4187,12 @@ var _Browser_call = F2(function(functionName, id)
 function _Browser_getViewport()
 {
 	return {
-		az: _Browser_getScene(),
-		aF: {
-			O: _Browser_window.pageXOffset,
-			P: _Browser_window.pageYOffset,
-			E: _Browser_doc.documentElement.clientWidth,
-			z: _Browser_doc.documentElement.clientHeight
+		ay: _Browser_getScene(),
+		aE: {
+			aG: _Browser_window.pageXOffset,
+			aH: _Browser_window.pageYOffset,
+			aF: _Browser_doc.documentElement.clientWidth,
+			ad: _Browser_doc.documentElement.clientHeight
 		}
 	};
 }
@@ -4202,8 +4202,8 @@ function _Browser_getScene()
 	var body = _Browser_doc.body;
 	var elem = _Browser_doc.documentElement;
 	return {
-		E: Math.max(body.scrollWidth, body.offsetWidth, elem.scrollWidth, elem.offsetWidth, elem.clientWidth),
-		z: Math.max(body.scrollHeight, body.offsetHeight, elem.scrollHeight, elem.offsetHeight, elem.clientHeight)
+		aF: Math.max(body.scrollWidth, body.offsetWidth, elem.scrollWidth, elem.offsetWidth, elem.clientWidth),
+		ad: Math.max(body.scrollHeight, body.offsetHeight, elem.scrollHeight, elem.offsetHeight, elem.clientHeight)
 	};
 }
 
@@ -4226,15 +4226,15 @@ function _Browser_getViewportOf(id)
 	return _Browser_withNode(id, function(node)
 	{
 		return {
-			az: {
-				E: node.scrollWidth,
-				z: node.scrollHeight
+			ay: {
+				aF: node.scrollWidth,
+				ad: node.scrollHeight
 			},
-			aF: {
-				O: node.scrollLeft,
-				P: node.scrollTop,
-				E: node.clientWidth,
-				z: node.clientHeight
+			aE: {
+				aG: node.scrollLeft,
+				aH: node.scrollTop,
+				aF: node.clientWidth,
+				ad: node.clientHeight
 			}
 		};
 	});
@@ -4264,18 +4264,18 @@ function _Browser_getElement(id)
 		var x = _Browser_window.pageXOffset;
 		var y = _Browser_window.pageYOffset;
 		return {
-			az: _Browser_getScene(),
-			aF: {
-				O: x,
-				P: y,
-				E: _Browser_doc.documentElement.clientWidth,
-				z: _Browser_doc.documentElement.clientHeight
+			ay: _Browser_getScene(),
+			aE: {
+				aG: x,
+				aH: y,
+				aF: _Browser_doc.documentElement.clientWidth,
+				ad: _Browser_doc.documentElement.clientHeight
 			},
-			aK: {
-				O: x + rect.left,
-				P: y + rect.top,
-				E: rect.width,
-				z: rect.height
+			aN: {
+				aG: x + rect.left,
+				aH: y + rect.top,
+				aF: rect.width,
+				ad: rect.height
 			}
 		};
 	});
@@ -4852,7 +4852,7 @@ var $elm$url$Url$Http = 0;
 var $elm$url$Url$Https = 1;
 var $elm$url$Url$Url = F6(
 	function (protocol, host, port_, path, query, fragment) {
-		return {ae: fragment, ag: host, an: path, ap: port_, at: protocol, au: query};
+		return {ac: fragment, af: host, am: path, ao: port_, as: protocol, at: query};
 	});
 var $elm$core$String$contains = _String_contains;
 var $elm$core$String$length = _String_length;
@@ -5132,17 +5132,17 @@ var $elm$core$Task$perform = F2(
 	});
 var $elm$browser$Browser$element = _Browser_element;
 var $elm$json$Json$Decode$field = _Json_decodeField;
-var $author$project$Types$FR = 0;
 var $author$project$Kiddoz$Flour = 0;
 var $author$project$Kiddoz$Grams = 0;
 var $author$project$Types$emptyIngredient = function (name) {
 	return {
-		aR: $elm$core$Maybe$Just(0),
-		aS: name,
-		aW: 1,
-		a_: 0
+		aU: $elm$core$Maybe$Just(0),
+		aV: name,
+		aZ: 100,
+		a1: 0
 	};
 };
+var $author$project$Types$FR = 0;
 var $elm$core$Array$fromListHelp = F3(
 	function (list, nodeList, nodeListSize) {
 		fromListHelp:
@@ -5179,14 +5179,84 @@ var $elm$core$Array$fromList = function (list) {
 	}
 };
 var $author$project$Types$emptyModel = {
-	s: $elm$core$Array$fromList(
+	p: $elm$core$Array$fromList(
 		_List_fromArray(
 			[
 				$author$project$Types$emptyIngredient('')
 			])),
-	aO: _List_Nil,
-	u: 0,
+	aR: _List_Nil,
+	t: 0,
 	I: 'assets/'
+};
+var $author$project$Kiddoz$kindToString = function (kind) {
+	switch (kind) {
+		case 0:
+			return 'Farine';
+		case 28:
+			return 'Pignons';
+		case 29:
+			return 'Polenta';
+		case 2:
+			return 'Chocolat';
+		case 23:
+			return 'Miettes de pain';
+		case 22:
+			return 'Cannelle';
+		case 20:
+			return 'Café instantané';
+		case 21:
+			return 'Café moulu';
+		case 17:
+			return 'Coriandre';
+		case 18:
+			return 'Curry';
+		case 19:
+			return 'Curcuma';
+		case 4:
+			return 'Graines de blé';
+		case 1:
+			return 'Amandes moulues';
+		case 3:
+			return 'Flocons d\'avoine';
+		case 5:
+			return 'Bicarbonate';
+		case 6:
+			return 'Blancs d\'œufs';
+		case 7:
+			return 'Jaunes d\'œufs';
+		case 11:
+			return 'Sucre en poudre';
+		case 9:
+			return 'Cassonade';
+		case 10:
+			return 'Sucre glace';
+		case 12:
+			return 'Riz';
+		case 13:
+			return 'Beurre';
+		case 14:
+			return 'Sel';
+		case 15:
+			return 'Fromage râpé';
+		case 16:
+			return 'Liquides';
+		case 8:
+			return 'Confiture';
+		case 24:
+			return 'Miel';
+		case 25:
+			return 'Moutarde';
+		case 26:
+			return 'Pâte à tartiner';
+		case 27:
+			return 'Parmesan';
+		case 30:
+			return 'Poivre';
+		case 31:
+			return 'Quinoa';
+		default:
+			return 'Sauce tomate';
+	}
 };
 var $author$project$Types$DE = 1;
 var $author$project$Types$EN = 2;
@@ -5197,12 +5267,285 @@ var $author$project$Types$localeFromString = function (l) {
 };
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
+var $author$project$L10n$translateDE = function (key) {
+	switch (key) {
+		case 'Convertisseur de recettes':
+			return 'Rezept-Konverter';
+		case 'Ingrédient':
+			return 'Zutat';
+		case 'Quantité':
+			return 'Menge';
+		case 'Unité':
+			return 'Einheit';
+		case 'Convertir':
+			return 'Konvertieren';
+		case 'Recommencer':
+			return 'Neu';
+		case ' de ':
+			return ' ';
+		case 'Ta recette':
+			return 'Dein Rezept';
+		case 'Ta recette Kiddoz':
+			return 'Dein Kiddoz Rezept';
+		case 'grams':
+			return 'Gramm';
+		case 'centiliters':
+			return 'Zentiliter';
+		case 'milliliters':
+			return 'Mililiter';
+		case 'cup':
+			return 'Cup';
+		case '½ cup':
+			return '½ Cup';
+		case '⅓ cup':
+			return '⅓ Cup';
+		case '¼ cup':
+			return '¼ Cup';
+		case 'tbsp':
+			return 'EL';
+		case 'tsp':
+			return 'TL';
+		case 'oz':
+			return 'oz';
+		case 'piece':
+			return 'Einheit';
+		case 'Farine':
+			return 'Mehl';
+		case 'Pignons':
+			return 'Pinienkerne';
+		case 'Polenta':
+			return 'Polenta';
+		case 'Chocolat':
+			return 'Schokolade';
+		case 'Miettes de pain':
+			return 'Brotkrümmel';
+		case 'Cannelle':
+			return 'Zimt';
+		case 'Café instantané':
+			return 'Instant Kaffee';
+		case 'Café moulu':
+			return 'Gemahlener Kaffee';
+		case 'Coriandre':
+			return 'Koriander';
+		case 'Curry':
+			return 'Curry';
+		case 'Curcuma':
+			return 'Kurkuma';
+		case 'Graines de blé':
+			return 'Weizenkörner';
+		case 'Amandes moulues':
+			return 'Gemahlene Mandeln';
+		case 'Flocons d\'avoine':
+			return 'Haferflocken';
+		case 'Bicarbonate':
+			return 'Backpulver';
+		case 'Blancs d\'œufs':
+			return 'Eiweiß';
+		case 'Jaunes d\'œufs':
+			return 'Eigelb';
+		case 'Sucre en poudre':
+			return 'Zucker';
+		case 'Cassonade':
+			return 'Brauner Zucker';
+		case 'Sucre glace':
+			return 'Puderzucker';
+		case 'Riz':
+			return 'Reis';
+		case 'Beurre':
+			return 'Butter';
+		case 'Sel':
+			return 'Salz';
+		case 'Fromage râpé':
+			return 'Geriebener Käse';
+		case 'Liquides':
+			return 'Flüssigkeit';
+		case 'Confiture':
+			return 'Marmelade';
+		case 'Miel':
+			return 'Honig';
+		case 'Moutarde':
+			return 'Senf';
+		case 'Pâte à tartiner':
+			return 'Aufstrich';
+		case 'Parmesan':
+			return 'Parmesan';
+		case 'Poivre':
+			return 'Pfeffer';
+		case 'Quinoa':
+			return 'Quinoa';
+		case 'Sauce tomate':
+			return 'Tomatensoße';
+		default:
+			return key;
+	}
+};
+var $author$project$L10n$translateEN = function (key) {
+	switch (key) {
+		case 'Convertisseur de recettes':
+			return 'Recipe converter';
+		case 'Ingrédient':
+			return 'Ingredient';
+		case 'Quantité':
+			return 'Quantity';
+		case 'Unité':
+			return 'Unit';
+		case 'Convertir':
+			return 'Convert';
+		case 'Recommencer':
+			return 'Start Over';
+		case ' de ':
+			return ' of ';
+		case 'Ta recette':
+			return 'Your recipe';
+		case 'Ta recette Kiddoz':
+			return 'Your Kiddoz recipe';
+		case 'grams':
+			return 'grams';
+		case 'centiliters':
+			return 'centiliters';
+		case 'milliliters':
+			return 'mililiters';
+		case 'cup':
+			return 'cup';
+		case '½ cup':
+			return '½ cup';
+		case '⅓ cup':
+			return '⅓ cup';
+		case '¼ cup':
+			return '¼ cup';
+		case 'tbsp':
+			return 'tbsp';
+		case 'tsp':
+			return 'tsp';
+		case 'oz':
+			return 'oz';
+		case 'piece':
+			return 'piece';
+		case 'Farine':
+			return 'Flour';
+		case 'Pignons':
+			return 'Pinenut';
+		case 'Polenta':
+			return 'Polenta';
+		case 'Chocolat':
+			return 'Cocoa';
+		case 'Miettes de pain':
+			return 'Breadcrumbs';
+		case 'Cannelle':
+			return 'Cinnamon';
+		case 'Café instantané':
+			return 'Instant coffee';
+		case 'Café moulu':
+			return 'Ground coffee';
+		case 'Coriandre':
+			return 'Cilantro';
+		case 'Curry':
+			return 'Curry';
+		case 'Curcuma':
+			return 'Tumeric';
+		case 'Graines de blé':
+			return 'Wheat berries';
+		case 'Amandes moulues':
+			return 'Ground almonds';
+		case 'Flocons d\'avoine':
+			return 'Oatmeal';
+		case 'Bicarbonate':
+			return 'Baking soda';
+		case 'Blancs d\'œufs':
+			return 'Egg white';
+		case 'Jaunes d\'œufs':
+			return 'Egg yolk';
+		case 'Sucre en poudre':
+			return 'Sugar';
+		case 'Cassonade':
+			return 'Brown sugar';
+		case 'Sucre glace':
+			return 'Powdered sugar';
+		case 'Riz':
+			return 'Rice';
+		case 'Beurre':
+			return 'Butter';
+		case 'Sel':
+			return 'Salt';
+		case 'Fromage râpé':
+			return 'Shredded cheese';
+		case 'Liquides':
+			return 'Liquids';
+		case 'Confiture':
+			return 'Jam';
+		case 'Miel':
+			return 'Honey';
+		case 'Moutarde':
+			return 'Mustard';
+		case 'Pâte à tartiner':
+			return 'Spread';
+		case 'Parmesan':
+			return 'Parmesan';
+		case 'Poivre':
+			return 'Pepper';
+		case 'Quinoa':
+			return 'Quinoa';
+		case 'Sauce tomate':
+			return 'Tomato sauce';
+		default:
+			return key;
+	}
+};
+var $author$project$L10n$translateFR = function (key) {
+	switch (key) {
+		case 'grams':
+			return 'grammes';
+		case 'centiliters':
+			return 'centilitres';
+		case 'milliliters':
+			return 'mililitres';
+		case 'cup':
+			return 'cup';
+		case '½ cup':
+			return '½ cup';
+		case '⅓ cup':
+			return '⅓ cup';
+		case '¼ cup':
+			return '¼ cup';
+		case 'tbsp':
+			return 'c. à s.';
+		case 'tsp':
+			return 'c. à c.';
+		case 'oz':
+			return 'oz';
+		case 'piece':
+			return 'unité';
+		default:
+			return key;
+	}
+};
+var $author$project$L10n$t = function (locale) {
+	switch (locale) {
+		case 0:
+			return $author$project$L10n$translateFR;
+		case 2:
+			return $author$project$L10n$translateEN;
+		default:
+			return $author$project$L10n$translateDE;
+	}
+};
 var $author$project$Main$init = function (flags) {
-	var locale = $author$project$Types$localeFromString(flags.u);
+	var locale = $author$project$Types$localeFromString(flags.t);
+	var t = $author$project$L10n$t(locale);
 	return _Utils_Tuple2(
 		_Utils_update(
 			$author$project$Types$emptyModel,
-			{u: locale, I: flags.I}),
+			{
+				p: $elm$core$Array$fromList(
+					_List_fromArray(
+						[
+							$author$project$Types$emptyIngredient(
+							t(
+								$author$project$Kiddoz$kindToString(0)))
+						])),
+				t: locale,
+				I: flags.I
+			}),
 		$elm$core$Platform$Cmd$none);
 };
 var $elm$json$Json$Decode$string = _Json_decodeString;
@@ -5720,52 +6063,6 @@ var $elm$core$Array$slice = F3(
 			correctFrom,
 			A2($elm$core$Array$sliceRight, correctTo, array));
 	});
-var $author$project$L10n$translateDE = function (key) {
-	if (key === 'Convertisseur de recettes') {
-		return 'Rezept-Konverter';
-	} else {
-		return key;
-	}
-};
-var $author$project$L10n$translateEN = function (key) {
-	switch (key) {
-		case 'Convertisseur de recettes':
-			return 'Recipe\'s converter';
-		case 'Ingrédient':
-			return 'Ingredient';
-		case 'Quantité':
-			return 'Quantity';
-		case 'Unité':
-			return 'Unit';
-		case 'Convertir':
-			return 'Convert';
-		case 'Recommencer':
-			return 'Reinit';
-		case ' de ':
-			return ' of ';
-		case 'Farine':
-			return 'Flour';
-		case 'Ta recette':
-			return 'Your recipe';
-		case 'Ta recette Kiddoz':
-			return 'Your Kiddoz recipe';
-		default:
-			return key;
-	}
-};
-var $author$project$L10n$translateFR = function (key) {
-	return key;
-};
-var $author$project$L10n$t = function (locale) {
-	switch (locale) {
-		case 0:
-			return $author$project$L10n$translateFR;
-		case 2:
-			return $author$project$L10n$translateEN;
-		default:
-			return $author$project$L10n$translateDE;
-	}
-};
 var $elm$core$Array$toIndexedList = function (array) {
 	var len = array.a;
 	var helper = F2(
@@ -5832,12 +6129,12 @@ var $elm$core$Maybe$withDefault = F2(
 	});
 var $author$project$Main$update = F2(
 	function (msg, model) {
-		var editingIngredients = model.s;
+		var editingIngredients = model.p;
 		switch (msg.$) {
 			case 2:
 				var index = msg.a;
 				var name = msg.b;
-				var t = $author$project$L10n$t(model.u);
+				var t = $author$project$L10n$t(model.t);
 				var ingredient = A2(
 					$elm$core$Maybe$withDefault,
 					$author$project$Types$emptyIngredient(''),
@@ -5845,14 +6142,14 @@ var $author$project$Main$update = F2(
 				var newIngredient = _Utils_update(
 					ingredient,
 					{
-						aR: $author$project$Kiddoz$kindFromName(name),
-						aS: t(name)
+						aU: $author$project$Kiddoz$kindFromName(name),
+						aV: t(name)
 					});
 				var newIngredients = A3($elm$core$Array$set, index, newIngredient, editingIngredients);
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{s: newIngredients}),
+						{p: newIngredients}),
 					$elm$core$Platform$Cmd$none);
 			case 1:
 				var index = msg.a;
@@ -5864,13 +6161,13 @@ var $author$project$Main$update = F2(
 				var newIngredient = _Utils_update(
 					ingredient,
 					{
-						a_: $author$project$Kiddoz$unitFromName(unit)
+						a1: $author$project$Kiddoz$unitFromName(unit)
 					});
 				var newIngredients = A3($elm$core$Array$set, index, newIngredient, editingIngredients);
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{s: newIngredients}),
+						{p: newIngredients}),
 					$elm$core$Platform$Cmd$none);
 			case 0:
 				var index = msg.a;
@@ -5882,7 +6179,7 @@ var $author$project$Main$update = F2(
 				var newIngredient = _Utils_update(
 					ingredient,
 					{
-						aW: A2(
+						aZ: A2(
 							$elm$core$Maybe$withDefault,
 							0,
 							$elm$core$String$toInt(quantity))
@@ -5891,10 +6188,10 @@ var $author$project$Main$update = F2(
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{s: newIngredients}),
+						{p: newIngredients}),
 					$elm$core$Platform$Cmd$none);
 			case 3:
-				var t = $author$project$L10n$t(model.u);
+				var t = $author$project$L10n$t(model.t);
 				var newIngredients = A2(
 					$elm$core$Array$push,
 					$author$project$Types$emptyIngredient(
@@ -5903,7 +6200,7 @@ var $author$project$Main$update = F2(
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{s: newIngredients}),
+						{p: newIngredients}),
 					$elm$core$Platform$Cmd$none);
 			case 4:
 				var index = msg.a;
@@ -5912,7 +6209,7 @@ var $author$project$Main$update = F2(
 						_Utils_update(
 							model,
 							{
-								s: A3($elm$core$Array$slice, 0, -1, editingIngredients)
+								p: A3($elm$core$Array$slice, 0, -1, editingIngredients)
 							}),
 						$elm$core$Platform$Cmd$none);
 				} else {
@@ -5930,7 +6227,7 @@ var $author$project$Main$update = F2(
 					return _Utils_Tuple2(
 						_Utils_update(
 							model,
-							{s: newIngredients}),
+							{p: newIngredients}),
 						$elm$core$Platform$Cmd$none);
 				}
 			case 5:
@@ -5938,14 +6235,25 @@ var $author$project$Main$update = F2(
 					_Utils_update(
 						model,
 						{
-							aO: $elm$core$Array$toList(editingIngredients)
+							aR: $elm$core$Array$toList(editingIngredients)
 						}),
 					$elm$core$Platform$Cmd$none);
 			default:
+				var t = $author$project$L10n$t(model.t);
 				return _Utils_Tuple2(
 					_Utils_update(
 						$author$project$Types$emptyModel,
-						{u: model.u, I: model.I}),
+						{
+							p: $elm$core$Array$fromList(
+								_List_fromArray(
+									[
+										$author$project$Types$emptyIngredient(
+										t(
+											$author$project$Kiddoz$kindToString(0)))
+									])),
+							t: model.t,
+							I: model.I
+						}),
 					$elm$core$Platform$Cmd$none);
 		}
 	});
@@ -6074,76 +6382,6 @@ var $author$project$Kiddoz$existingIngredients = _List_fromArray(
 var $author$project$Kiddoz$existingUnits = _List_fromArray(
 	[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 var $elm$html$Html$input = _VirtualDom_node('input');
-var $author$project$Kiddoz$kindToString = function (kind) {
-	switch (kind) {
-		case 0:
-			return 'Farine';
-		case 28:
-			return 'Pignons';
-		case 29:
-			return 'Polenta';
-		case 2:
-			return 'Chocolat';
-		case 23:
-			return 'Miettes de pain';
-		case 22:
-			return 'Cannelle';
-		case 20:
-			return 'Café instantané';
-		case 21:
-			return 'Café moulu';
-		case 17:
-			return 'Coriandre';
-		case 18:
-			return 'Curry';
-		case 19:
-			return 'Curcuma';
-		case 4:
-			return 'Graines de blé';
-		case 1:
-			return 'Amandes moulues';
-		case 3:
-			return 'Flocons d\'avoine';
-		case 5:
-			return 'Bicarbonate';
-		case 6:
-			return 'Blancs d\'œufs';
-		case 7:
-			return 'Jaunes d\'œufs';
-		case 11:
-			return 'Sucre en poudre';
-		case 9:
-			return 'Cassonade';
-		case 10:
-			return 'Sucre glace';
-		case 12:
-			return 'Riz';
-		case 13:
-			return 'Beurre';
-		case 14:
-			return 'Sel';
-		case 15:
-			return 'Fromage râpé';
-		case 16:
-			return 'Liquides';
-		case 8:
-			return 'Confiture';
-		case 24:
-			return 'Miel';
-		case 25:
-			return 'Moutarde';
-		case 26:
-			return 'Pâte à tartiner';
-		case 27:
-			return 'Parmesan';
-		case 30:
-			return 'Poivre';
-		case 31:
-			return 'Quinoa';
-		default:
-			return 'Sauce tomate';
-	}
-};
 var $elm$core$Maybe$map = F2(
 	function (f, maybe) {
 		if (!maybe.$) {
@@ -6237,15 +6475,11 @@ var $author$project$Kiddoz$unitToSelectString = function (unit) {
 var $elm$html$Html$Attributes$value = $elm$html$Html$Attributes$stringProperty('value');
 var $author$project$View$showIngredientList = F3(
 	function (t, index, ingredient) {
-		var currentUnit = t(
-			$author$project$Kiddoz$unitToSelectString(ingredient.a_));
+		var currentUnit = $author$project$Kiddoz$unitToSelectString(ingredient.a1);
 		var currentKind = A2(
 			$elm$core$Maybe$withDefault,
 			'--',
-			A2(
-				$elm$core$Maybe$map,
-				t,
-				A2($elm$core$Maybe$map, $author$project$Kiddoz$kindToString, ingredient.aR)));
+			A2($elm$core$Maybe$map, $author$project$Kiddoz$kindToString, ingredient.aU));
 		var buildOption = F2(
 			function (current, candidate) {
 				return A2(
@@ -6349,7 +6583,7 @@ var $author$project$View$showIngredientList = F3(
 											$elm$html$Html$Events$onInput(
 											$author$project$Types$SetQuantity(index)),
 											$elm$html$Html$Attributes$value(
-											$elm$core$String$fromInt(ingredient.aW))
+											$elm$core$String$fromInt(ingredient.aZ))
 										]),
 									_List_Nil)
 								])),
@@ -6415,7 +6649,7 @@ var $author$project$View$unitToString = F2(
 	});
 var $author$project$View$showIngredientQuantity = F2(
 	function (t, ingredient) {
-		return $elm$core$String$fromInt(ingredient.aW) + (' ' + A2($author$project$View$unitToString, t, ingredient.a_));
+		return $elm$core$String$fromInt(ingredient.aZ) + (' ' + A2($author$project$View$unitToString, t, ingredient.a1));
 	});
 var $author$project$Kiddoz$food2mL = function (kind) {
 	switch (kind) {
@@ -6509,7 +6743,7 @@ var $author$project$Change$coinsList = _List_fromArray(
 	[250, 245, 240, 125, 120, 85, 80, 65, 60, 15, 5]);
 var $author$project$Change$ChangeInfo = F3(
 	function (amount, weight, change) {
-		return {G: amount, N: change, r: weight};
+		return {G: amount, N: change, x: weight};
 	});
 var $author$project$Change$emptyChangeInfo = F2(
 	function (maxWeight, currentAmount) {
@@ -6546,7 +6780,7 @@ var $author$project$Change$backTrackChange = F4(
 				0,
 				_Utils_update(
 					currentInfo,
-					{r: 0}),
+					{x: 0}),
 				previousInfos);
 		} else {
 			var candidates = A2(
@@ -6558,11 +6792,11 @@ var $author$project$Change$backTrackChange = F4(
 							$elm$core$Maybe$withDefault,
 							A2($author$project$Change$emptyChangeInfo, 10000, previousMap),
 							A2($elm$core$Array$get, previousMap, previousInfos));
-						return (_Utils_cmp(previousInfo.r + 1, currentInfo.r) < 0) ? _Utils_update(
+						return (_Utils_cmp(previousInfo.x + 1, currentInfo.x) < 0) ? _Utils_update(
 							currentInfo,
 							{
 								N: A2($elm$core$List$cons, coin * min_coin, previousInfo.N),
-								r: previousInfo.r + 1
+								x: previousInfo.x + 1
 							}) : currentInfo;
 					} else {
 						return currentInfo;
@@ -6576,14 +6810,14 @@ var $author$project$Change$backTrackChange = F4(
 					A2(
 						$elm$core$List$map,
 						function ($) {
-							return $.r;
+							return $.x;
 						},
 						candidates)));
 			var lowerCandidate = $elm$core$List$head(
 				A2(
 					$elm$core$List$filter,
 					function (changeInfo) {
-						return _Utils_eq(changeInfo.r, minimum);
+						return _Utils_eq(changeInfo.x, minimum);
 					},
 					candidates));
 			if (lowerCandidate.$ === 1) {
@@ -6796,19 +7030,19 @@ var $author$project$Kiddoz$unitTomL = function (unit) {
 var $author$project$View$showKiddozQuantity = F3(
 	function (t, imagePrefix, ingredient) {
 		var maybeMLFactor = function () {
-			var _v1 = _Utils_Tuple2(ingredient.a_, ingredient.aR);
+			var _v1 = _Utils_Tuple2(ingredient.a1, ingredient.aU);
 			if ((!_v1.a) && (!_v1.b.$)) {
 				var _v2 = _v1.a;
 				var kind = _v1.b.a;
 				return $author$project$Kiddoz$food2mL(kind);
 			} else {
-				return $author$project$Kiddoz$unitTomL(ingredient.a_);
+				return $author$project$Kiddoz$unitTomL(ingredient.a1);
 			}
 		}();
 		var maybeML = A2(
 			$elm$core$Maybe$map,
 			function (mLFactor) {
-				return ingredient.aW * mLFactor;
+				return ingredient.aZ * mLFactor;
 			},
 			maybeMLFactor);
 		if (!maybeML.$) {
@@ -6824,7 +7058,7 @@ var $author$project$View$showKiddozQuantity = F3(
 						[
 							$elm$html$Html$text(
 							t(' de ')),
-							$elm$html$Html$text(ingredient.aS)
+							$elm$html$Html$text(ingredient.aV)
 						])
 					]));
 		} else {
@@ -6836,11 +7070,11 @@ var $author$project$View$showKiddozQuantity = F3(
 					_List_fromArray(
 						[
 							$elm$html$Html$text(
-							$elm$core$String$fromInt(ingredient.aW))
+							$elm$core$String$fromInt(ingredient.aZ))
 						])),
 					$elm$html$Html$text(
 					t(' de ')),
-					$elm$html$Html$text(ingredient.aS)
+					$elm$html$Html$text(ingredient.aV)
 				]);
 		}
 	});
@@ -6856,7 +7090,7 @@ var $author$project$View$showKiddoz = F3(
 						A2($author$project$View$showIngredientQuantity, t, ingredient),
 						_Utils_ap(
 							t(' de '),
-							ingredient.aS)))
+							ingredient.aV)))
 				]),
 			A3($author$project$View$showKiddozQuantity, t, imagePrefix, ingredient));
 	});
@@ -6882,12 +7116,12 @@ var $author$project$View$showRecipe = F2(
 							A2(
 								$elm$core$List$map,
 								A2($author$project$View$showKiddoz, t, model.I),
-								model.aO))
+								model.aR))
 						]))
 				]));
 	});
 var $author$project$View$view = function (model) {
-	var t = $author$project$L10n$t(model.u);
+	var t = $author$project$L10n$t(model.t);
 	return A2(
 		$elm$html$Html$div,
 		_List_fromArray(
@@ -6967,7 +7201,7 @@ var $author$project$View$view = function (model) {
 															A2(
 																$elm$core$Array$indexedMap,
 																$author$project$View$showIngredientList(t),
-																model.s))),
+																model.p))),
 														A2(
 														$elm$html$Html$div,
 														_List_fromArray(
@@ -7104,7 +7338,7 @@ var $author$project$View$view = function (model) {
 			]));
 };
 var $author$project$Main$main = $elm$browser$Browser$element(
-	{aP: $author$project$Main$init, aY: $author$project$Main$subscriptions, a$: $author$project$Main$update, a0: $author$project$View$view});
+	{aS: $author$project$Main$init, a$: $author$project$Main$subscriptions, a2: $author$project$Main$update, a3: $author$project$View$view});
 _Platform_export({'Main':{'init':$author$project$Main$main(
 	A2(
 		$elm$json$Json$Decode$andThen,
@@ -7113,7 +7347,7 @@ _Platform_export({'Main':{'init':$author$project$Main$main(
 				$elm$json$Json$Decode$andThen,
 				function (locale) {
 					return $elm$json$Json$Decode$succeed(
-						{u: locale, I: _static});
+						{t: locale, I: _static});
 				},
 				A2($elm$json$Json$Decode$field, 'locale', $elm$json$Json$Decode$string));
 		},
