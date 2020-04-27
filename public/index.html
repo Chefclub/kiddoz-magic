@@ -41,11 +41,20 @@
   <div id="appFR"></div>
   <div id="appDE"></div>
   <div id="appUS"></div>
+  <div id="appIT"></div>
+  <div id="appKR"></div>
+  <div id="appBR"></div>
+ 
+
   <script src="app.js"></script>
   <script>
       Elm.Main.init({node: document.getElementById('appFR'), flags: {static: "assets/", locale: "fr"}});
       Elm.Main.init({node: document.getElementById('appDE'), flags: {static: "assets/", locale: "de"}});
       Elm.Main.init({node: document.getElementById('appUS'), flags: {static: "assets/", locale: "en"}});
+      Elm.Main.init({node: document.getElementById('appIT'), flags: {static: "assets/", locale: "it"}});
+      Elm.Main.init({node: document.getElementById('appKR'), flags: {static: "assets/", locale: "ko"}});
+      Elm.Main.init({node: document.getElementById('appBR'), flags: {static: "assets/", locale: "pt-br"}});
+ 
   </script>
 </body>
 </html>

@@ -41,6 +41,9 @@ type Locale
     = FR
     | DE
     | EN
+    | IT
+    | KR
+    | BR
 
 
 localeFromString : String -> Locale
@@ -49,12 +52,16 @@ localeFromString l =
         locale =
             String.toLower l
     in
-    if String.startsWith "de" locale then
+    if String.startsWith "it" locale then
+        IT
+    else if  String.startsWith "de" locale then
         DE
-
     else if String.startsWith "en" locale then
         EN
-
+    else if String.startsWith "pt-br" locale then
+        BR
+    else if String.startsWith "ko" locale then
+        KR
     else
         FR
 
