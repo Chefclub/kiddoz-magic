@@ -55,7 +55,7 @@ view model =
                     ]
                 ]
             , div [ class "col-sm-12 col-md-12 col-lg-4" ]
-                [ div [ class "card" ] [ h2 [ class "orange" ] [ text <| t "Ta recette Kiddoz" ], showRecipe t model ]
+                [ div [ class "card" ] [ h2 [ class "orange" ] [ text <| t "Ta recette Chefclub Kids" ], showRecipe t model ]
                 ]
             ]
         ]

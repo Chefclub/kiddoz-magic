@@ -91,8 +91,8 @@ translateDE key =
         "Ta recette" ->
             "Dein Rezept"
 
-        "Ta recette Kiddoz" ->
-            "Dein Kiddoz Rezept"
+        "Ta recette Chefclub Kids" ->
+            "Dein Chefclub Kids Rezept"
 
         "grams" ->
             "Gramm"
@@ -257,8 +257,8 @@ translateIT key =
         "Ta recette" ->
             "La tua ricetta"
 
-        "Ta recette Kiddoz" ->
-            "La tua ricetta in Kiddoz"
+        "Ta recette Chefclub Kids" ->
+            "La tua ricetta in Chefclub Kids"
 
         "grams" ->
             "grammi"
@@ -423,7 +423,7 @@ translateKR key =
         "Ta recette" ->
             "당신의 레시피"
 
-        "Ta recette Kiddoz" ->
+        "Ta recette Chefclub Kids" ->
             "당신의 키도즈 레시피"
 
         "grams" ->
@@ -589,8 +589,8 @@ translateBR key =
         "Ta recette" ->
             "A sua receita"
 
-        "Ta recette Kiddoz" ->
-            "A sua receita em Kiddoz"
+        "Ta recette Chefclub Kids" ->
+            "A sua receita em Chefclub Kids"
 
         "grams" ->
             "gramas"
@@ -755,8 +755,8 @@ translateEN key =
         "Ta recette" ->
             "Your recipe"
 
-        "Ta recette Kiddoz" ->
-            "Your Kiddoz recipe"
+        "Ta recette Chefclub Kids" ->
+            "Your Chefclub Kids recipe"
 
         "grams" ->
             "grams"
