@@ -5258,15 +5258,130 @@ var $author$project$Kiddoz$kindToString = function (kind) {
 			return 'Sauce tomate';
 	}
 };
+var $author$project$Types$BR = 5;
 var $author$project$Types$DE = 1;
 var $author$project$Types$EN = 2;
+var $author$project$Types$IT = 3;
+var $author$project$Types$KR = 4;
 var $elm$core$String$toLower = _String_toLower;
 var $author$project$Types$localeFromString = function (l) {
 	var locale = $elm$core$String$toLower(l);
-	return A2($elm$core$String$startsWith, 'de', locale) ? 1 : (A2($elm$core$String$startsWith, 'en', locale) ? 2 : 0);
+	return A2($elm$core$String$startsWith, 'it', locale) ? 3 : (A2($elm$core$String$startsWith, 'de', locale) ? 1 : (A2($elm$core$String$startsWith, 'en', locale) ? 2 : (A2($elm$core$String$startsWith, 'pt-br', locale) ? 5 : (A2($elm$core$String$startsWith, 'ko', locale) ? 4 : 0))));
 };
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
+var $author$project$L10n$translateBR = function (key) {
+	switch (key) {
+		case 'Convertisseur de recettes':
+			return 'Conversor de receitas';
+		case 'Ingrédient':
+			return 'Ingrediente';
+		case 'Quantité':
+			return 'Quantidade';
+		case 'Unité':
+			return 'Unidade';
+		case 'Convertir':
+			return 'Convertir';
+		case 'Recommencer':
+			return 'Recomeçar';
+		case ' de ':
+			return ' de ';
+		case 'Ta recette':
+			return 'A sua receita';
+		case 'Ta recette Kiddoz':
+			return 'A sua receita em Kiddoz';
+		case 'grams':
+			return 'gramas';
+		case 'centiliters':
+			return 'centilitros';
+		case 'milliliters':
+			return 'mililitros';
+		case 'cup':
+			return 'copo';
+		case '½ cup':
+			return '½ copo';
+		case '⅓ cup':
+			return '⅓ copo';
+		case '¼ cup':
+			return '¼ copo';
+		case 'tbsp':
+			return 'colher de sopa';
+		case 'tsp':
+			return 'colher de chá';
+		case 'oz':
+			return 'onça';
+		case 'piece':
+			return 'unidade';
+		case 'Farine':
+			return 'Farinha';
+		case 'Pignons':
+			return 'Pinoli';
+		case 'Polenta':
+			return 'Polenta';
+		case 'Chocolat':
+			return 'Chocolate';
+		case 'Miettes de pain':
+			return 'Migalhas de pão';
+		case 'Cannelle':
+			return 'Canela';
+		case 'Café instantané':
+			return 'Café solúvel';
+		case 'Café moulu':
+			return 'Café moído';
+		case 'Coriandre':
+			return 'Coentro';
+		case 'Curry':
+			return 'Curry';
+		case 'Curcuma':
+			return 'Cúrcuma';
+		case 'Graines de blé':
+			return 'Grãos de trigo';
+		case 'Amandes moulues':
+			return 'Amêndoa moída';
+		case 'Flocons d\'avoine':
+			return 'Flocos de aveia';
+		case 'Bicarbonate':
+			return 'Bicarbonato';
+		case 'Blancs d\'œufs':
+			return 'Claras de ovos';
+		case 'Jaunes d\'œufs':
+			return 'Gemas de ovos';
+		case 'Sucre en poudre':
+			return 'Açúcar';
+		case 'Cassonade':
+			return 'Açúcar mascavo';
+		case 'Sucre glace':
+			return 'Açúcar de confeiteiro';
+		case 'Riz':
+			return 'Arroz';
+		case 'Beurre':
+			return 'Manteiga';
+		case 'Sel':
+			return 'Sal';
+		case 'Fromage râpé':
+			return 'Queijo ralado';
+		case 'Liquides':
+			return 'Líquidos';
+		case 'Confiture':
+			return 'Geléia';
+		case 'Miel':
+			return 'Mel';
+		case 'Moutarde':
+			return 'Mostarda';
+		case 'Pâte à tartiner':
+			return 'Creme';
+		case 'Parmesan':
+			return 'Parmesão';
+		case 'Poivre':
+			return 'Pimenta';
+		case 'Quinoa':
+			return 'Quinoa';
+		case 'Sauce tomate':
+			return 'Molho de tomate';
+		default:
+			return key;
+	}
+};
 var $author$project$L10n$translateDE = function (key) {
 	switch (key) {
 		case 'Convertisseur de recettes':
@@ -5519,14 +5634,244 @@ var $author$project$L10n$translateFR = function (key) {
 			return key;
 	}
 };
+var $author$project$L10n$translateIT = function (key) {
+	switch (key) {
+		case 'Convertisseur de recettes':
+			return 'convertitore di ricette';
+		case 'Ingrédient':
+			return 'Ingrediente';
+		case 'Quantité':
+			return 'Quantità';
+		case 'Unité':
+			return 'Unità';
+		case 'Convertir':
+			return 'Convertire';
+		case 'Recommencer':
+			return 'Ricominciare';
+		case ' de ':
+			return ' di ';
+		case 'Ta recette':
+			return 'La tua ricetta';
+		case 'Ta recette Kiddoz':
+			return 'La tua ricetta in Kiddoz';
+		case 'grams':
+			return 'grammi';
+		case 'centiliters':
+			return 'centilitri';
+		case 'milliliters':
+			return 'millilitri';
+		case 'cup':
+			return 'tazze';
+		case '½ cup':
+			return '½ tazze';
+		case '⅓ cup':
+			return '⅓ tazze';
+		case '¼ cup':
+			return '¼ tazze';
+		case 'tbsp':
+			return 'tbsp';
+		case 'tsp':
+			return 'tsp';
+		case 'oz':
+			return 'oz';
+		case 'piece':
+			return 'pezzo';
+		case 'Farine':
+			return 'Farina';
+		case 'Pignons':
+			return 'Pinoli';
+		case 'Polenta':
+			return 'Polenta';
+		case 'Chocolat':
+			return 'Cioccolato';
+		case 'Miettes de pain':
+			return 'Briciole di pane';
+		case 'Cannelle':
+			return 'Cannella';
+		case 'Café instantané':
+			return 'Caffè solubile';
+		case 'Café moulu':
+			return 'Caffè in polvere';
+		case 'Coriandre':
+			return 'Coriandolo';
+		case 'Curry':
+			return 'Curry';
+		case 'Curcuma':
+			return 'Curcuma';
+		case 'Graines de blé':
+			return 'Chicchi di grano';
+		case 'Amandes moulues':
+			return 'Farina di mandorle';
+		case 'Flocons d\'avoine':
+			return 'Fiocchi d\'avena';
+		case 'Bicarbonate':
+			return 'Bicarbonato';
+		case 'Blancs d\'œufs':
+			return 'Albumi';
+		case 'Jaunes d\'œufs':
+			return 'Tuorli';
+		case 'Sucre en poudre':
+			return 'Zucchero';
+		case 'Cassonade':
+			return 'Zucchero di canna';
+		case 'Sucre glace':
+			return 'Zucchero a velo';
+		case 'Riz':
+			return 'Riso';
+		case 'Beurre':
+			return 'Burro';
+		case 'Sel':
+			return 'Sale';
+		case 'Fromage râpé':
+			return 'Formaggio grattugiato';
+		case 'Liquides':
+			return 'Liquidi';
+		case 'Confiture':
+			return 'Marmellata';
+		case 'Miel':
+			return 'Miele';
+		case 'Moutarde':
+			return 'Mostarda';
+		case 'Pâte à tartiner':
+			return 'Crema spalmabile';
+		case 'Parmesan':
+			return 'Parmigiano';
+		case 'Poivre':
+			return 'Pepe';
+		case 'Quinoa':
+			return 'Quinoa';
+		case 'Sauce tomate':
+			return 'Passata di pomodoro';
+		default:
+			return key;
+	}
+};
+var $author$project$L10n$translateKR = function (key) {
+	switch (key) {
+		case 'Convertisseur de recettes':
+			return '레시피 변환기';
+		case 'Ingrédient':
+			return '재료';
+		case 'Quantité':
+			return '양';
+		case 'Unité':
+			return '단위';
+		case 'Convertir':
+			return '변환하기';
+		case 'Recommencer':
+			return '다시 시작';
+		case ' de ':
+			return '';
+		case 'Ta recette':
+			return '당신의 레시피';
+		case 'Ta recette Kiddoz':
+			return '당신의 키도즈 레시피';
+		case 'grams':
+			return 'g';
+		case 'centiliters':
+			return 'cl';
+		case 'milliliters':
+			return 'ml';
+		case 'cup':
+			return '컵';
+		case '½ cup':
+			return '½ 컵';
+		case '⅓ cup':
+			return '⅓ 컵';
+		case '¼ cup':
+			return '¼ 컵';
+		case 'tbsp':
+			return '큰술';
+		case 'tsp':
+			return '작은술';
+		case 'oz':
+			return 'oz';
+		case 'piece':
+			return '개';
+		case 'Farine':
+			return '밀가루';
+		case 'Pignons':
+			return '잣';
+		case 'Polenta':
+			return '폴렌타';
+		case 'Chocolat':
+			return '초콜릿';
+		case 'Miettes de pain':
+			return '빵가루';
+		case 'Cannelle':
+			return '계피가루';
+		case 'Café instantané':
+			return '인스턴트커피';
+		case 'Café moulu':
+			return '가루커피';
+		case 'Coriandre':
+			return '고수';
+		case 'Curry':
+			return '커리';
+		case 'Curcuma':
+			return '강황가루';
+		case 'Graines de blé':
+			return '보리콩';
+		case 'Amandes moulues':
+			return '아몬드 가루e';
+		case 'Flocons d\'avoine':
+			return '오트밀';
+		case 'Bicarbonate':
+			return '베이킹소다';
+		case 'Blancs d\'œufs':
+			return '계란 흰자';
+		case 'Jaunes d\'œufs':
+			return '계란 노른자';
+		case 'Sucre en poudre':
+			return '설탕';
+		case 'Cassonade':
+			return '흑설탕';
+		case 'Sucre glace':
+			return '슈가 파우더';
+		case 'Riz':
+			return '쌀';
+		case 'Beurre':
+			return '버터';
+		case 'Sel':
+			return '소금';
+		case 'Fromage râpé':
+			return '슈레드 치즈';
+		case 'Liquides':
+			return '액체';
+		case 'Confiture':
+			return '잼';
+		case 'Miel':
+			return '꿀';
+		case 'Moutarde':
+			return '겨자';
+		case 'Pâte à tartiner':
+			return '스프레드';
+		case 'Parmesan':
+			return '파마산 치즈';
+		case 'Poivre':
+			return '후추';
+		case 'Quinoa':
+			return '퀴노아';
+		case 'Sauce tomate':
+			return '토마토 소스';
+		default:
+			return key;
+	}
+};
 var $author$project$L10n$t = function (locale) {
 	switch (locale) {
 		case 0:
 			return $author$project$L10n$translateFR;
 		case 2:
 			return $author$project$L10n$translateEN;
-		default:
+		case 1:
 			return $author$project$L10n$translateDE;
+		case 3:
+			return $author$project$L10n$translateIT;
+		case 5:
+			return $author$project$L10n$translateBR;
+		default:
+			return $author$project$L10n$translateKR;
 	}
 };
 var $author$project$Main$init = function (flags) {
