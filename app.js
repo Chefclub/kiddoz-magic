@@ -5288,8 +5288,8 @@ var $author$project$L10n$translateBR = function (key) {
 			return ' de ';
 		case 'Ta recette':
 			return 'A sua receita';
-		case 'Ta recette Kiddoz':
-			return 'A sua receita em Kiddoz';
+		case 'Ta recette Chefclub Kids':
+			return 'A sua receita em Chefclub Kids';
 		case 'grams':
 			return 'gramas';
 		case 'centiliters':
@@ -5400,8 +5400,8 @@ var $author$project$L10n$translateDE = function (key) {
 			return ' ';
 		case 'Ta recette':
 			return 'Dein Rezept';
-		case 'Ta recette Kiddoz':
-			return 'Dein Kiddoz Rezept';
+		case 'Ta recette Chefclub Kids':
+			return 'Dein Chefclub Kids Rezept';
 		case 'grams':
 			return 'Gramm';
 		case 'centiliters':
@@ -5512,8 +5512,8 @@ var $author$project$L10n$translateEN = function (key) {
 			return ' of ';
 		case 'Ta recette':
 			return 'Your recipe';
-		case 'Ta recette Kiddoz':
-			return 'Your Kiddoz recipe';
+		case 'Ta recette Chefclub Kids':
+			return 'Your Chefclub Kids recipe';
 		case 'grams':
 			return 'grams';
 		case 'centiliters':
@@ -5652,8 +5652,8 @@ var $author$project$L10n$translateIT = function (key) {
 			return ' di ';
 		case 'Ta recette':
 			return 'La tua ricetta';
-		case 'Ta recette Kiddoz':
-			return 'La tua ricetta in Kiddoz';
+		case 'Ta recette Chefclub Kids':
+			return 'La tua ricetta in Chefclub Kids';
 		case 'grams':
 			return 'grammi';
 		case 'centiliters':
@@ -5764,7 +5764,7 @@ var $author$project$L10n$translateKR = function (key) {
 			return '';
 		case 'Ta recette':
 			return '당신의 레시피';
-		case 'Ta recette Kiddoz':
+		case 'Ta recette Chefclub Kids':
 			return '당신의 키도즈 레시피';
 		case 'grams':
 			return 'g';
@@ -7674,7 +7674,7 @@ var $author$project$View$view = function (model) {
 										_List_fromArray(
 											[
 												$elm$html$Html$text(
-												t('Ta recette Kiddoz'))
+												t('Ta recette Chefclub Kids'))
 											])),
 										A2($author$project$View$showRecipe, t, model)
 									]))
