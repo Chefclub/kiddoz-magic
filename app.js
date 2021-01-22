@@ -6999,7 +6999,7 @@ var $author$project$View$showIngredientQuantity = F2(
 var $author$project$Kiddoz$food2mL = function (kind) {
 	switch (kind) {
 		case 0:
-			return $elm$core$Maybe$Just(250 / 180);
+			return $elm$core$Maybe$Just(250 / 150);
 		case 28:
 			return $elm$core$Maybe$Just(0.55);
 		case 29:
