@@ -120,7 +120,7 @@ food2mL : Kind -> Maybe Float
 food2mL kind =
     case kind of
         Flour ->
-            Just (250 / 180)
+            Just (250 / 150)
 
         PineNut ->
             Just 0.55
