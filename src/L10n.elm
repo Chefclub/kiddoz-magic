@@ -24,6 +24,9 @@ t locale =
         KR ->
             translateKR
 
+        ES ->
+            translateES
+
 translateFR : String -> String
 translateFR key =
     case key of
@@ -889,6 +892,172 @@ translateEN key =
 
         "Sauce tomate" ->
             "Tomato sauce"
+
+        _ ->
+            key
+
+
+translateES : String -> String
+translateES key =
+    case key of
+        "Convertisseur de recettes" ->
+            "Convertidor de recetas"
+
+        "Ingrédient" ->
+            "Ingrediente"
+
+        "Quantité" ->
+            "Cantidad"
+
+        "Unité" ->
+            "Unidad"
+
+        "Convertir" ->
+            "Convertir"
+
+        "Recommencer" ->
+            "Volver a empezar"
+
+        " de " ->
+            " de "
+
+        "Ta recette" ->
+            "Tu receta"
+
+        "Ta recette Chefclub Kids" ->
+            "Tu receta Chefclub Kids"
+
+        "grams" ->
+            "gramos"
+
+        "centiliters" ->
+            "centilitros"
+
+        "milliliters" ->
+            "mililitros"
+
+        "cup" ->
+            "taza"
+
+        "½ cup" ->
+            "½ de taza"
+
+        "⅓ cup" ->
+            "⅓ de taza"
+
+        "¼ cup" ->
+            "¼ de taza"
+
+        "tbsp" ->
+            "cda"
+
+        "tsp" ->
+            "cdta"
+
+        "oz" ->
+            "onz"
+
+        "piece" ->
+            "pedazo"
+
+        "Farine" ->
+            "Harina"
+
+        "Pignons" ->
+            "Piñón"
+
+        "Polenta" ->
+            "Polenta"
+
+        "Chocolat" ->
+            "Chocolate"
+
+        "Miettes de pain" ->
+            "Pan rallado"
+
+        "Cannelle" ->
+            "Canela"
+
+        "Café instantané" ->
+            "Café Instantáneo"
+
+        "Café moulu" ->
+            "Café molido"
+
+        "Coriandre" ->
+            "Cilantro"
+
+        "Curry" ->
+            "Curry"
+
+        "Curcuma" ->
+            "Cúrcuma"
+
+        "Graines de blé" ->
+            "Granos de trigo"
+
+        "Amandes moulues" ->
+            "Almendra molida"
+
+        "Flocons d'avoine" ->
+            "Avena"
+
+        "Bicarbonate" ->
+            "Bicarbonato de sodio"
+
+        "Blancs d'œufs" ->
+            "Claras de huevo"
+
+        "Jaunes d'œufs" ->
+            "Yemas de huevo"
+
+        "Sucre en poudre" ->
+            "Azúcar"
+
+        "Cassonade" ->
+            "Azúcar morena"
+
+        "Sucre glace" ->
+            "Azúcar glass"
+
+        "Riz" ->
+            "Arroz"
+
+        "Beurre" ->
+            "Mantequilla"
+
+        "Sel" ->
+            "Sal"
+
+        "Fromage râpé" ->
+            "Queso rallado"
+
+        "Liquides" ->
+            "Líquidos"
+
+        "Confiture" ->
+            "Mermelada"
+
+        "Miel" ->
+            "Miel"
+
+        "Moutarde" ->
+            "Mostaza"
+
+        "Pâte à tartiner" ->
+            "Crema para untar"
+
+        "Parmesan" ->
+            "Parmesano"
+
+        "Poivre" ->
+            "Pimienta"
+
+        "Quinoa" ->
+            "Quinoa"
+
+        "Sauce tomate" ->
+            "Salsa de tomate"
 
         _ ->
             key
