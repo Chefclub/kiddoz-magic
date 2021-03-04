@@ -44,6 +44,7 @@ type Locale
     | IT
     | KR
     | BR
+    | ES
 
 
 localeFromString : String -> Locale
@@ -54,7 +55,7 @@ localeFromString l =
     in
     if String.startsWith "it" locale then
         IT
-    else if  String.startsWith "de" locale then
+    else if String.startsWith "de" locale then
         DE
     else if String.startsWith "en" locale then
         EN
@@ -62,6 +63,8 @@ localeFromString l =
         BR
     else if String.startsWith "ko" locale then
         KR
+    else if String.startsWith "es" locale then
+        ES
     else
         FR
 
