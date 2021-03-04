@@ -5261,12 +5261,13 @@ var $author$project$Kiddoz$kindToString = function (kind) {
 var $author$project$Types$BR = 5;
 var $author$project$Types$DE = 1;
 var $author$project$Types$EN = 2;
+var $author$project$Types$ES = 6;
 var $author$project$Types$IT = 3;
 var $author$project$Types$KR = 4;
 var $elm$core$String$toLower = _String_toLower;
 var $author$project$Types$localeFromString = function (l) {
 	var locale = $elm$core$String$toLower(l);
-	return A2($elm$core$String$startsWith, 'it', locale) ? 3 : (A2($elm$core$String$startsWith, 'de', locale) ? 1 : (A2($elm$core$String$startsWith, 'en', locale) ? 2 : (A2($elm$core$String$startsWith, 'pt-br', locale) ? 5 : (A2($elm$core$String$startsWith, 'ko', locale) ? 4 : 0))));
+	return A2($elm$core$String$startsWith, 'it', locale) ? 3 : (A2($elm$core$String$startsWith, 'de', locale) ? 1 : (A2($elm$core$String$startsWith, 'en', locale) ? 2 : (A2($elm$core$String$startsWith, 'pt-br', locale) ? 5 : (A2($elm$core$String$startsWith, 'ko', locale) ? 4 : (A2($elm$core$String$startsWith, 'es', locale) ? 6 : 0)))));
 };
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
@@ -5606,6 +5607,118 @@ var $author$project$L10n$translateEN = function (key) {
 			return key;
 	}
 };
+var $author$project$L10n$translateES = function (key) {
+	switch (key) {
+		case 'Convertisseur de recettes':
+			return 'Convertidor de recetas';
+		case 'Ingrédient':
+			return 'Ingrediente';
+		case 'Quantité':
+			return 'Cantidad';
+		case 'Unité':
+			return 'Unidad';
+		case 'Convertir':
+			return 'Convertir';
+		case 'Recommencer':
+			return 'Volver a empezar';
+		case ' de ':
+			return ' de ';
+		case 'Ta recette':
+			return 'Tu receta';
+		case 'Ta recette Chefclub Kids':
+			return 'Tu receta Chefclub Kids';
+		case 'grams':
+			return 'gramos';
+		case 'centiliters':
+			return 'centilitros';
+		case 'milliliters':
+			return 'mililitros';
+		case 'cup':
+			return 'taza';
+		case '½ cup':
+			return '½ de taza';
+		case '⅓ cup':
+			return '⅓ de taza';
+		case '¼ cup':
+			return '¼ de taza';
+		case 'tbsp':
+			return 'cda';
+		case 'tsp':
+			return 'cdta';
+		case 'oz':
+			return 'onz';
+		case 'piece':
+			return 'pedazo';
+		case 'Farine':
+			return 'Harina';
+		case 'Pignons':
+			return 'Piñón';
+		case 'Polenta':
+			return 'Polenta';
+		case 'Chocolat':
+			return 'Chocolate';
+		case 'Miettes de pain':
+			return 'Pan rallado';
+		case 'Cannelle':
+			return 'Canela';
+		case 'Café instantané':
+			return 'Café Instantáneo';
+		case 'Café moulu':
+			return 'Café molido';
+		case 'Coriandre':
+			return 'Cilantro';
+		case 'Curry':
+			return 'Curry';
+		case 'Curcuma':
+			return 'Cúrcuma';
+		case 'Graines de blé':
+			return 'Granos de trigo';
+		case 'Amandes moulues':
+			return 'Almendra molida';
+		case 'Flocons d\'avoine':
+			return 'Avena';
+		case 'Bicarbonate':
+			return 'Bicarbonato de sodio';
+		case 'Blancs d\'œufs':
+			return 'Claras de huevo';
+		case 'Jaunes d\'œufs':
+			return 'Yemas de huevo';
+		case 'Sucre en poudre':
+			return 'Azúcar';
+		case 'Cassonade':
+			return 'Azúcar morena';
+		case 'Sucre glace':
+			return 'Azúcar glass';
+		case 'Riz':
+			return 'Arroz';
+		case 'Beurre':
+			return 'Mantequilla';
+		case 'Sel':
+			return 'Sal';
+		case 'Fromage râpé':
+			return 'Queso rallado';
+		case 'Liquides':
+			return 'Líquidos';
+		case 'Confiture':
+			return 'Mermelada';
+		case 'Miel':
+			return 'Miel';
+		case 'Moutarde':
+			return 'Mostaza';
+		case 'Pâte à tartiner':
+			return 'Crema para untar';
+		case 'Parmesan':
+			return 'Parmesano';
+		case 'Poivre':
+			return 'Pimienta';
+		case 'Quinoa':
+			return 'Quinoa';
+		case 'Sauce tomate':
+			return 'Salsa de tomate';
+		default:
+			return key;
+	}
+};
 var $author$project$L10n$translateFR = function (key) {
 	switch (key) {
 		case 'grams':
@@ -5870,8 +5983,10 @@ var $author$project$L10n$t = function (locale) {
 			return $author$project$L10n$translateIT;
 		case 5:
 			return $author$project$L10n$translateBR;
-		default:
+		case 4:
 			return $author$project$L10n$translateKR;
+		default:
+			return $author$project$L10n$translateES;
 	}
 };
 var $author$project$Main$init = function (flags) {
