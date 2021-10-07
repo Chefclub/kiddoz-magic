@@ -13,76 +13,76 @@ module Kiddoz exposing
 
 
 type Kind
-    = Flour
-    | GroundAlmonds
+    = Bicarbonate
+    | Breadcrumbs
+    | BrownSugar
+    | Butter
+    | Cilentro
+    | Cinnamon
     | Cocoa
-    | OatMeal
-    | WheatSeed
-    | Bicarbonate
+    | Curcuma
+    | Curry
     | EggWhite
     | EggYellow
-    | Jam
-    | BrownSugar
-    | IcingSugar
-    | Sugar
-    | Rice
-    | Butter
-    | Salt
+    | Flour
     | GrattedCheese
-    | Liquid
-    | Cilentro
-    | Curry
-    | Curcuma
-    | InstantCoffee
+    | GroundAlmonds
     | GroundCoffee
-    | Cinnamon
-    | Breadcrumbs
     | Honey
+    | IcingSugar
+    | InstantCoffee
+    | Jam
+    | Liquid
     | Mustard
-    | Spread
+    | OatMeal
     | Parmesan
+    | Pepper
     | PineNut
     | Polenta
-    | Pepper
     | Quinoa
+    | Rice
+    | Salt
+    | Spread
+    | Sugar
     | TomatoSauce
+    | WheatSeed
 
 
 existingIngredients : List Kind
 existingIngredients =
-    [ Flour
-    , GroundAlmonds
+    [ Bicarbonate
+    , Breadcrumbs
+    , BrownSugar
+    , Butter
+    , Cilentro
+    , Cinnamon
     , Cocoa
-    , OatMeal
-    , WheatSeed
-    , Bicarbonate
+    , Curcuma
+    , Curry
     , EggWhite
     , EggYellow
-    , Jam
-    , BrownSugar
-    , IcingSugar
-    , Sugar
-    , Rice
-    , Butter
-    , Salt
+    , Flour
     , GrattedCheese
-    , Liquid
-    , Cilentro
-    , Curry
-    , Curcuma
-    , InstantCoffee
+    , GroundAlmonds
     , GroundCoffee
-    , Cinnamon
-    , Breadcrumbs
     , Honey
+    , IcingSugar
+    , InstantCoffee
+    , Jam
+    , Liquid
     , Mustard
-    , Spread
+    , OatMeal
     , Parmesan
+    , Pepper
     , PineNut
     , Polenta
-    , Pepper
     , Quinoa
+    , Rice
+    , Salt
+    , Spread
+    , Sugar
     , TomatoSauce
+    , WheatSeed
     ]
 
 
@@ -119,50 +119,32 @@ existingUnits =
 food2mL : Kind -> Maybe Float
 food2mL kind =
     case kind of
-        Flour ->
-            Just (250 / 150)
-
-        PineNut ->
-            Just 0.55
-
-        Polenta ->
-            Just 0.75
-
-        Cocoa ->
-            Just 0.44
+        Bicarbonate ->
+            Just 0.87
 
         Breadcrumbs ->
             Just 0.45
 
-        Cinnamon ->
-            Just 0.5
+        BrownSugar ->
+            Just 0.61
 
-        InstantCoffee ->
-            Just 0.2
-
-        GroundCoffee ->
-            Just 0.4
+        Butter ->
+            Just (250 / 220)
 
         Cilentro ->
             Just 0.068
 
-        Curry ->
-            Just 0.57
+        Cinnamon ->
+            Just 0.5
+
+        Cocoa ->
+            Just 0.44
 
         Curcuma ->
             Just 0.59
 
-        WheatSeed ->
-            Just 0.75
-
-        GroundAlmonds ->
-            Just 0.36
-
-        OatMeal ->
-            Just 0.34
-
-        Bicarbonate ->
-            Just 0.87
+        Curry ->
+            Just 0.57
 
         EggWhite ->
             Just 1.03
@@ -170,41 +152,38 @@ food2mL kind =
         EggYellow ->
             Just 1.13
 
-        Sugar ->
-            Just (250 / 230)
-
-        BrownSugar ->
-            Just 0.61
-
-        IcingSugar ->
-            Just 0.5
-
-        Rice ->
-            Just (250 / 200)
-
-        Butter ->
-            Just (250 / 220)
-
-        Salt ->
-            Just (250 / 340)
+        Flour ->
+            Just (250 / 150)
 
         GrattedCheese ->
             Just (250 / 100)
 
-        Liquid ->
-            Just 1
+        GroundAlmonds ->
+            Just 0.36
 
-        Jam ->
-            Just 1.37
+        GroundCoffee ->
+            Just 0.4
 
         Honey ->
             Just 1.4
 
+        IcingSugar ->
+            Just 0.5
+
+        InstantCoffee ->
+            Just 0.2
+
+        Jam ->
+            Just 1.37
+
+        Liquid ->
+            Just 1
+
         Mustard ->
             Just 1.05
 
-        Spread ->
-            Just 1.05
+        OatMeal ->
+            Just 0.34
 
         Parmesan ->
             Just 0.42
@@ -212,11 +191,32 @@ food2mL kind =
         Pepper ->
             Just 0.5
 
+        PineNut ->
+            Just 0.55
+
+        Polenta ->
+            Just 0.75
+
         Quinoa ->
             Just 0.71
 
+        Rice ->
+            Just (250 / 200)
+
+        Salt ->
+            Just (250 / 340)
+
+        Spread ->
+            Just 1.05
+
+        Sugar ->
+            Just (250 / 230)
+
         TomatoSauce ->
             Just 0.91
+
+        WheatSeed ->
+            Just 0.75
 
 
 unitToSelectString : Unit -> String
@@ -333,50 +333,32 @@ unitTomL unit =
 kindToString : Kind -> String
 kindToString kind =
     case kind of
-        Flour ->
-            "Farine"
-
-        PineNut ->
-            "Pignons"
-
-        Polenta ->
-            "Polenta"
-
-        Cocoa ->
-            "Chocolat"
+        Bicarbonate ->
+            "Bicarbonate"
 
         Breadcrumbs ->
             "Miettes de pain"
 
-        Cinnamon ->
-            "Cannelle"
+        BrownSugar ->
+            "Cassonade"
 
-        InstantCoffee ->
-            "Café instantané"
-
-        GroundCoffee ->
-            "Café moulu"
+        Butter ->
+            "Beurre"
 
         Cilentro ->
             "Coriandre"
 
-        Curry ->
-            "Curry"
+        Cinnamon ->
+            "Cannelle"
+
+        Cocoa ->
+            "Chocolat"
 
         Curcuma ->
             "Curcuma"
 
-        WheatSeed ->
-            "Graines de blé"
-
-        GroundAlmonds ->
-            "Amandes moulues"
-
-        OatMeal ->
-            "Flocons d'avoine"
-
-        Bicarbonate ->
-            "Bicarbonate"
+        Curry ->
+            "Curry"
 
         EggWhite ->
             "Blancs d'œufs"
@@ -384,41 +366,38 @@ kindToString kind =
         EggYellow ->
             "Jaunes d'œufs"
 
-        Sugar ->
-            "Sucre en poudre"
-
-        BrownSugar ->
-            "Cassonade"
-
-        IcingSugar ->
-            "Sucre glace"
-
-        Rice ->
-            "Riz"
-
-        Butter ->
-            "Beurre"
-
-        Salt ->
-            "Sel"
+        Flour ->
+            "Farine"
 
         GrattedCheese ->
             "Fromage râpé"
 
-        Liquid ->
-            "Liquides"
+        GroundAlmonds ->
+            "Amandes moulues"
 
-        Jam ->
-            "Confiture"
+        GroundCoffee ->
+            "Café moulu"
 
         Honey ->
             "Miel"
 
+        IcingSugar ->
+            "Sucre glace"
+
+        InstantCoffee ->
+            "Café instantané"
+
+        Jam ->
+            "Confiture"
+
+        Liquid ->
+            "Liquides"
+
         Mustard ->
             "Moutarde"
 
-        Spread ->
-            "Pâte à tartiner"
+        OatMeal ->
+            "Flocons d'avoine"
 
         Parmesan ->
             "Parmesan"
@@ -426,60 +405,63 @@ kindToString kind =
         Pepper ->
             "Poivre"
 
+        PineNut ->
+            "Pignons"
+
+        Polenta ->
+            "Polenta"
+
         Quinoa ->
             "Quinoa"
 
+        Rice ->
+            "Riz"
+
+        Salt ->
+            "Sel"
+
+        Spread ->
+            "Pâte à tartiner"
+
+        Sugar ->
+            "Sucre en poudre"
+
         TomatoSauce ->
             "Sauce tomate"
+
+        WheatSeed ->
+            "Graines de blé"
 
 
 kindFromName : String -> Maybe Kind
 kindFromName kind =
     case kind of
-        "Farine" ->
-            Just Flour
-
-        "Pignons" ->
-            Just PineNut
-
-        "Polenta" ->
-            Just Polenta
-
-        "Chocolat" ->
-            Just Cocoa
+        "Bicarbonate" ->
+            Just Bicarbonate
 
         "Miettes de pain" ->
             Just Breadcrumbs
 
-        "Cannelle" ->
-            Just Cinnamon
+        "Cassonade" ->
+            Just BrownSugar
 
-        "Café instantané" ->
-            Just InstantCoffee
-
-        "Café moulu" ->
-            Just GroundCoffee
+        "Beurre" ->
+            Just Butter
 
         "Coriandre" ->
             Just Cilentro
 
-        "Curry" ->
-            Just Curry
+        "Cannelle" ->
+            Just Cinnamon
+
+        "Chocolat" ->
+            Just Cocoa
 
         "Curcuma" ->
             Just Curcuma
 
-        "Graines de blé" ->
-            Just WheatSeed
-
-        "Amandes moulues" ->
-            Just GroundAlmonds
-
-        "Flocons d'avoine" ->
-            Just OatMeal
-
-        "Bicarbonate" ->
-            Just Bicarbonate
+        "Curry" ->
+            Just Curry
 
         "Blancs d'œufs" ->
             Just EggWhite
@@ -487,41 +469,38 @@ kindFromName kind =
         "Jaunes d'œufs" ->
             Just EggYellow
 
-        "Sucre en poudre" ->
-            Just Sugar
-
-        "Cassonade" ->
-            Just BrownSugar
-
-        "Sucre glace" ->
-            Just IcingSugar
-
-        "Riz" ->
-            Just Rice
-
-        "Beurre" ->
-            Just Butter
-
-        "Sel" ->
-            Just Salt
+        "Farine" ->
+            Just Flour
 
         "Fromage râpé" ->
             Just GrattedCheese
 
-        "Liquides" ->
-            Just Liquid
+        "Amandes moulues" ->
+            Just GroundAlmonds
 
-        "Confiture" ->
-            Just Jam
+        "Café moulu" ->
+            Just GroundCoffee
 
         "Miel" ->
             Just Honey
 
+        "Sucre glace" ->
+            Just IcingSugar
+
+        "Café instantané" ->
+            Just InstantCoffee
+
+        "Confiture" ->
+            Just Jam
+
+        "Liquides" ->
+            Just Liquid
+
         "Moutarde" ->
             Just Mustard
 
-        "Pâte à tartiner" ->
-            Just Spread
+        "Flocons d'avoine" ->
+            Just OatMeal
 
         "Parmesan" ->
             Just Parmesan
@@ -529,11 +508,32 @@ kindFromName kind =
         "Poivre" ->
             Just Pepper
 
+        "Pignons" ->
+            Just PineNut
+
+        "Polenta" ->
+            Just Polenta
+
         "Quinoa" ->
             Just Quinoa
 
+        "Riz" ->
+            Just Rice
+
+        "Sel" ->
+            Just Salt
+
+        "Pâte à tartiner" ->
+            Just Spread
+
+        "Sucre en poudre" ->
+            Just Sugar
+
         "Sauce tomate" ->
             Just TomatoSauce
+
+        "Graines de blé" ->
+            Just WheatSeed
 
         _ ->
             Nothing
