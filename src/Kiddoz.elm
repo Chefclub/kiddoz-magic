@@ -135,16 +135,16 @@ food2mL kind =
             Just 0.068
 
         Cinnamon ->
-            Just 0.5
+            Just (30 / 15)
 
-        Cocoa ->
+        Cocoa -> --- 'chocolat' or 'cacao' ?
             Just 0.44
 
         Curcuma ->
-            Just 0.59
+            Just (30 / 15)
 
         Curry ->
-            Just 0.57
+            Just (30 / 15)
 
         EggWhite ->
             Just 1.03
@@ -159,34 +159,34 @@ food2mL kind =
             Just (250 / 100)
 
         GroundAlmonds ->
-            Just 0.36
+            Just (250 / 140)
 
         GroundCoffee ->
             Just 0.4
 
         Honey ->
-            Just 1.4
+            Just (250 / 180)
 
         IcingSugar ->
-            Just 0.5
+            Just (250 / 150)
 
         InstantCoffee ->
             Just 0.2
 
         Jam ->
-            Just 1.37
+            Just (80 / 100)
 
         Liquid ->
             Just 1
 
         Mustard ->
-            Just 1.05
+            Just (80 / 75)
 
         OatMeal ->
-            Just 0.34
+            Just (250 / 100)
 
         Parmesan ->
-            Just 0.42
+            Just (250 / 100)
 
         Pepper ->
             Just 0.5
@@ -204,10 +204,10 @@ food2mL kind =
             Just (250 / 200)
 
         Salt ->
-            Just (250 / 340)
+            Just (15 / 20)
 
         Spread ->
-            Just 1.05
+            Just (80 / 75)
 
         Sugar ->
             Just (250 / 230)
