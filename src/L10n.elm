@@ -238,6 +238,9 @@ translateDE key =
         "Yaourt" ->
             "Joghurt"
 
+        "Levure" ->
+            "Hefe"
+
         _ ->
             key
 
@@ -412,6 +415,9 @@ translateIT key =
 
         "Yaourt" ->
             "Yogurt"
+
+        "Levure" ->
+            "Lievito"
 
         _ ->
             key
@@ -588,6 +594,9 @@ translateKR key =
         "Yaourt" ->
             "그릭 요거트"
 
+        "Levure" ->
+            "누룩"
+
         _ ->
             key
 
@@ -762,6 +771,9 @@ translateBR key =
 
         "Yaourt" ->
             "Iogurte"
+
+        "Levure" ->
+            "Levedura"
 
         _ ->
             key
@@ -938,6 +950,9 @@ translateEN key =
         "Yaourt" ->
             "Yoghurt"
 
+        "Levure" ->
+            "Baking Powder"
+
         _ ->
             key
 
@@ -1112,6 +1127,9 @@ translateES key =
 
         "Yaourt" ->
             "Yogurt"
+
+        "Levure" ->
+            "Levadura"
 
         _ ->
             key

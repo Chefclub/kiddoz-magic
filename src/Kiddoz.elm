@@ -13,7 +13,8 @@ module Kiddoz exposing
 
 
 type Kind
-    = Bicarbonate
+    = BakingPowder
+    | Bicarbonate
     | Breadcrumbs
     | BrownSugar
     | Butter
@@ -53,7 +54,8 @@ type Kind
 
 existingIngredients : List Kind
 existingIngredients =
-    [ Bicarbonate
+    [ BakingPowder
+    , Bicarbonate
     , Breadcrumbs
     , BrownSugar
     , Butter
@@ -125,6 +127,9 @@ existingUnits =
 food2mL : Kind -> Maybe Float
 food2mL kind =
     case kind of
+        BakingPowder ->
+            Just (15 / 10)
+
         Bicarbonate ->
             Just 0.87
 
@@ -348,6 +353,9 @@ unitTomL unit =
 kindToString : Kind -> String
 kindToString kind =
     case kind of
+        BakingPowder ->
+            "Levure"
+
         Bicarbonate ->
             "Bicarbonate"
 
@@ -460,6 +468,9 @@ kindToString kind =
 kindFromName : String -> Maybe Kind
 kindFromName kind =
     case kind of
+        "Levure" ->
+            Just BakingPowder
+
         "Bicarbonate" ->
             Just Bicarbonate
 
