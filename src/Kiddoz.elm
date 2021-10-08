@@ -26,6 +26,7 @@ type Kind
     | EggYellow
     | Flour
     | GrattedCheese
+    | GrattedMozzarella
     | GroundAlmonds
     | GroundCoffee
     | Honey
@@ -33,6 +34,7 @@ type Kind
     | InstantCoffee
     | Jam
     | Liquid
+    | Mascarpone
     | Mustard
     | OatMeal
     | Parmesan
@@ -46,6 +48,7 @@ type Kind
     | Sugar
     | TomatoSauce
     | WheatSeed
+    | Yogurt
 
 
 existingIngredients : List Kind
@@ -63,6 +66,7 @@ existingIngredients =
     , EggYellow
     , Flour
     , GrattedCheese
+    , GrattedMozzarella
     , GroundAlmonds
     , GroundCoffee
     , Honey
@@ -70,6 +74,7 @@ existingIngredients =
     , InstantCoffee
     , Jam
     , Liquid
+    , Mascarpone
     , Mustard
     , OatMeal
     , Parmesan
@@ -83,6 +88,7 @@ existingIngredients =
     , Sugar
     , TomatoSauce
     , WheatSeed
+    , Yogurt
     ]
 
 
@@ -158,6 +164,9 @@ food2mL kind =
         GrattedCheese ->
             Just (250 / 100)
 
+        GrattedMozzarella ->
+            Just (250 / 100)
+
         GroundAlmonds ->
             Just (250 / 140)
 
@@ -178,6 +187,9 @@ food2mL kind =
 
         Liquid ->
             Just 1
+
+        Mascarpone ->
+            Just (250 / 250)
 
         Mustard ->
             Just (80 / 75)
@@ -217,6 +229,9 @@ food2mL kind =
 
         WheatSeed ->
             Just 0.75
+
+        Yogurt ->
+            Just (250 / 250)
 
 
 unitToSelectString : Unit -> String
@@ -372,6 +387,9 @@ kindToString kind =
         GrattedCheese ->
             "Fromage râpé"
 
+        GrattedMozzarella ->
+            "Mozzarella râpée"
+
         GroundAlmonds ->
             "Amandes moulues"
 
@@ -392,6 +410,9 @@ kindToString kind =
 
         Liquid ->
             "Liquides"
+
+        Mascarpone ->
+            "Mascarpone"
 
         Mustard ->
             "Moutarde"
@@ -431,6 +452,9 @@ kindToString kind =
 
         WheatSeed ->
             "Graines de blé"
+
+        Yogurt ->
+            "Yaourt"
 
 
 kindFromName : String -> Maybe Kind
@@ -475,6 +499,9 @@ kindFromName kind =
         "Fromage râpé" ->
             Just GrattedCheese
 
+        "Mozzarella râpée" ->
+            Just GrattedMozzarella
+
         "Amandes moulues" ->
             Just GroundAlmonds
 
@@ -495,6 +522,9 @@ kindFromName kind =
 
         "Liquides" ->
             Just Liquid
+
+        "Mascarpone" ->
+            Just Mascarpone
 
         "Moutarde" ->
             Just Mustard
@@ -534,6 +564,9 @@ kindFromName kind =
 
         "Graines de blé" ->
             Just WheatSeed
+
+        "Yaourt" ->
+            Just Yogurt
 
         _ ->
             Nothing

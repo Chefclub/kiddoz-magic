@@ -202,6 +202,9 @@ translateDE key =
         "Fromage râpé" ->
             "Geriebener Käse"
 
+        "Mozzarella râpée" ->
+            "Geriebener Mozzarella"
+
         "Liquides" ->
             "Flüssigkeit"
 
@@ -210,6 +213,9 @@ translateDE key =
 
         "Miel" ->
             "Honig"
+
+        "Mascarpone" ->
+            "Mascarpone"
 
         "Moutarde" ->
             "Senf"
@@ -228,6 +234,9 @@ translateDE key =
 
         "Sauce tomate" ->
             "Tomatensoße"
+
+        "Yaourt" ->
+            "Joghurt"
 
         _ ->
             key
@@ -368,6 +377,9 @@ translateIT key =
         "Fromage râpé" ->
             "Formaggio grattugiato"
 
+        "Mozzarella râpée" ->
+            "Mozzarella grattugiata"
+
         "Liquides" ->
             "Liquidi"
 
@@ -376,6 +388,9 @@ translateIT key =
 
         "Miel" ->
             "Miele"
+
+        "Mascarpone" ->
+            "Mascarpone"
 
         "Moutarde" ->
             "Mostarda"
@@ -394,6 +409,9 @@ translateIT key =
 
         "Sauce tomate" ->
             "Passata di pomodoro"
+
+        "Yaourt" ->
+            "Yogurt"
 
         _ ->
             key
@@ -534,6 +552,9 @@ translateKR key =
         "Fromage râpé" ->
             "슈레드 치즈"
 
+        "Mozzarella râpée" ->
+            "슈레드 모짜렐라"
+
         "Liquides" ->
             "액체"
 
@@ -542,6 +563,9 @@ translateKR key =
 
         "Miel" ->
             "꿀"
+
+        "Mascarpone" ->
+            "마스카르포네 치즈"
 
         "Moutarde" ->
             "겨자"
@@ -560,6 +584,9 @@ translateKR key =
 
         "Sauce tomate" ->
             "토마토 소스"
+
+        "Yaourt" ->
+            "그릭 요거트"
 
         _ ->
             key
@@ -700,6 +727,9 @@ translateBR key =
         "Fromage râpé" ->
             "Queijo ralado"
 
+        "Mozzarella râpée" ->
+            "Muçarela ralada"
+
         "Liquides" ->
             "Líquidos"
 
@@ -708,6 +738,9 @@ translateBR key =
 
         "Miel" ->
             "Mel"
+
+        "Mascarpone" ->
+            "Mascarpone"
 
         "Moutarde" ->
             "Mostarda"
@@ -726,6 +759,9 @@ translateBR key =
 
         "Sauce tomate" ->
             "Molho de tomate"
+
+        "Yaourt" ->
+            "Iogurte"
 
         _ ->
             key
@@ -866,6 +902,9 @@ translateEN key =
         "Fromage râpé" ->
             "Shredded cheese"
 
+        "Mozzarella râpée" ->
+            "Shredded mozzarella"
+
         "Liquides" ->
             "Liquids"
 
@@ -874,6 +913,9 @@ translateEN key =
 
         "Miel" ->
             "Honey"
+
+        "Mascarpone" ->
+            "Mascarpone cheese"
 
         "Moutarde" ->
             "Mustard"
@@ -892,6 +934,9 @@ translateEN key =
 
         "Sauce tomate" ->
             "Tomato sauce"
+
+        "Yaourt" ->
+            "Yoghurt"
 
         _ ->
             key
@@ -1032,6 +1077,9 @@ translateES key =
         "Fromage râpé" ->
             "Queso rallado"
 
+        "Mozzarella râpée" ->
+            "Mozzarella rallada"
+
         "Liquides" ->
             "Líquidos"
 
@@ -1040,6 +1088,9 @@ translateES key =
 
         "Miel" ->
             "Miel"
+
+        "Mascarpone" ->
+            "Mascarpone"
 
         "Moutarde" ->
             "Mostaza"
@@ -1058,6 +1109,9 @@ translateES key =
 
         "Sauce tomate" ->
             "Salsa de tomate"
+
+        "Yaourt" ->
+            "Yogurt"
 
         _ ->
             key
