@@ -142,8 +142,8 @@ translateDE key =
         "Chocolat" ->
             "Schokolade"
 
-        "Miettes de pain" ->
-            "Brotkrümmel"
+        "Chapelure" ->
+            "Paniermehl"
 
         "Cannelle" ->
             "Zimt"
@@ -308,8 +308,8 @@ translateIT key =
         "Chocolat" ->
             "Cioccolato"
 
-        "Miettes de pain" ->
-            "Briciole di pane"
+        "Chapelure" ->
+            "Pangrattato"
 
         "Cannelle" ->
             "Cannella"
@@ -474,7 +474,7 @@ translateKR key =
         "Chocolat" ->
             "초콜릿"
 
-        "Miettes de pain" ->
+        "Chapelure" ->
             "빵가루"
 
         "Cannelle" ->
@@ -640,8 +640,8 @@ translateBR key =
         "Chocolat" ->
             "Chocolate"
 
-        "Miettes de pain" ->
-            "Migalhas de pão"
+        "Chapelure" ->
+            "Farinha de rosca"
 
         "Cannelle" ->
             "Canela"
@@ -806,7 +806,7 @@ translateEN key =
         "Chocolat" ->
             "Cocoa"
 
-        "Miettes de pain" ->
+        "Chapelure" ->
             "Breadcrumbs"
 
         "Cannelle" ->
@@ -972,7 +972,7 @@ translateES key =
         "Chocolat" ->
             "Chocolate"
 
-        "Miettes de pain" ->
+        "Chapelure" ->
             "Pan rallado"
 
         "Cannelle" ->

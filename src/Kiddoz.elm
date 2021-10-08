@@ -123,7 +123,7 @@ food2mL kind =
             Just 0.87
 
         Breadcrumbs ->
-            Just 0.45
+            Just (250 / 150)
 
         BrownSugar ->
             Just 0.61
@@ -337,7 +337,7 @@ kindToString kind =
             "Bicarbonate"
 
         Breadcrumbs ->
-            "Miettes de pain"
+            "Chapelure"
 
         BrownSugar ->
             "Cassonade"
@@ -439,7 +439,7 @@ kindFromName kind =
         "Bicarbonate" ->
             Just Bicarbonate
 
-        "Miettes de pain" ->
+        "Chapelure" ->
             Just Breadcrumbs
 
         "Cassonade" ->
