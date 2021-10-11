@@ -5132,11 +5132,11 @@ var $elm$core$Task$perform = F2(
 	});
 var $elm$browser$Browser$element = _Browser_element;
 var $elm$json$Json$Decode$field = _Json_decodeField;
-var $author$project$Kiddoz$Flour = 15;
+var $author$project$Kiddoz$Flour = 10;
 var $author$project$Kiddoz$Grams = 0;
 var $author$project$Types$emptyIngredient = function (name) {
 	return {
-		aU: $elm$core$Maybe$Just(15),
+		aU: $elm$core$Maybe$Just(10),
 		aV: name,
 		aZ: 100,
 		a1: 0
@@ -5193,83 +5193,57 @@ var $author$project$Kiddoz$kindToString = function (kind) {
 		case 0:
 			return 'Levure';
 		case 1:
-			return 'Bicarbonate';
-		case 2:
 			return 'Chapelure';
-		case 3:
-			return 'Cassonade';
-		case 4:
+		case 2:
 			return 'Beurre';
-		case 5:
+		case 3:
 			return 'Pépites de chocolat';
-		case 6:
+		case 4:
 			return 'Morceaux de chocolat';
-		case 7:
-			return 'Coriandre';
-		case 8:
+		case 5:
 			return 'Cannelle';
-		case 9:
+		case 6:
 			return 'Cacao en poudre';
-		case 10:
+		case 7:
 			return 'Noisettes concassées';
-		case 11:
+		case 8:
 			return 'Curcuma';
-		case 12:
+		case 9:
 			return 'Curry';
-		case 13:
-			return 'Blancs d\'œufs';
-		case 14:
-			return 'Jaunes d\'œufs';
-		case 15:
+		case 10:
 			return 'Farine';
-		case 16:
+		case 11:
 			return 'Fromage râpé';
-		case 17:
+		case 12:
 			return 'Mozzarella râpée';
-		case 18:
+		case 13:
 			return 'Amandes moulues';
-		case 19:
-			return 'Café moulu';
-		case 20:
+		case 14:
 			return 'Noisettes';
-		case 21:
+		case 15:
 			return 'Miel';
-		case 22:
+		case 16:
 			return 'Sucre glace';
-		case 23:
-			return 'Café instantané';
-		case 24:
+		case 17:
 			return 'Confiture';
-		case 25:
+		case 18:
 			return 'Liquides';
-		case 26:
+		case 19:
 			return 'Mascarpone';
-		case 27:
+		case 20:
 			return 'Moutarde';
-		case 28:
+		case 21:
 			return 'Flocons d\'avoine';
-		case 29:
+		case 22:
 			return 'Parmesan';
-		case 30:
-			return 'Poivre';
-		case 31:
-			return 'Pignons';
-		case 32:
-			return 'Polenta';
-		case 33:
-			return 'Quinoa';
-		case 34:
+		case 23:
 			return 'Riz';
-		case 35:
+		case 24:
 			return 'Sel';
-		case 36:
+		case 25:
 			return 'Pâte à tartiner';
-		case 37:
+		case 26:
 			return 'Sucre en poudre';
-		case 38:
-			return 'Sauce tomate';
-		case 39:
-			return 'Graines de blé';
 		default:
 			return 'Yaourt';
 	}
@@ -6113,7 +6087,7 @@ var $author$project$Main$init = function (flags) {
 						[
 							$author$project$Types$emptyIngredient(
 							t(
-								$author$project$Kiddoz$kindToString(15)))
+								$author$project$Kiddoz$kindToString(10)))
 						])),
 				t: locale,
 				I: flags.I
@@ -6180,129 +6154,90 @@ var $elm$core$Array$get = F2(
 			A3($elm$core$Array$getHelp, startShift, index, tree)));
 	});
 var $author$project$Kiddoz$BakingPowder = 0;
-var $author$project$Kiddoz$Bicarbonate = 1;
-var $author$project$Kiddoz$Breadcrumbs = 2;
-var $author$project$Kiddoz$BrownSugar = 3;
-var $author$project$Kiddoz$Butter = 4;
-var $author$project$Kiddoz$ChocolateChips = 5;
-var $author$project$Kiddoz$ChocolatePieces = 6;
-var $author$project$Kiddoz$Cilentro = 7;
-var $author$project$Kiddoz$Cinnamon = 8;
-var $author$project$Kiddoz$CocoaPowder = 9;
-var $author$project$Kiddoz$CrushedHazelnuts = 10;
-var $author$project$Kiddoz$Curcuma = 11;
-var $author$project$Kiddoz$Curry = 12;
-var $author$project$Kiddoz$EggWhite = 13;
-var $author$project$Kiddoz$EggYellow = 14;
-var $author$project$Kiddoz$GrattedCheese = 16;
-var $author$project$Kiddoz$GrattedMozzarella = 17;
-var $author$project$Kiddoz$GroundAlmonds = 18;
-var $author$project$Kiddoz$GroundCoffee = 19;
-var $author$project$Kiddoz$Hazelnuts = 20;
-var $author$project$Kiddoz$Honey = 21;
-var $author$project$Kiddoz$IcingSugar = 22;
-var $author$project$Kiddoz$InstantCoffee = 23;
-var $author$project$Kiddoz$Jam = 24;
-var $author$project$Kiddoz$Liquid = 25;
-var $author$project$Kiddoz$Mascarpone = 26;
-var $author$project$Kiddoz$Mustard = 27;
-var $author$project$Kiddoz$OatMeal = 28;
-var $author$project$Kiddoz$Parmesan = 29;
-var $author$project$Kiddoz$Pepper = 30;
-var $author$project$Kiddoz$PineNut = 31;
-var $author$project$Kiddoz$Polenta = 32;
-var $author$project$Kiddoz$Quinoa = 33;
-var $author$project$Kiddoz$Rice = 34;
-var $author$project$Kiddoz$Salt = 35;
-var $author$project$Kiddoz$Spread = 36;
-var $author$project$Kiddoz$Sugar = 37;
-var $author$project$Kiddoz$TomatoSauce = 38;
-var $author$project$Kiddoz$WheatSeed = 39;
-var $author$project$Kiddoz$Yogurt = 40;
+var $author$project$Kiddoz$Breadcrumbs = 1;
+var $author$project$Kiddoz$Butter = 2;
+var $author$project$Kiddoz$ChocolateChips = 3;
+var $author$project$Kiddoz$ChocolatePieces = 4;
+var $author$project$Kiddoz$Cinnamon = 5;
+var $author$project$Kiddoz$CocoaPowder = 6;
+var $author$project$Kiddoz$CrushedHazelnuts = 7;
+var $author$project$Kiddoz$Curcuma = 8;
+var $author$project$Kiddoz$Curry = 9;
+var $author$project$Kiddoz$GrattedCheese = 11;
+var $author$project$Kiddoz$GrattedMozzarella = 12;
+var $author$project$Kiddoz$GroundAlmonds = 13;
+var $author$project$Kiddoz$Hazelnuts = 14;
+var $author$project$Kiddoz$Honey = 15;
+var $author$project$Kiddoz$IcingSugar = 16;
+var $author$project$Kiddoz$Jam = 17;
+var $author$project$Kiddoz$Liquid = 18;
+var $author$project$Kiddoz$Mascarpone = 19;
+var $author$project$Kiddoz$Mustard = 20;
+var $author$project$Kiddoz$OatMeal = 21;
+var $author$project$Kiddoz$Parmesan = 22;
+var $author$project$Kiddoz$Rice = 23;
+var $author$project$Kiddoz$Salt = 24;
+var $author$project$Kiddoz$Spread = 25;
+var $author$project$Kiddoz$Sugar = 26;
+var $author$project$Kiddoz$Yogurt = 27;
 var $author$project$Kiddoz$kindFromName = function (kind) {
 	switch (kind) {
 		case 'Levure':
 			return $elm$core$Maybe$Just(0);
-		case 'Bicarbonate':
-			return $elm$core$Maybe$Just(1);
 		case 'Chapelure':
-			return $elm$core$Maybe$Just(2);
-		case 'Cassonade':
-			return $elm$core$Maybe$Just(3);
+			return $elm$core$Maybe$Just(1);
 		case 'Beurre':
-			return $elm$core$Maybe$Just(4);
+			return $elm$core$Maybe$Just(2);
 		case 'Pépites de chocolat':
-			return $elm$core$Maybe$Just(5);
+			return $elm$core$Maybe$Just(3);
 		case 'Morceaux de chocolat':
-			return $elm$core$Maybe$Just(6);
-		case 'Coriandre':
-			return $elm$core$Maybe$Just(7);
+			return $elm$core$Maybe$Just(4);
 		case 'Cannelle':
-			return $elm$core$Maybe$Just(8);
+			return $elm$core$Maybe$Just(5);
 		case 'Cacao en poudre':
-			return $elm$core$Maybe$Just(9);
+			return $elm$core$Maybe$Just(6);
 		case 'Noisettes concassées':
-			return $elm$core$Maybe$Just(10);
+			return $elm$core$Maybe$Just(7);
 		case 'Curcuma':
-			return $elm$core$Maybe$Just(11);
+			return $elm$core$Maybe$Just(8);
 		case 'Curry':
-			return $elm$core$Maybe$Just(12);
-		case 'Blancs d\'œufs':
-			return $elm$core$Maybe$Just(13);
-		case 'Jaunes d\'œufs':
-			return $elm$core$Maybe$Just(14);
+			return $elm$core$Maybe$Just(9);
 		case 'Farine':
-			return $elm$core$Maybe$Just(15);
+			return $elm$core$Maybe$Just(10);
 		case 'Fromage râpé':
-			return $elm$core$Maybe$Just(16);
+			return $elm$core$Maybe$Just(11);
 		case 'Mozzarella râpée':
-			return $elm$core$Maybe$Just(17);
+			return $elm$core$Maybe$Just(12);
 		case 'Amandes moulues':
-			return $elm$core$Maybe$Just(18);
-		case 'Café moulu':
-			return $elm$core$Maybe$Just(19);
+			return $elm$core$Maybe$Just(13);
 		case 'Noisettes':
-			return $elm$core$Maybe$Just(20);
+			return $elm$core$Maybe$Just(14);
 		case 'Miel':
-			return $elm$core$Maybe$Just(21);
+			return $elm$core$Maybe$Just(15);
 		case 'Sucre glace':
-			return $elm$core$Maybe$Just(22);
-		case 'Café instantané':
-			return $elm$core$Maybe$Just(23);
+			return $elm$core$Maybe$Just(16);
 		case 'Confiture':
-			return $elm$core$Maybe$Just(24);
+			return $elm$core$Maybe$Just(17);
 		case 'Liquides':
-			return $elm$core$Maybe$Just(25);
+			return $elm$core$Maybe$Just(18);
 		case 'Mascarpone':
-			return $elm$core$Maybe$Just(26);
+			return $elm$core$Maybe$Just(19);
 		case 'Moutarde':
-			return $elm$core$Maybe$Just(27);
+			return $elm$core$Maybe$Just(20);
 		case 'Flocons d\'avoine':
-			return $elm$core$Maybe$Just(28);
+			return $elm$core$Maybe$Just(21);
 		case 'Parmesan':
-			return $elm$core$Maybe$Just(29);
-		case 'Poivre':
-			return $elm$core$Maybe$Just(30);
-		case 'Pignons':
-			return $elm$core$Maybe$Just(31);
-		case 'Polenta':
-			return $elm$core$Maybe$Just(32);
-		case 'Quinoa':
-			return $elm$core$Maybe$Just(33);
+			return $elm$core$Maybe$Just(22);
 		case 'Riz':
-			return $elm$core$Maybe$Just(34);
+			return $elm$core$Maybe$Just(23);
 		case 'Sel':
-			return $elm$core$Maybe$Just(35);
+			return $elm$core$Maybe$Just(24);
 		case 'Pâte à tartiner':
-			return $elm$core$Maybe$Just(36);
+			return $elm$core$Maybe$Just(25);
 		case 'Sucre en poudre':
-			return $elm$core$Maybe$Just(37);
-		case 'Sauce tomate':
-			return $elm$core$Maybe$Just(38);
-		case 'Graines de blé':
-			return $elm$core$Maybe$Just(39);
+			return $elm$core$Maybe$Just(26);
 		case 'Yaourt':
-			return $elm$core$Maybe$Just(40);
+			return $elm$core$Maybe$Just(27);
 		default:
 			return $elm$core$Maybe$Nothing;
 	}
@@ -6845,7 +6780,7 @@ var $author$project$Main$update = F2(
 									[
 										$author$project$Types$emptyIngredient(
 										t(
-											$author$project$Kiddoz$kindToString(15)))
+											$author$project$Kiddoz$kindToString(10)))
 									])),
 							t: model.t,
 							I: model.I
@@ -6974,7 +6909,7 @@ var $elm$core$List$concat = function (lists) {
 	return A3($elm$core$List$foldr, $elm$core$List$append, _List_Nil, lists);
 };
 var $author$project$Kiddoz$existingIngredients = _List_fromArray(
-	[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40]);
+	[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27]);
 var $author$project$Kiddoz$existingUnits = _List_fromArray(
 	[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 var $elm$html$Html$input = _VirtualDom_node('input');
@@ -7252,83 +7187,57 @@ var $author$project$Kiddoz$food2mL = function (kind) {
 		case 0:
 			return $elm$core$Maybe$Just(15 / 10);
 		case 1:
-			return $elm$core$Maybe$Just(0.87);
-		case 2:
 			return $elm$core$Maybe$Just(250 / 150);
-		case 3:
-			return $elm$core$Maybe$Just(0.61);
-		case 4:
+		case 2:
 			return $elm$core$Maybe$Just(250 / 220);
-		case 5:
+		case 3:
 			return $elm$core$Maybe$Just(250 / 160);
-		case 6:
+		case 4:
 			return $elm$core$Maybe$Just(250 / 175);
+		case 5:
+			return $elm$core$Maybe$Just(30 / 15);
+		case 6:
+			return $elm$core$Maybe$Just(250 / 120);
 		case 7:
-			return $elm$core$Maybe$Just(0.068);
+			return $elm$core$Maybe$Just(250 / 140);
 		case 8:
 			return $elm$core$Maybe$Just(30 / 15);
 		case 9:
-			return $elm$core$Maybe$Just(250 / 120);
+			return $elm$core$Maybe$Just(30 / 15);
 		case 10:
-			return $elm$core$Maybe$Just(250 / 140);
+			return $elm$core$Maybe$Just(250 / 150);
 		case 11:
-			return $elm$core$Maybe$Just(30 / 15);
+			return $elm$core$Maybe$Just(250 / 100);
 		case 12:
-			return $elm$core$Maybe$Just(30 / 15);
+			return $elm$core$Maybe$Just(250 / 100);
 		case 13:
-			return $elm$core$Maybe$Just(1.03);
-		case 14:
-			return $elm$core$Maybe$Just(1.13);
-		case 15:
-			return $elm$core$Maybe$Just(250 / 150);
-		case 16:
-			return $elm$core$Maybe$Just(250 / 100);
-		case 17:
-			return $elm$core$Maybe$Just(250 / 100);
-		case 18:
 			return $elm$core$Maybe$Just(250 / 140);
-		case 19:
-			return $elm$core$Maybe$Just(0.4);
-		case 20:
+		case 14:
 			return $elm$core$Maybe$Just(250 / 125);
-		case 21:
+		case 15:
 			return $elm$core$Maybe$Just(250 / 180);
-		case 22:
+		case 16:
 			return $elm$core$Maybe$Just(250 / 150);
-		case 23:
-			return $elm$core$Maybe$Just(0.2);
-		case 24:
+		case 17:
 			return $elm$core$Maybe$Just(80 / 100);
-		case 25:
+		case 18:
 			return $elm$core$Maybe$Just(1);
-		case 26:
+		case 19:
 			return $elm$core$Maybe$Just(250 / 250);
-		case 27:
+		case 20:
 			return $elm$core$Maybe$Just(80 / 75);
-		case 28:
+		case 21:
 			return $elm$core$Maybe$Just(250 / 100);
-		case 29:
+		case 22:
 			return $elm$core$Maybe$Just(250 / 100);
-		case 30:
-			return $elm$core$Maybe$Just(0.5);
-		case 31:
-			return $elm$core$Maybe$Just(0.55);
-		case 32:
-			return $elm$core$Maybe$Just(0.75);
-		case 33:
-			return $elm$core$Maybe$Just(0.71);
-		case 34:
+		case 23:
 			return $elm$core$Maybe$Just(250 / 200);
-		case 35:
+		case 24:
 			return $elm$core$Maybe$Just(15 / 20);
-		case 36:
+		case 25:
 			return $elm$core$Maybe$Just(80 / 75);
-		case 37:
+		case 26:
 			return $elm$core$Maybe$Just(250 / 230);
-		case 38:
-			return $elm$core$Maybe$Just(0.91);
-		case 39:
-			return $elm$core$Maybe$Just(0.75);
 		default:
 			return $elm$core$Maybe$Just(250 / 250);
 	}
