@@ -160,7 +160,7 @@ food2mL kind =
             Just 0.068
  -}
         Cinnamon ->
-            Just (30 / 15)
+            Just (60 / 30)
 
         CocoaPowder ->
             Just (250 / 120)
@@ -169,10 +169,10 @@ food2mL kind =
             Just (250 / 140)
 
         Curcuma ->
-            Just (30 / 15)
+            Just (60 / 30)
 
         Curry ->
-            Just (30 / 15)
+            Just (60 / 30)
 
 {-         EggWhite ->
             Just 1.03
