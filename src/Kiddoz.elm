@@ -14,90 +14,90 @@ module Kiddoz exposing
 
 type Kind
     = BakingPowder
-    | Bicarbonate
+    --| Bicarbonate
     | Breadcrumbs
-    | BrownSugar
+    --| BrownSugar
     | Butter
     | ChocolateChips
     | ChocolatePieces
-    | Cilentro
+    --| Cilentro
     | Cinnamon
     | CocoaPowder
     | CrushedHazelnuts
     | Curcuma
     | Curry
-    | EggWhite
-    | EggYellow
+    --| EggWhite
+    --| EggYellow
     | Flour
     | GrattedCheese
     | GrattedMozzarella
     | GroundAlmonds
-    | GroundCoffee
+    --| GroundCoffee
     | Hazelnuts
     | Honey
     | IcingSugar
-    | InstantCoffee
+    --| InstantCoffee
     | Jam
     | Liquid
     | Mascarpone
     | Mustard
     | OatMeal
     | Parmesan
-    | Pepper
-    | PineNut
-    | Polenta
-    | Quinoa
+    --| Pepper
+    --| PineNut
+    --| Polenta
+    --| Quinoa
     | Rice
     | Salt
     | Spread
     | Sugar
-    | TomatoSauce
-    | WheatSeed
+    --| TomatoSauce
+    --| WheatSeed
     | Yogurt
 
 
 existingIngredients : List Kind
 existingIngredients =
     [ BakingPowder
-    , Bicarbonate
+    --, Bicarbonate
     , Breadcrumbs
-    , BrownSugar
+    --, BrownSugar
     , Butter
     , ChocolateChips
     , ChocolatePieces
-    , Cilentro
+    --, Cilentro
     , Cinnamon
     , CocoaPowder
     , CrushedHazelnuts
     , Curcuma
     , Curry
-    , EggWhite
-    , EggYellow
+    --, EggWhite
+    --, EggYellow
     , Flour
     , GrattedCheese
     , GrattedMozzarella
     , GroundAlmonds
-    , GroundCoffee
+    --, GroundCoffee
     , Hazelnuts
     , Honey
     , IcingSugar
-    , InstantCoffee
+    --, InstantCoffee
     , Jam
     , Liquid
     , Mascarpone
     , Mustard
     , OatMeal
     , Parmesan
-    , Pepper
-    , PineNut
-    , Polenta
-    , Quinoa
+    --, Pepper
+    --, PineNut
+    --, Polenta
+    --, Quinoa
     , Rice
     , Salt
     , Spread
     , Sugar
-    , TomatoSauce
-    , WheatSeed
+    --, TomatoSauce
+    --, WheatSeed
     , Yogurt
     ]
 
@@ -138,15 +138,15 @@ food2mL kind =
         BakingPowder ->
             Just (15 / 10)
 
-        Bicarbonate ->
+{-         Bicarbonate ->
             Just 0.87
-
+ -}
         Breadcrumbs ->
             Just (250 / 150)
 
-        BrownSugar ->
+{-         BrownSugar ->
             Just 0.61
-
+ -}
         Butter ->
             Just (250 / 220)
 
@@ -156,9 +156,9 @@ food2mL kind =
         ChocolatePieces ->
             Just (250 / 175)
 
-        Cilentro ->
+{-         Cilentro ->
             Just 0.068
-
+ -}
         Cinnamon ->
             Just (30 / 15)
 
@@ -174,12 +174,12 @@ food2mL kind =
         Curry ->
             Just (30 / 15)
 
-        EggWhite ->
+{-         EggWhite ->
             Just 1.03
 
         EggYellow ->
             Just 1.13
-
+ -}
         Flour ->
             Just (250 / 150)
 
@@ -192,9 +192,9 @@ food2mL kind =
         GroundAlmonds ->
             Just (250 / 140)
 
-        GroundCoffee ->
+{-         GroundCoffee ->
             Just 0.4
-
+ -}
         Hazelnuts ->
             Just (250 / 125)
 
@@ -204,9 +204,9 @@ food2mL kind =
         IcingSugar ->
             Just (250 / 150)
 
-        InstantCoffee ->
+{-         InstantCoffee ->
             Just 0.2
-
+ -}
         Jam ->
             Just (80 / 100)
 
@@ -225,7 +225,7 @@ food2mL kind =
         Parmesan ->
             Just (250 / 100)
 
-        Pepper ->
+{-         Pepper ->
             Just 0.5
 
         PineNut ->
@@ -236,7 +236,7 @@ food2mL kind =
 
         Quinoa ->
             Just 0.71
-
+ -}
         Rice ->
             Just (250 / 200)
 
@@ -249,12 +249,12 @@ food2mL kind =
         Sugar ->
             Just (250 / 230)
 
-        TomatoSauce ->
+{-         TomatoSauce ->
             Just 0.91
 
         WheatSeed ->
             Just 0.75
-
+ -}
         Yogurt ->
             Just (250 / 250)
 
@@ -376,15 +376,15 @@ kindToString kind =
         BakingPowder ->
             "Levure"
 
-        Bicarbonate ->
+{-         Bicarbonate ->
             "Bicarbonate"
-
+ -}
         Breadcrumbs ->
             "Chapelure"
 
-        BrownSugar ->
+{-         BrownSugar ->
             "Cassonade"
-
+ -}
         Butter ->
             "Beurre"
 
@@ -394,9 +394,9 @@ kindToString kind =
         ChocolatePieces ->
             "Morceaux de chocolat"
 
-        Cilentro ->
+{-         Cilentro ->
             "Coriandre"
-
+ -}
         Cinnamon ->
             "Cannelle"
 
@@ -412,12 +412,12 @@ kindToString kind =
         Curry ->
             "Curry"
 
-        EggWhite ->
+{-         EggWhite ->
             "Blancs d'œufs"
 
         EggYellow ->
             "Jaunes d'œufs"
-
+ -}
         Flour ->
             "Farine"
 
@@ -430,9 +430,9 @@ kindToString kind =
         GroundAlmonds ->
             "Amandes moulues"
 
-        GroundCoffee ->
+{-         GroundCoffee ->
             "Café moulu"
-
+ -}
         Hazelnuts ->
             "Noisettes"
 
@@ -442,9 +442,9 @@ kindToString kind =
         IcingSugar ->
             "Sucre glace"
 
-        InstantCoffee ->
+{-         InstantCoffee ->
             "Café instantané"
-
+ -}
         Jam ->
             "Confiture"
 
@@ -463,7 +463,7 @@ kindToString kind =
         Parmesan ->
             "Parmesan"
 
-        Pepper ->
+{-         Pepper ->
             "Poivre"
 
         PineNut ->
@@ -474,7 +474,7 @@ kindToString kind =
 
         Quinoa ->
             "Quinoa"
-
+ -}
         Rice ->
             "Riz"
 
@@ -487,12 +487,12 @@ kindToString kind =
         Sugar ->
             "Sucre en poudre"
 
-        TomatoSauce ->
+{-         TomatoSauce ->
             "Sauce tomate"
 
         WheatSeed ->
             "Graines de blé"
-
+ -}
         Yogurt ->
             "Yaourt"
 
@@ -503,15 +503,15 @@ kindFromName kind =
         "Levure" ->
             Just BakingPowder
 
-        "Bicarbonate" ->
+{-         "Bicarbonate" ->
             Just Bicarbonate
-
+ -}
         "Chapelure" ->
             Just Breadcrumbs
 
-        "Cassonade" ->
+{-         "Cassonade" ->
             Just BrownSugar
-
+ -}
         "Beurre" ->
             Just Butter
 
@@ -521,9 +521,9 @@ kindFromName kind =
         "Morceaux de chocolat" ->
             Just ChocolatePieces
 
-        "Coriandre" ->
+{-         "Coriandre" ->
             Just Cilentro
-
+ -}
         "Cannelle" ->
             Just Cinnamon
 
@@ -539,12 +539,12 @@ kindFromName kind =
         "Curry" ->
             Just Curry
 
-        "Blancs d'œufs" ->
+{-         "Blancs d'œufs" ->
             Just EggWhite
 
         "Jaunes d'œufs" ->
             Just EggYellow
-
+ -}
         "Farine" ->
             Just Flour
 
@@ -557,9 +557,9 @@ kindFromName kind =
         "Amandes moulues" ->
             Just GroundAlmonds
 
-        "Café moulu" ->
+{-         "Café moulu" ->
             Just GroundCoffee
-
+ -}
         "Noisettes" ->
             Just Hazelnuts
 
@@ -569,9 +569,9 @@ kindFromName kind =
         "Sucre glace" ->
             Just IcingSugar
 
-        "Café instantané" ->
+{-         "Café instantané" ->
             Just InstantCoffee
-
+ -}
         "Confiture" ->
             Just Jam
 
@@ -590,7 +590,7 @@ kindFromName kind =
         "Parmesan" ->
             Just Parmesan
 
-        "Poivre" ->
+{-         "Poivre" ->
             Just Pepper
 
         "Pignons" ->
@@ -601,7 +601,7 @@ kindFromName kind =
 
         "Quinoa" ->
             Just Quinoa
-
+ -}
         "Riz" ->
             Just Rice
 
@@ -614,12 +614,12 @@ kindFromName kind =
         "Sucre en poudre" ->
             Just Sugar
 
-        "Sauce tomate" ->
+{-         "Sauce tomate" ->
             Just TomatoSauce
 
         "Graines de blé" ->
             Just WheatSeed
-
+ -}
         "Yaourt" ->
             Just Yogurt
 
