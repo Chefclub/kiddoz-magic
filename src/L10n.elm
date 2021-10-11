@@ -139,8 +139,8 @@ translateDE key =
         "Polenta" ->
             "Polenta"
 
-        "Chocolat" ->
-            "Schokolade"
+        "Cacao en poudre" ->
+            "Kakaopulver"
 
         "Chapelure" ->
             "Paniermehl"
@@ -247,6 +247,12 @@ translateDE key =
         "Noisettes" ->
             "Haselnüsse"
 
+        "Pépites de chocolat" ->
+            "Schokosplitter"
+
+        "Morceaux de chocolat" ->
+            "Schokostückchen"
+
         _ ->
             key
 
@@ -323,8 +329,8 @@ translateIT key =
         "Polenta" ->
             "Polenta"
 
-        "Chocolat" ->
-            "Cioccolato"
+        "Cacao en poudre" ->
+            "Cacao in polvere"
 
         "Chapelure" ->
             "Pangrattato"
@@ -431,6 +437,12 @@ translateIT key =
         "Noisettes" ->
             "Nocciole"
 
+        "Pépites de chocolat" ->
+            "Gocce di cioccolato"
+
+        "Morceaux de chocolat" ->
+            "Pezzi di cioccolato"
+
         _ ->
             key
 
@@ -507,8 +519,8 @@ translateKR key =
         "Polenta" ->
             "폴렌타"
 
-        "Chocolat" ->
-            "초콜릿"
+        "Cacao en poudre" ->
+            "카카오 분말"
 
         "Chapelure" ->
             "빵가루"
@@ -615,6 +627,12 @@ translateKR key =
         "Noisettes" ->
             "개암"
 
+        "Pépites de chocolat" ->
+            "초코칩"
+
+        "Morceaux de chocolat" ->
+            "초콜릿 조각"
+
         _ ->
             key
 
@@ -691,8 +709,8 @@ translateBR key =
         "Polenta" ->
             "Polenta"
 
-        "Chocolat" ->
-            "Chocolate"
+        "Cacao en poudre" ->
+            "Cacau em pó"
 
         "Chapelure" ->
             "Farinha de rosca"
@@ -799,6 +817,12 @@ translateBR key =
         "Noisettes" ->
             "Avelãs"
 
+        "Pépites de chocolat" ->
+            "Gotas de chocolate"
+
+        "Morceaux de chocolat" ->
+            "Pedaços de chocolate"
+
         _ ->
             key
 
@@ -875,7 +899,7 @@ translateEN key =
         "Polenta" ->
             "Polenta"
 
-        "Chocolat" ->
+        "Cacao en poudre" ->
             "Cocoa"
 
         "Chapelure" ->
@@ -983,6 +1007,12 @@ translateEN key =
         "Noisettes" ->
             "Hazelnuts"
 
+        "Pépites de chocolat" ->
+            "Chocolate chips"
+
+        "Morceaux de chocolat" ->
+            "Chocolate pieces"
+
         _ ->
             key
 
@@ -1059,8 +1089,8 @@ translateES key =
         "Polenta" ->
             "Polenta"
 
-        "Chocolat" ->
-            "Chocolate"
+        "Cacao en poudre" ->
+            "Cacao en polvo"
 
         "Chapelure" ->
             "Pan rallado"
@@ -1166,6 +1196,12 @@ translateES key =
 
         "Noisettes" ->
             "Avellanas"
+
+        "Pépites de chocolat" ->
+            "Chispas de chocolate"
+
+        "Morceaux de chocolat" ->
+            "Trozos de chocolate"
 
         _ ->
             key

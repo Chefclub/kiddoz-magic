@@ -18,9 +18,11 @@ type Kind
     | Breadcrumbs
     | BrownSugar
     | Butter
+    | ChocolateChips
+    | ChocolatePieces
     | Cilentro
     | Cinnamon
-    | Cocoa
+    | CocoaPowder
     | CrushedHazelnuts
     | Curcuma
     | Curry
@@ -61,9 +63,11 @@ existingIngredients =
     , Breadcrumbs
     , BrownSugar
     , Butter
+    , ChocolateChips
+    , ChocolatePieces
     , Cilentro
     , Cinnamon
-    , Cocoa
+    , CocoaPowder
     , CrushedHazelnuts
     , Curcuma
     , Curry
@@ -146,14 +150,20 @@ food2mL kind =
         Butter ->
             Just (250 / 220)
 
+        ChocolateChips ->
+            Just (250 / 160)
+
+        ChocolatePieces ->
+            Just (250 / 175)
+
         Cilentro ->
             Just 0.068
 
         Cinnamon ->
             Just (30 / 15)
 
-        Cocoa -> --- 'chocolat' or 'cacao' ?
-            Just 0.44
+        CocoaPowder ->
+            Just (250 / 120)
 
         CrushedHazelnuts ->
             Just (250 / 140)
@@ -378,14 +388,20 @@ kindToString kind =
         Butter ->
             "Beurre"
 
+        ChocolateChips ->
+            "Pépites de chocolat"
+
+        ChocolatePieces ->
+            "Morceaux de chocolat"
+
         Cilentro ->
             "Coriandre"
 
         Cinnamon ->
             "Cannelle"
 
-        Cocoa ->
-            "Chocolat"
+        CocoaPowder ->
+            "Cacao en poudre"
 
         CrushedHazelnuts ->
             "Noisettes concassées"
@@ -499,14 +515,20 @@ kindFromName kind =
         "Beurre" ->
             Just Butter
 
+        "Pépites de chocolat" ->
+            Just ChocolateChips
+
+        "Morceaux de chocolat" ->
+            Just ChocolatePieces
+
         "Coriandre" ->
             Just Cilentro
 
         "Cannelle" ->
             Just Cinnamon
 
-        "Chocolat" ->
-            Just Cocoa
+        "Cacao en poudre" ->
+            Just CocoaPowder
 
         "Noisettes concassées" ->
             Just CrushedHazelnuts
