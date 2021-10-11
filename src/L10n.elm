@@ -241,6 +241,12 @@ translateDE key =
         "Levure" ->
             "Hefe"
 
+        "Noisettes concassées" ->
+            "Gehackte Haselnüsse"
+
+        "Noisettes" ->
+            "Haselnüsse"
+
         _ ->
             key
 
@@ -418,6 +424,12 @@ translateIT key =
 
         "Levure" ->
             "Lievito"
+
+        "Noisettes concassées" ->
+            "Nocciole tritate"
+
+        "Noisettes" ->
+            "Nocciole"
 
         _ ->
             key
@@ -597,6 +609,12 @@ translateKR key =
         "Levure" ->
             "누룩"
 
+        "Noisettes concassées" ->
+            "으깬 헤이즐넛"
+
+        "Noisettes" ->
+            "개암"
+
         _ ->
             key
 
@@ -774,6 +792,12 @@ translateBR key =
 
         "Levure" ->
             "Levedura"
+
+        "Noisettes concassées" ->
+            "Avelãs trituradas"
+
+        "Noisettes" ->
+            "Avelãs"
 
         _ ->
             key
@@ -953,6 +977,12 @@ translateEN key =
         "Levure" ->
             "Baking Powder"
 
+        "Noisettes concassées" ->
+            "Crushed hazelnuts"
+
+        "Noisettes" ->
+            "Hazelnuts"
+
         _ ->
             key
 
@@ -1130,6 +1160,12 @@ translateES key =
 
         "Levure" ->
             "Levadura"
+
+        "Noisettes concassées" ->
+            "Avellanas trituradas"
+
+        "Noisettes" ->
+            "Avellanas"
 
         _ ->
             key

@@ -21,6 +21,7 @@ type Kind
     | Cilentro
     | Cinnamon
     | Cocoa
+    | CrushedHazelnuts
     | Curcuma
     | Curry
     | EggWhite
@@ -30,6 +31,7 @@ type Kind
     | GrattedMozzarella
     | GroundAlmonds
     | GroundCoffee
+    | Hazelnuts
     | Honey
     | IcingSugar
     | InstantCoffee
@@ -62,6 +64,7 @@ existingIngredients =
     , Cilentro
     , Cinnamon
     , Cocoa
+    , CrushedHazelnuts
     , Curcuma
     , Curry
     , EggWhite
@@ -71,6 +74,7 @@ existingIngredients =
     , GrattedMozzarella
     , GroundAlmonds
     , GroundCoffee
+    , Hazelnuts
     , Honey
     , IcingSugar
     , InstantCoffee
@@ -151,6 +155,9 @@ food2mL kind =
         Cocoa -> --- 'chocolat' or 'cacao' ?
             Just 0.44
 
+        CrushedHazelnuts ->
+            Just (250 / 140)
+
         Curcuma ->
             Just (30 / 15)
 
@@ -177,6 +184,9 @@ food2mL kind =
 
         GroundCoffee ->
             Just 0.4
+
+        Hazelnuts ->
+            Just (250 / 125)
 
         Honey ->
             Just (250 / 180)
@@ -377,6 +387,9 @@ kindToString kind =
         Cocoa ->
             "Chocolat"
 
+        CrushedHazelnuts ->
+            "Noisettes concassées"
+
         Curcuma ->
             "Curcuma"
 
@@ -403,6 +416,9 @@ kindToString kind =
 
         GroundCoffee ->
             "Café moulu"
+
+        Hazelnuts ->
+            "Noisettes"
 
         Honey ->
             "Miel"
@@ -492,6 +508,9 @@ kindFromName kind =
         "Chocolat" ->
             Just Cocoa
 
+        "Noisettes concassées" ->
+            Just CrushedHazelnuts
+
         "Curcuma" ->
             Just Curcuma
 
@@ -518,6 +537,9 @@ kindFromName kind =
 
         "Café moulu" ->
             Just GroundCoffee
+
+        "Noisettes" ->
+            Just Hazelnuts
 
         "Miel" ->
             Just Honey
