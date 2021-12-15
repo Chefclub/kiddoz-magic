@@ -223,7 +223,7 @@ food2mL kind =
             Just (250 / 100)
 
         Parmesan ->
-            Just (250 / 100)
+            Just (250 / 120)
 
 {-         Pepper ->
             Just 0.5
