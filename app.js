@@ -7229,7 +7229,7 @@ var $author$project$Kiddoz$food2mL = function (kind) {
 		case 21:
 			return $elm$core$Maybe$Just(250 / 100);
 		case 22:
-			return $elm$core$Maybe$Just(250 / 100);
+			return $elm$core$Maybe$Just(250 / 120);
 		case 23:
 			return $elm$core$Maybe$Just(250 / 200);
 		case 24:
